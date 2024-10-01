@@ -15,7 +15,7 @@ const Forecasting = () => {
 
   const [targetColumn, setTargetColumn] = useState(() => {
     const savedTarget = localStorage.getItem('targetColumn');
-    return savedTarget || 'Number of Eggs'; // Change to the default column name if necessary
+    return savedTarget || 'Total Eggs'; // Default target column
   });
 
   const chartRef = useRef(null);
@@ -23,23 +23,15 @@ const Forecasting = () => {
 
   // Chart data configuration
   const chartData = {
-    labels: data.map(row => row.date),
+    labels: data.map(row => row.Age), // X-axis: Age
     datasets: [
       {
-        label: `Data from ${targetColumn}`,
-        data: data.map(row => parseFloat(row[targetColumn]) || 0),
+        label: `Data for ${targetColumn}`,
+        data: data.map(row => parseFloat(row[targetColumn]) || 0), // Y-axis: Target column values
         borderColor: '#3b82f6',
         backgroundColor: 'rgba(59, 130, 246, 0.2)',
         borderWidth: 2,
         fill: true,
-      },
-      {
-        label: 'Forecast',
-        data: Array(data.length).fill(null), // Keep forecast data blank for now
-        borderColor: 'orange',
-        backgroundColor: 'rgba(255, 165, 0, 0.2)',
-        borderWidth: 2,
-        fill: false,
       },
     ],
   };
@@ -58,7 +50,6 @@ const Forecasting = () => {
       Papa.parse(file, {
         header: true,
         complete: (results) => {
-          console.log("Uploaded Data Columns:", Object.keys(results.data[0])); // Log columns
           setData(results.data);
           setError('');
           localStorage.setItem('forecastingData', JSON.stringify(results.data));
@@ -77,7 +68,6 @@ const Forecasting = () => {
       Papa.parse(file, {
         header: true,
         complete: (results) => {
-          console.log("Uploaded Data Columns:", Object.keys(results.data[0])); // Log columns
           setData(results.data);
           setError('');
           localStorage.setItem('forecastingData', JSON.stringify(results.data));
@@ -125,7 +115,7 @@ const Forecasting = () => {
       <div className="bg-white p-4 rounded-lg shadow-md mb-6">
         <h3 className="text-lg font-medium mb-4">Forecasting Graph</h3>
 
-        <div className="h-96 mb-4 mr-20">
+        <div className="h-96 mb-4">
           <Line
             ref={chartRef}
             data={chartData}
@@ -138,12 +128,18 @@ const Forecasting = () => {
                     autoSkip: true,
                     maxTicksLimit: 12,
                   },
+                  title: {
+                    display: true,
+                    text: 'Age', // X-axis title
+                  },
                 },
                 y: {
-                  type: 'linear',
-                  position: 'left',
                   ticks: {
                     callback: (value) => `${value}`,
+                  },
+                  title: {
+                    display: true,
+                    text: targetColumn, // Y-axis title
                   },
                 },
               },

@@ -1,21 +1,32 @@
-// components/Dashboard.js
 import React from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import DashboardHeader from './DashboardHeader';
 import Sidebar from './Sidebar';
-import { Outlet } from 'react-router-dom';
+import Forecasting from '../pages/Forecasting'; // Adjust the import path if necessary
+import Inventory from '../pages/Inventory'; // Adjust the import path if necessary
 
-function Dashboard({ onSignOut }) {
+function Dashboard() {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    // Implement sign-out logic here (if any)
+    navigate('/'); // Redirect to landing page after sign out
+  };
+
   return (
-    <div className="flex flex-col h-screen">
-      <DashboardHeader onSignOut={onSignOut} />
-      <div className="flex flex-grow">
-        <Sidebar />
-        <div className="flex-grow overflow-y-auto"> {/* Make this scrollable */}
-          <Outlet /> {/* This will render the content of Forecasting or Inventory */}
-        </div>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow ml-64">
+        <DashboardHeader onSignOut={handleSignOut} />
+        <Routes>
+          <Route path="forecasting" element={<Forecasting />} />
+          <Route path="inventory" element={<Inventory />} />
+        </Routes>
+        {/* Other dashboard content can go here */}
       </div>
     </div>
   );
 }
 
 export default Dashboard;
+

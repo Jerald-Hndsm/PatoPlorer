@@ -1,72 +1,68 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn({ onLogin, setLoading, isAuthenticated }) {
+function SignInPage() {
+  const [loading, setLoading] = useState(false); // Initialize loading state
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Hook to navigate programmatically
-
-  useEffect(() => {
-    // If already authenticated, redirect to dashboard
-    if (isAuthenticated) {
-      navigate('/dashboard');
-    }
-  }, [isAuthenticated, navigate]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true
+    setLoading(true); // Start loading when form is submitted
 
-    // Simulate authentication process
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate loading for 2 seconds
-
-    // Authenticate the user
-    onLogin(); // Call the login handler from App
-    setLoading(false); // Reset loading state
-    navigate('/loading'); // Navigate to loading screen
-    
-    // After loading, navigate to the dashboard
+    // Simulating an API request with a timeout
     setTimeout(() => {
-      navigate('/dashboard');
-    }, 2000); // Adjust loading duration as necessary
+      setLoading(false); // Stop loading after a delay
+      navigate('/forecasting'); // Redirect to the Forecasting page after loading
+    }, 2000);
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-
-        <div className="mb-4">
-          <label className="block text-gray-700">Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter your username"
-          />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      {loading ? (
+        <div className="text-center">
+          <p>Loading...</p>
         </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700">Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter your password"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-        >
-          Sign In
-        </button>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="w-96 p-6 bg-white shadow-md rounded">
+          <h2 className="text-2xl font-bold mb-6">Sign In</h2>
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-gray-700">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded mt-1"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
+          >
+            Sign In
+          </button>
+        </form>
+      )}
     </div>
   );
 }
 
-export default SignIn;
+export default SignInPage;

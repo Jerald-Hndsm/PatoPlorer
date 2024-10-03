@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loader2 from './Loader2';
 
 function SignInPage() {
   const [loading, setLoading] = useState(false); // Initialize loading state
@@ -21,8 +22,8 @@ function SignInPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       {loading ? (
-        <div className="text-center">
-          <p>Loading...</p>
+        <div>
+          <Loader2 />
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="w-96 p-6 bg-white shadow-md rounded">
@@ -59,6 +60,16 @@ function SignInPage() {
           >
             Sign In
           </button>
+          {/* Sign Up Button */}
+          <div className="mt-4 text-center">
+            <button
+              type="button"
+              onClick={() => navigate('/signup')} // Redirect to the Sign Up page
+              className="text-blue-500 hover:text-blue-600 transition duration-200"
+            >
+              Sign Up
+            </button>
+          </div>
         </form>
       )}
     </div>
@@ -66,3 +77,4 @@ function SignInPage() {
 }
 
 export default SignInPage;
+

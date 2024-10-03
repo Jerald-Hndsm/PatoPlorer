@@ -30,20 +30,20 @@ const Footer = () => {
 
   return (
     <div
-      className="max-w-[1240px] mx-auto py-5 px-8 mt-5 grid gap-8 text-[#424242]"
+      className="max-w-[1240px] mx-auto py-5 px-8 mt-32 grid gap-8 text-[#424242]"
       style={{ userSelect: "none" }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div>
           <h1 className="w-full text-3xl font-bold text-[#424242]">
             <a href="/" aria-label="Home">
-              <span style={{ color: "#FFB9BF" }}>Pato</span>
-              <span style={{ color: "#262322" }}>Plorer</span>
+              <span style={{ color: "#00003C" }}>Fish</span>
+              <span style={{ color: "#ADD1E9" }}>Lens</span>
             </a>
           </h1>
           <p className="py-4 w-4/5">
-            Patoplorer helps to improve duck farming providing insights
-            powered by machine learning.
+            FishLens helps to detect diseases in freshwater fishes using
+            Computer Vision Technology.
           </p>
           <div className="flex justify-between md:w-[75%] my-6">
             <a
@@ -199,7 +199,7 @@ const Footer = () => {
         <hr className="border-t border-[#00003C] mb-1" />
         <div className="flex justify-end">
           <p className="text-base font-semibold py-4">
-            &copy; {currentYear} Patoplorer.
+            &copy; {currentYear} FishLens.
           </p>
         </div>
       </div>

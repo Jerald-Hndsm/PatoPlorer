@@ -1,49 +1,73 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import Header from './components/Header'; // Landing page header
+import Header from './components/Header';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import SignInPage from './components/SignIn';
+import SignUpPage from './components/SignUp'; // Import the Sign Up page
 import Dashboard from './components/Dashboard';
-import LoadingScreen from './components/Loading';
-import DashboardHeader from './components/DashboardHeader'; // Import the DashboardHeader
+import Loader2 from './components/Loader2';
+import DashboardHeader from './components/DashboardHeader';
 import Sidebar from './components/Sidebar';
 import Inventory from './pages/Inventory';
 import Forecasting from './pages/Forecasting';
-import ProductInventory from './pages/ProductInventory';
+import EggTab from './pages/EggTab';
 import FarmInputs from './pages/FarmInputs';
-import FlockManagement from './pages/FlockManagement';
+import Consumption from './pages/Consumption';
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    console.log('User signed out');
-    navigate('/'); // Redirect to the landing page
+  const handleSignIn = () => {
+    navigate('/loading'); // Redirect to loading screen
+    setTimeout(() => {
+      navigate('/dashboard'); // Redirect to dashboard after a delay
+    }, 2000); // Simulate a 2-second loading time
   };
 
-  const shouldShowHeaderFooter = !['/signin', '/loading'].includes(location.pathname);
-  const isDashboardPage = ['/dashboard', '/forecasting', '/inventory', '/inventory/products', '/inventory/farm-inputs', '/inventory/flock-management'].includes(location.pathname);
+  const handleSignOut = () => {
+    console.log('User signed out');
+    navigate('/'); // Redirect to landing page
+  };
+
+  const handleSignUp = () => {
+    navigate('/loading'); // Redirect to loading screen
+    setTimeout(() => {
+      navigate('/signin'); // Redirect to Sign In page after a delay
+    }, 2000); // Simulate a 2-second loading time
+  };
+
+  const shouldShowHeaderFooter = !['/signin', '/signup', '/loading'].includes(location.pathname); // Add /signup here
+
+  const isDashboardPage = [
+    '/dashboard',
+    '/forecasting',
+    '/inventory',
+    '/inventory/products',
+    '/inventory/farm-inputs',
+    '/inventory/eggtab',
+    '/inventory/consumption',
+  ].includes(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
-      {shouldShowHeaderFooter && !isDashboardPage && <Header />} {/* Show landing page header only */}
+      {shouldShowHeaderFooter && !isDashboardPage && <Header />}
       <main className="flex-grow flex">
         {isDashboardPage && <Sidebar />}
         <div className={`flex-grow ${isDashboardPage ? 'ml-64' : ''}`}>
-          {isDashboardPage && <DashboardHeader onSignOut={handleSignOut} />} {/* Use DashboardHeader for dashboard pages */}
+          {isDashboardPage && <DashboardHeader onSignOut={handleSignOut} />}
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
+            <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} /> {/* Add Sign Up Route */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/loading" element={<LoadingScreen />} />
+            <Route path="/loading" element={<Loader2 />} />
             <Route path="/forecasting" element={<Forecasting />} />
             <Route path="/inventory" element={<Inventory />} />
-            <Route path="/inventory/products" element={<ProductInventory />} />
+            <Route path="/inventory/eggtab" element={<EggTab />} />
             <Route path="/inventory/farm-inputs" element={<FarmInputs />} />
-            <Route path="/inventory/flock-management" element={<FlockManagement />} />
+            <Route path="/inventory/consumption" element={<Consumption />} />
           </Routes>
         </div>
       </main>

@@ -19,17 +19,11 @@ function Sidebar() {
           </Link>
         </li>
         <li>
-          <button
-            onClick={toggleInventoryDropdown}
-            className="w-full text-left block p-2 bg-gray-300 rounded hover:bg-gray-400"
-          >
-            Inventory
-          </button>
-          {isInventoryOpen && (
-            <ul className="ml-4 space-y-0">
+          
+            <ul className="ml-0 space-y-2">
               <li>
-                <Link to="/inventory/products" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
-                  Products Inventory
+                <Link to="/inventory/eggtab" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
+                  Egg laying Tab
                 </Link>
               </li>
               <li>
@@ -38,12 +32,10 @@ function Sidebar() {
                 </Link>
               </li>
               <li>
-                <Link to="/inventory/flock-management" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
-                  Flock Management
-                </Link>
+                
               </li>
             </ul>
-          )}
+          
         </li>
       </ul>
     </aside>

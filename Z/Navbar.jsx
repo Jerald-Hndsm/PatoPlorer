@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const sections = ["home", "about", "contact"];
+  const sections = ["home", "about", "download", "articles", "contact"];
 
   const handleNav = () => {
     setNav(!nav);
@@ -93,15 +93,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full py-6 z-50 bg-[#FFF0C4]"
+      className="fixed top-0 left-0 w-full py-6 z-50 bg-white"
       style={{ userSelect: "none" }}
     >
       <div className="max-w-[1400px] mx-auto flex items-center justify-between px-4">
         <div className="flex items-center space-x-2">
           <h1 className="text-3xl font-bold cursor-pointer text-[#424242] px-2">
             <NavLink to="/" onClick={handleRefresh}>
-              <span style={{ color: "#222426" }}>Pato</span>
-              <span style={{ color: "#FCFBFA" }}>Plorer</span>
+              <span style={{ color: "#00003C" }}>Fish</span>
+              <span style={{ color: "#ADD1E9" }}>Lens</span>
             </NavLink>
           </h1>
         </div>
@@ -124,10 +124,10 @@ const Navbar = () => {
             ))}
             <li>
               <NavLink
-                to="/signin"
+                to="/register"
                 className="bg-[#00003C] text-white py-2 px-4 rounded-full hover:bg-[#7b9fb8] hover:text-[#00003C] font-bold"
               >
-                Sign In
+                REGISTER
               </NavLink>
             </li>
           </ul>
@@ -180,13 +180,13 @@ const Navbar = () => {
           ))}
           <li className="p-4 border-b border-gray-600 cursor-pointer">
             <NavLink
-              to="/signin"
+              to="/register"
               className={`block text-[#424242] hover:text-[#7b9fb8] ${
                 activeSection === "register" ? "font-bold" : "font-medium"
               }`}
               onClick={() => setNav(false)}
             >
-              Sign In
+              REGISTER
             </NavLink>
           </li>
         </ul>

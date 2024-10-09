@@ -16,7 +16,7 @@ const Marketplace = () => {
             name: 'Salted Duck Eggs',
             price: 6.99,
             description: 'Preserved salted duck eggs, perfect for a savory dish.',
-            image: 'images/Salted Eggs.png', // Placeholder image URL
+            image: '/images/Salted Eggs.png', // Placeholder image URL
         },
         {
             id: 3,

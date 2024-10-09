@@ -122,6 +122,17 @@ const Navbar = () => {
                 </NavLink>
               </li>
             ))}
+
+            {/* Marketplace Button */}
+            <li>
+              <NavLink
+                to="/marketplace"
+                className=" text-gray-600 py-2 px-4 rounded-full hover:bg-[#7b9fb8] hover:text-[#00003C] font-bold"
+              >
+                Marketplace
+              </NavLink>
+            </li>
+
             <li>
               <NavLink
                 to="/signin"
@@ -151,8 +162,8 @@ const Navbar = () => {
           <li className="flex justify-between items-center p-6">
             <h1 className="text-3xl font-bold text-[#424242]">
               <NavLink to="/" onClick={handleRefresh}>
-                <span style={{ color: "#00003C" }}>Fish</span>
-                <span style={{ color: "#7b9fb8" }}>Lens</span>
+                <span style={{ color: "#00003C" }}>Pato</span>
+                <span style={{ color: "#7b9fb8" }}>Plorer</span>
               </NavLink>
             </h1>
             <div onClick={handleNav}>
@@ -178,6 +189,20 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+          
+          {/* Marketplace for*/}
+          <li
+            className="p-4 border-b border-gray-600 cursor-pointer"
+            onClick={() => setNav(false)}
+          >
+            <NavLink
+              to="/marketplace"
+              className="block text-[#424242] hover:text-[#7b9fb8]"
+            >
+              Marketplace
+            </NavLink>
+          </li>
+
           <li className="p-4 border-b border-gray-600 cursor-pointer">
             <NavLink
               to="/signin"

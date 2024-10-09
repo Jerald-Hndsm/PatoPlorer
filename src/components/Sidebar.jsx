@@ -8,7 +8,7 @@ function Sidebar() {
       <h2 className="text-lg font-bold p-4">Dashboard Menu</h2>
       <ul className="space-y-2">
         <li>
-          <Link to="/maindashboard" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
+          <Link to="/pages/maindashboard" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
             Dashboard
           </Link>
         </li>
@@ -19,7 +19,16 @@ function Sidebar() {
                 Forecasting
               </Link>
             </li>
-            {/* Add more links as needed */}
+            <li>
+              <Link to="/pages/orders" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
+                Orders
+              </Link>
+            </li>
+            <li>
+              <Link to="/pages/eggtab" className="block p-2 bg-gray-300 rounded hover:bg-gray-400">
+                Egg-Laying Tab
+              </Link>
+            </li>
           </ul>
         </li>
       </ul>

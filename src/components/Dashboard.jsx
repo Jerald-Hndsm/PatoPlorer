@@ -4,6 +4,8 @@ import DashboardHeader from './DashboardHeader';
 import Sidebar from './Sidebar';
 import Forecasting from '../pages/Forecasting'; // Adjust the import path if necessary
 import MainDashboard from '../pages/MainDashboard';
+import Orders from '../pages/Orders';
+import EggTab from '../pages/EggTab';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -21,6 +23,8 @@ function Dashboard() {
         <Routes>
           <Route path="/forecasting" element={<Forecasting />} />
           <Route path="/maindashboard" element={<MainDashboard />} />
+          <Route path="/orders" element={Orders} />
+          <Route path="/eggtab" element={EggTab} />
         </Routes>
         {/* Other dashboard content can go here */}
       </div>

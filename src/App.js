@@ -9,8 +9,13 @@ import Dashboard from './components/Dashboard';
 import Loader2 from './components/Loader2';
 import DashboardHeader from './components/DashboardHeader';
 import Sidebar from './components/Sidebar';
+import Marketplace from './components/Marketplace';
+
 import Forecasting from './pages/Forecasting';
 import MainDashboard from './pages/MainDashboard';
+import Orders from './pages/Orders';
+import EggTab from './pages/EggTab';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   const location = useLocation();
@@ -41,7 +46,10 @@ function App() {
     '/dashboard',
     '/forecasting',
     '/products',
-    '/maindashboard',
+    '/pages/maindashboard',
+    '/pages/orders',
+    '/pages/eggtab',
+    '/orderdetails',
   ].includes(location.pathname);
 
   return (
@@ -53,12 +61,16 @@ function App() {
           {isDashboardPage && <DashboardHeader onSignOut={handleSignOut} />}
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
-            <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} /> {/* Add Sign Up Route */}
+            <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/loading" element={<Loader2 />} />
             <Route path="/forecasting" element={<Forecasting />} />
             <Route path="/pages/maindashboard" element={<MainDashboard />} />
+            <Route path="/pages/orders" element={<Orders />} />
+            <Route path="/pages/eggtab" element={<EggTab />} />
+            <Route path="/pages/orderdetails" element={<OrderDetails />} />
           </Routes>
         </div>
       </main>

@@ -1,138 +1,88 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    LineElement,
+    PointElement,
+    LinearScale,
+    CategoryScale,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js';
+
+// Register the components
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 const MainDashboard = () => {
-  const [flockData, setFlockData] = useState({
-    totalBirds: 0,
-    ageDistribution: [],
-    mortalityRate: 0,
-    healthChecks: [],
-    vaccinationSchedule: [],
-    breedingHistory: [],
-    feedSchedule: [],
-  });
+    // Sample data for the graphs
+    const forecastData = {
+        labels: ['2024-10-01', '2024-10-02', '2024-10-03', '2024-10-04', '2024-10-05'], // Dates
+        datasets: [
+            {
+                label: 'Number of Eggs',
+                data: [20, 30, 25, 35, 40], // Sample egg counts
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                tension: 0.1
+            }
+        ]
+    };
 
-  // Handler for updating flock data
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFlockData({ ...flockData, [name]: value });
-  };
+    const salesData = {
+        labels: ['2024-10-01', '2024-10-02', '2024-10-03', '2024-10-04', '2024-10-05'], // Dates
+        datasets: [
+            {
+                label: 'Sales',
+                data: [150, 200, 180, 220, 300], // Sample sales amounts
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                tension: 0.1
+            }
+        ]
+    };
 
-  const handleAddHealthCheck = (check) => {
-    setFlockData((prevData) => ({
-      ...prevData,
-      healthChecks: [...prevData.healthChecks, check],
-    }));
-  };
+    // Current date for display (assuming it's today's date)
+    const currentDate = '2024-10-05'; 
 
-  const handleAddVaccination = (vaccination) => {
-    setFlockData((prevData) => ({
-      ...prevData,
-      vaccinationSchedule: [...prevData.vaccinationSchedule, vaccination],
-    }));
-  };
+    return (
+        <div className="p-8 bg-gray-50">
+            <h1 className="text-2xl mb-4 font-bold">Main Dashboard</h1>
+            
+            {/* Info Tiles */}
+            <div className="flex justify-around mb-8 flex-wrap">
+                <div className="bg-blue-200 p-4 rounded-lg shadow-md w-1/4">
+                    <h2 className="text-lg font-bold">Eggs Produced</h2>
+                    <p className="text-xl">100 Eggs</p>
+                </div>
+                <div className="bg-green-200 p-4 rounded-lg shadow-md w-1/4">
+                    <h2 className="text-lg font-bold">Orders</h2>
+                    <p className="text-xl">50 Orders</p>
+                </div>
+                <div className="bg-yellow-200 p-4 rounded-lg shadow-md w-1/4">
+                    <h2 className="text-lg font-bold">Sales</h2>
+                    <p className="text-xl">$500</p>
+                </div>
+                {/* New Date Tile */}
+                <div className="bg-purple-200 p-4 rounded-lg shadow-md w-1/4">
+                    <h2 className="text-lg font-bold">Date</h2>
+                    <p className="text-xl">{currentDate}</p>
+                </div>
+            </div>
 
-  const handleAddBreedingRecord = (record) => {
-    setFlockData((prevData) => ({
-      ...prevData,
-      breedingHistory: [...prevData.breedingHistory, record],
-    }));
-  };
-
-  const handleAddFeedRecord = (feed) => {
-    setFlockData((prevData) => ({
-      ...prevData,
-      feedSchedule: [...prevData.feedSchedule, feed],
-    }));
-  };
-
-  return (
-    <div className="p-8 mt-8">
-      <h2 className="text-2xl mb-4">Flock Management</h2>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Flock Overview</h3>
-        <div className="flex mb-4">
-          <div className="mr-4">
-            <label>Total Number of Birds:</label>
-            <input
-              type="number"
-              name="totalBirds"
-              value={flockData.totalBirds}
-              onChange={handleInputChange}
-              className="border border-gray-300 p-2 rounded"
-            />
-          </div>
-          <div>
-            <label>Mortality Rate (%):</label>
-            <input
-              type="number"
-              name="mortalityRate"
-              value={flockData.mortalityRate}
-              onChange={handleInputChange}
-              className="border border-gray-300 p-2 rounded"
-            />
-          </div>
+            {/* Graphs and Calendar */}
+            <div className="flex flex-col md:flex-row justify-around">
+                <div className="w-full md:w-1/2 mb-4">
+                    <h2 className="text-lg font-bold mb-2">Egg Forecast</h2>
+                    <Line data={forecastData} />
+                </div>
+                <div className="w-full md:w-1/2 mb-4">
+                    <h2 className="text-lg font-bold mb-2">Sales</h2>
+                    <Line data={salesData} />
+                </div>
+            </div>
         </div>
-        <div className="mb-4">
-          <label>Age Distribution:</label>
-          <textarea
-            name="ageDistribution"
-            value={flockData.ageDistribution.join(', ')}
-            onChange={(e) => handleInputChange({ target: { name: 'ageDistribution', value: e.target.value.split(',') } })}
-            className="border border-gray-300 p-2 rounded"
-            placeholder="Enter ages separated by commas"
-          />
-        </div>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Health and Vaccination Records</h3>
-        {/* Health Checks Input */}
-        <button onClick={() => handleAddHealthCheck("Health check record")} className="bg-blue-500 text-white p-2 rounded mr-2">
-          Add Health Check
-        </button>
-        <ul>
-          {flockData.healthChecks.map((check, index) => (
-            <li key={index}>{check}</li>
-          ))}
-        </ul>
-        
-        {/* Vaccination Schedule Input */}
-        <button onClick={() => handleAddVaccination("Vaccination record")} className="bg-blue-500 text-white p-2 rounded mr-2">
-          Add Vaccination
-        </button>
-        <ul>
-          {flockData.vaccinationSchedule.map((vaccination, index) => (
-            <li key={index}>{vaccination}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Breeding Records</h3>
-        <button onClick={() => handleAddBreedingRecord("Breeding record")} className="bg-blue-500 text-white p-2 rounded mr-2">
-          Add Breeding Record
-        </button>
-        <ul>
-          {flockData.breedingHistory.map((record, index) => (
-            <li key={index}>{record}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-medium">Feed Schedule</h3>
-        <button onClick={() => handleAddFeedRecord("Feed record")} className="bg-blue-500 text-white p-2 rounded mr-2">
-          Add Feed Record
-        </button>
-        <ul>
-          {flockData.feedSchedule.map((feed, index) => (
-            <li key={index}>{feed}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default MainDashboard;

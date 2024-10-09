@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Consumption = () => {
+const MainDashboard = () => {
   const [flockData, setFlockData] = useState({
     totalBirds: 0,
     ageDistribution: [],
@@ -135,4 +135,4 @@ const Consumption = () => {
   );
 };
 
-export default Consumption;
+export default MainDashboard;

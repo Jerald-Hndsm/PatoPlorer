@@ -9,11 +9,8 @@ import Dashboard from './components/Dashboard';
 import Loader2 from './components/Loader2';
 import DashboardHeader from './components/DashboardHeader';
 import Sidebar from './components/Sidebar';
-import Inventory from './pages/Inventory';
 import Forecasting from './pages/Forecasting';
-import EggTab from './pages/EggTab';
-import FarmInputs from './pages/FarmInputs';
-import Consumption from './pages/Consumption';
+import MainDashboard from './pages/MainDashboard';
 
 function App() {
   const location = useLocation();
@@ -43,11 +40,8 @@ function App() {
   const isDashboardPage = [
     '/dashboard',
     '/forecasting',
-    '/inventory',
-    '/inventory/products',
-    '/inventory/farm-inputs',
-    '/inventory/eggtab',
-    '/inventory/consumption',
+    '/products',
+    '/maindashboard',
   ].includes(location.pathname);
 
   return (
@@ -64,10 +58,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/loading" element={<Loader2 />} />
             <Route path="/forecasting" element={<Forecasting />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/inventory/eggtab" element={<EggTab />} />
-            <Route path="/inventory/farm-inputs" element={<FarmInputs />} />
-            <Route path="/inventory/consumption" element={<Consumption />} />
+            <Route path="/pages/maindashboard" element={<MainDashboard />} />
           </Routes>
         </div>
       </main>

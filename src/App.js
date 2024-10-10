@@ -16,6 +16,7 @@ import MainDashboard from './pages/MainDashboard';
 import Orders from './pages/Orders';
 import EggTab from './pages/EggTab';
 import OrderDetails from './pages/OrderDetails';
+import MarketManagement from './pages/MarketManagement';
 
 function App() {
   const location = useLocation();
@@ -50,6 +51,7 @@ function App() {
     '/pages/orders',
     '/pages/eggtab',
     '/orderdetails',
+    '/marketmanagement',
   ].includes(location.pathname);
 
   return (
@@ -71,6 +73,7 @@ function App() {
             <Route path="/pages/orders" element={<Orders />} />
             <Route path="/pages/eggtab" element={<EggTab />} />
             <Route path="/pages/orderdetails" element={<OrderDetails />} />
+            <Route path="/pages/marketmanagement" element={<MarketManagement />} />
           </Routes>
         </div>
       </main>

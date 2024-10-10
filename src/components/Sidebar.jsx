@@ -1,4 +1,3 @@
-// components/Sidebar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LuLayoutDashboard, LuClipboardList } from "react-icons/lu";
@@ -13,7 +12,7 @@ function Sidebar() {
         <li>
           <Link
             to="/pages/maindashboard"
-            className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
+            className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-amber-200 transition duration-200"
           >
             <LuLayoutDashboard className="mr-2" />
             Dashboard
@@ -24,7 +23,7 @@ function Sidebar() {
             <li>
               <Link
                 to="/forecasting"
-                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
+                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-amber-200 transition duration-200"
               >
                 <VscGraphLine className="mr-2" />
                 Production Forecast
@@ -33,7 +32,7 @@ function Sidebar() {
             <li>
               <Link
                 to="/pages/orders"
-                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
+                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-amber-200 transition duration-200"
               >
                 <LuClipboardList className="mr-2" />
                 Orders
@@ -42,7 +41,7 @@ function Sidebar() {
             <li>
               <Link
                 to="/pages/eggtab"
-                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
+                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-amber-200 transition duration-200"
               >
                 <LiaEggSolid className="mr-2" />
                 Egg-Laying Tab
@@ -51,7 +50,7 @@ function Sidebar() {
             <li>
               <Link
                 to="/pages/marketmanagement"
-                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
+                className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-amber-200 transition duration-200"
               >
                 <LiaStoreSolid className="mr-2" />
                 Market Management

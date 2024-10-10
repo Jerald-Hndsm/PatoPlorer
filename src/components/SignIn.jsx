@@ -3,78 +3,94 @@ import { useNavigate } from 'react-router-dom';
 import Loader2 from './Loader2';
 
 function SignInPage() {
-  const [loading, setLoading] = useState(false); // Initialize loading state
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading when form is submitted
+    setLoading(true);
 
     // Simulating an API request with a timeout
     setTimeout(() => {
-      setLoading(false); // Stop loading after a delay
-      navigate('/forecasting'); // Redirect to the Forecasting page after loading
+      setLoading(false);
+      navigate('/forecasting');
     }, 2000);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      {loading ? (
-        <div>
+    <div className="relative flex min-h-screen">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
           <Loader2 />
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="w-96 p-6 bg-white shadow-md rounded">
-          <h2 className="text-2xl font-bold mb-6">Sign In</h2>
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded mt-1"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
-          >
-            Sign In
-          </button>
-          {/* Sign Up Button */}
-          <div className="mt-4 text-center">
-            <button
-              type="button"
-              onClick={() => navigate('/signup')} // Redirect to the Sign Up page
-              className="text-blue-500 hover:text-blue-600 transition duration-200"
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
       )}
+
+      {/* Conditionally render the left side */}
+      {!loading && (
+        <div className="flex-1 hidden lg:flex items-center justify-center bg-gradient-to-br from-orange-300 to-yellow-700 animate-gradient-x">
+          <h1 className="text-5xl font-extrabold text-white">Patoplorer</h1>
+        </div>
+      )}
+
+      {/* Right side with sign-in form */}
+      <div className="flex flex-col flex-1 items-center justify-center bg-white p-6 lg:w-1/2">
+        {!loading && (
+          <form onSubmit={handleSubmit} className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+            <h2 className="text-3xl font-bold text-gray-800">Sign In</h2>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
+                  required
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              Sign In
+            </button>
+
+            {/* Sign Up Button */}
+            <div className="mt-4 text-center">
+              <button
+                type="button"
+                onClick={() => navigate('/signup')}
+                className="text-blue-500 hover:text-blue-600 transition duration-200"
+              >
+                Create Account
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
 
 export default SignInPage;
-

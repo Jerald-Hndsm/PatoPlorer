@@ -27,7 +27,7 @@ function Sidebar() {
                 className="flex items-center p-2 bg-khaki-light rounded-lg hover:bg-khaki-dark transition duration-200"
               >
                 <VscGraphLine className="mr-2" />
-                Forecasting
+                Production Forecast
               </Link>
             </li>
             <li>

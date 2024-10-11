@@ -60,7 +60,7 @@ function EggTab() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 mt-12">
       <h1 className="text-2xl font-bold mb-4">Egg Inventory Management</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-2 mb-4">

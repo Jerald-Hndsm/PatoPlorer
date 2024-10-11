@@ -66,7 +66,7 @@ const Orders = () => {
     };
 
     return (
-        <div className="p-8 bg-gray-50">
+        <div className="p-8 mt-8 bg-gray-50">
             <h1 className="text-2xl mb-4 font-bold">Orders</h1>
 
             {/* Form for adding or editing an order */}

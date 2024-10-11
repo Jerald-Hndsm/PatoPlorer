@@ -46,11 +46,12 @@ const MainDashboard = () => {
     const currentDate = '2024-10-05'; 
 
     return (
-        <div className="p-8 bg-gray-50">
+
+        <div className="p-8 mt-8 bg-gray-50">
             <h1 className="text-2xl mb-4 font-bold">Main Dashboard</h1>
             
             {/* Info Tiles */}
-            <div className="flex justify-around mb-8 flex-wrap">
+            <div className="flex justify-around mb-9 flex-wrap">
                 <div className="bg-blue-200 p-4 rounded-lg shadow-md w-1/4">
                     <h2 className="text-lg font-bold">Eggs Produced</h2>
                     <p className="text-xl">100 Eggs</p>

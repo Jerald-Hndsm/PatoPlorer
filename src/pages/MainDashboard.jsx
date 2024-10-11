@@ -46,9 +46,8 @@ const MainDashboard = () => {
     const currentDate = '2024-10-05'; 
 
     return (
-
         <div className="p-8 mt-8 bg-gray-50">
-            <h1 className="text-2xl mb-4 font-bold">Main Dashboard</h1>
+            <h1 className="text-3xl mb-4 font-bold">Main Dashboard</h1>
             
             {/* Info Tiles */}
             <div className="flex justify-around mb-9 flex-wrap">
@@ -73,13 +72,17 @@ const MainDashboard = () => {
 
             {/* Graphs and Calendar */}
             <div className="flex flex-col md:flex-row justify-around">
-                <div className="w-full md:w-1/2 mb-4">
+                <div className="w-full md:w-1/2 mb-4 p-4 bg-white rounded-lg shadow-md">
                     <h2 className="text-lg font-bold mb-2">Egg Forecast</h2>
-                    <Line data={forecastData} />
+                    <div className="p-4 border border-gray-200 rounded-lg">
+                        <Line data={forecastData} />
+                    </div>
                 </div>
-                <div className="w-full md:w-1/2 mb-4">
+                <div className="w-full md:w-1/2 mb-4 p-4 bg-white rounded-lg shadow-md">
                     <h2 className="text-lg font-bold mb-2">Sales</h2>
-                    <Line data={salesData} />
+                    <div className="p-4 border border-gray-200 rounded-lg">
+                        <Line data={salesData} />
+                    </div>
                 </div>
             </div>
         </div>

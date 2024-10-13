@@ -10,6 +10,7 @@ import Loader2 from './components/Loader2';
 import DashboardHeader from './components/user/DashboardHeader';
 import Sidebar from './components/Sidebar';
 import Marketplace from './components/Marketplace';
+
 import Forecasting from './pages/userpage/Forecasting';
 import MainDashboard from './pages/userpage/MainDashboard';
 import Orders from './pages/userpage/Orders';
@@ -78,6 +79,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/loading" element={<Loader2 />} />
+            
             <Route path="/forecasting" element={<Forecasting />} />
             <Route path="/pages/maindashboard" element={<MainDashboard />} />
             <Route path="/pages/orders" element={<Orders />} />

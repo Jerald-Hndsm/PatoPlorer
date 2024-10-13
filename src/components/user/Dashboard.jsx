@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import DashboardHeader from './DashboardHeader';
-import Sidebar from './Sidebar';
-import Forecasting from '../pages/Forecasting'; // Adjust the import path if necessary
-import MainDashboard from '../pages/MainDashboard';
-import Orders from '../pages/Orders';
-import EggTab from '../pages/EggTab';
+import Sidebar from '../Sidebar';
+import Forecasting from '../../pages/userpage/Forecasting'; // Adjust the import path if necessary
+import MainDashboard from '../../pages/userpage/MainDashboard';
+import Orders from '../../pages/userpage/Orders';
+import EggTab from '../../pages/userpage/EggTab';
 
 function Dashboard() {
   const navigate = useNavigate();

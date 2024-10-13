@@ -5,18 +5,24 @@ import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
 import SignInPage from './components/SignIn';
 import SignUpPage from './components/SignUp'; // Import the Sign Up page
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/user/Dashboard';
 import Loader2 from './components/Loader2';
-import DashboardHeader from './components/DashboardHeader';
+import DashboardHeader from './components/user/DashboardHeader';
 import Sidebar from './components/Sidebar';
 import Marketplace from './components/Marketplace';
+import Forecasting from './pages/userpage/Forecasting';
+import MainDashboard from './pages/userpage/MainDashboard';
+import Orders from './pages/userpage/Orders';
+import EggTab from './pages/userpage/EggTab';
+import OrderDetails from './pages/userpage/OrderDetails';
+import MarketManagement from './pages/userpage/MarketManagement';
 
-import Forecasting from './pages/Forecasting';
-import MainDashboard from './pages/MainDashboard';
-import Orders from './pages/Orders';
-import EggTab from './pages/EggTab';
-import OrderDetails from './pages/OrderDetails';
-import MarketManagement from './pages/MarketManagement';
+// Admin Components
+import AdminDashboard from './components/admin/AdminDashboard';
+import UserManagement from './components/admin/UserManagement';
+import SalesDemandDashboard from './components/admin/SalesDemandDashboard';
+import AdminHeader from './components/admin/AdminHeader';
+import AdminSidebar from './components/admin/AdminSidebar';
 
 function App() {
   const location = useLocation();
@@ -54,12 +60,16 @@ function App() {
     '/marketmanagement',
   ].includes(location.pathname);
 
+  const isAdminPage = location.pathname.startsWith('/admin');
+
   return (
     <div className="flex flex-col min-h-screen">
-      {shouldShowHeaderFooter && !isDashboardPage && <Header />}
+      {shouldShowHeaderFooter && !isDashboardPage && !isAdminPage && <Header />}
+      {isAdminPage && <AdminHeader onSignOut={handleSignOut} />}
       <main className="flex-grow flex">
         {isDashboardPage && <Sidebar />}
-        <div className={`flex-grow ${isDashboardPage ? 'ml-64' : ''}`}>
+        {isAdminPage && <AdminSidebar />}
+        <div className={`flex-grow ${isDashboardPage || isAdminPage ? 'ml-64' : ''}`}>
           {isDashboardPage && <DashboardHeader onSignOut={handleSignOut} />}
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -74,10 +84,16 @@ function App() {
             <Route path="/pages/eggtab" element={<EggTab />} />
             <Route path="/pages/orderdetails" element={<OrderDetails />} />
             <Route path="/pages/marketmanagement" element={<MarketManagement />} />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminDashboard />}>
+              <Route path="users" element={<UserManagement />} />
+              <Route path="sales-demand" element={<SalesDemandDashboard />} />
+            </Route>
           </Routes>
         </div>
       </main>
-      {!isDashboardPage && shouldShowHeaderFooter && <Footer />}
+      {!isDashboardPage && !isAdminPage && shouldShowHeaderFooter && <Footer />}
     </div>
   );
 }

@@ -104,7 +104,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section id="home" className="pt-0 pb-10" style={{ userSelect: "none" }}>
+      <section id="contact" className="pt-0 pb-10" style={{ userSelect: "none" }}>
         <div className="w-full bg-[#FFFDF2] px-4">
           <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
             <div className="flex flex-col justify-center">

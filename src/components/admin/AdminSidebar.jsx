@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const AdminSidebar = () => {
   return (
-    <aside className="bg-gray-900 text-white w-64 p-4">
+    <aside className="bg-khaki w-64 h-full fixed left-0 top-16 shadow-lg mt-5">
       <nav>
         <ul>
           <li className="mb-4">

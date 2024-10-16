@@ -5,7 +5,7 @@ const AdminHeader = ({ onSignOut }) => {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-gray-800 p-4 text-white">
+    <header className="bg-gray-800 p-4 text-white fixed w-full">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-bold">Admin Dashboard</h1>
         <div>

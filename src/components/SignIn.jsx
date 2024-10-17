@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader2 from './Loader2';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 function SignInPage() {
   const [loading, setLoading] = useState(false);
@@ -12,11 +14,15 @@ function SignInPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulating an API request with a timeout
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await signInWithEmailAndPassword(auth, username, password);
       navigate('/forecasting');
-    }, 2000);
+    } catch (error) {
+      console.error('Error signing in:', error);
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -42,10 +48,10 @@ function SignInPage() {
             <div className="space-y-4">
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                  Username
+                  Email
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}

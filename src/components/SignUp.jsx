@@ -1,7 +1,10 @@
+// src/components/SignUp.jsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
-function SignUpPage() {
+const SignUp = () => {
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -9,107 +12,90 @@ function SignUpPage() {
   const [mobileNo, setMobileNo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate(); // Hook for navigation
+
+  const handleSignup = async (e) => {
     e.preventDefault();
-
-    // Simulate API call for user registration
-    setTimeout(() => {
-      // Redirect to Sign In page after successful signup
-      navigate('/signin');
-    }, 2000);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert('Signup successful!');
+      navigate('/signin'); // Redirect to sign-in page after successful signup
+    } catch (error) {
+      console.error('Error signing up:', error.message);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="w-96 p-6 bg-white shadow-md rounded">
-        <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-        <div className="mb-4">
-          <label htmlFor="firstName" className="block text-gray-700">First Name</label>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        <form onSubmit={handleSignup} className="space-y-4">
           <input
             type="text"
-            id="firstName"
+            placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="middleName" className="block text-gray-700">Middle Name</label>
           <input
             type="text"
-            id="middleName"
+            placeholder="Middle Name"
             value={middleName}
             onChange={(e) => setMiddleName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="lastName" className="block text-gray-700">Last Name</label>
           <input
             type="text"
-            id="lastName"
+            placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="address" className="block text-gray-700">Address</label>
           <input
             type="text"
-            id="address"
+            placeholder="Address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="mobileNo" className="block text-gray-700">Mobile No.</label>
           <input
-            type="text"
-            id="mobileNo"
+            type="tel"
+            placeholder="Mobile No."
             value={mobileNo}
             onChange={(e) => setMobileNo(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700">E-mail Address</label>
           <input
             type="email"
-            id="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700">Password</label>
           <input
             type="password"
-            id="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-1"
             required
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
-        >
-          Sign Up
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
-export default SignUpPage;
+export default SignUp;

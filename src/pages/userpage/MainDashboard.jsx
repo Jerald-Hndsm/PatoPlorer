@@ -52,16 +52,12 @@ const MainDashboard = () => {
             {/* Info Tiles */}
             <div className="flex justify-around mb-9 flex-wrap">
                 <div className="bg-blue-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Eggs Produced</h2>
-                    <p className="text-xl">100 Eggs</p>
+                    <h2 className="text-lg font-bold">Egg Forecast</h2>
+                    <p className="text-xl">900 Eggs</p>
                 </div>
                 <div className="bg-green-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Orders</h2>
-                    <p className="text-xl">50 Orders</p>
-                </div>
-                <div className="bg-yellow-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Sales</h2>
-                    <p className="text-xl">$500</p>
+                    <h2 className="text-lg font-bold">Orders Duration</h2>
+                    <p className="text-xl">10 Days</p>
                 </div>
                 {/* New Date Tile */}
                 <div className="bg-purple-200 p-4 rounded-lg shadow-md w-1/4">

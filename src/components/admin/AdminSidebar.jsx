@@ -7,6 +7,11 @@ const AdminSidebar = () => {
       <nav>
         <ul>
           <li className="mb-4">
+            <Link to="/admin" className="text-lg font-semibold hover:underline">
+              Dashboard
+            </Link>
+          </li>
+          <li className="mb-4">
             <Link to="/admin/users" className="text-lg font-semibold hover:underline">
               User Management
             </Link>

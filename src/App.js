@@ -88,10 +88,10 @@ function App() {
             <Route path="/pages/marketmanagement" element={<MarketManagement />} />
 
             {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />}>
-              <Route path="users" element={<UserManagement />} />
-              <Route path="sales-demand" element={<SalesDemandDashboard />} />
-            </Route>
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/users" element={<UserManagement />} />
+              <Route path="/admin/sales-demand" element={<SalesDemandDashboard />} />
+            
           </Routes>
         </div>
       </main>

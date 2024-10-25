@@ -50,7 +50,7 @@ const Forecasting = () => {
     };
 
     return (
-        <div className="p-8 mt-9 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col">
+        <div className="p-8 mt-8 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
             <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
                 Forecasting <FcComboChart className="ml-2" />
             </h2>
@@ -108,7 +108,7 @@ const Forecasting = () => {
 
                 {/* Info Tiles Section */}
                 <div className="flex flex-col justify-between ml-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4 pt-11">
                         <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
                             <h4 className="font-bold text-gray-800">Temperature</h4>
                             <p className="text-gray-600">20°C</p>
@@ -134,16 +134,15 @@ const Forecasting = () => {
                             <p className="text-gray-600">{nutrients}</p>
                         </div>
                     </div>
-                    {/* New Forecast Confidence Tile */}
-                    <div className="border rounded-lg p-10 bg-blue-300 shadow-md mt-4">
-                        <h4 className="font-bold text-gray-800">Forecast Confidence</h4>
-                        <p className="text-gray-600">85%</p>
-                    </div>
+                    <div className="border rounded-lg p-4 bg-blue-400 shadow-m">
+                            <h4 className="font-bold text-gray-50">Forecast Confidence</h4>
+                            <p className="text-white">99.9%</p>
+                        </div>
                 </div>
             </div>
 
             {/* Input Fields for Parameters in a 2 by 4 Grid Below the Graph */}
-            <div className="border rounded-lg p-4 bg-white shadow-md mt-6 w-full">
+            <div className="border rounded-lg p-4 bg-white shadow-md -mt-2 w-full">
                 <h3 className="font-bold text-base mb-2 text-gray-800">Update Parameters</h3>
                 <div className="grid grid-cols-2 gap-4">
                     <div>

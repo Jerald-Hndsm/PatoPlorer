@@ -1,84 +1,129 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    LineElement,
-    PointElement,
-    LinearScale,
-    CategoryScale,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js';
+import { MdDashboard } from "react-icons/md";
+import { Line, Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Register the components
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
 const MainDashboard = () => {
-    // Sample data for the graphs
-    const forecastData = {
-        labels: ['2024-10-01', '2024-10-02', '2024-10-03', '2024-10-04', '2024-10-05'], // Dates
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Chart Title' },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: 'rgba(75, 75, 75, 1)',
+                    font: { size: 12 }
+                },
+                grid: { color: 'rgba(200, 200, 200, 0.3)' }
+            },
+            x: {
+                ticks: {
+                    color: 'rgba(75, 75, 75, 1)',
+                    font: { size: 12 }
+                },
+                grid: { color: 'rgba(200, 200, 200, 0.3)' }
+            }
+        }
+    };
+
+    const eggsProducedData = {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
         datasets: [
             {
-                label: 'Number of Eggs',
-                data: [20, 30, 25, 35, 40], // Sample egg counts
-                fill: false,
+                label: 'Eggs Produced',
+                data: [800, 900, 1000, 950],
                 borderColor: 'rgba(75, 192, 192, 1)',
-                tension: 0.1
-            }
-        ]
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+            },
+        ],
+    };
+
+    const ordersData = {
+        labels: ['Organic Duck Eggs', 'Salted Eggs', 'Hatchling Eggs', 'Balut'],
+        datasets: [
+            {
+                label: 'Orders',
+                data: [20, 15, 10, 5],
+                backgroundColor: 'rgba(255, 206, 86, 0.6)',
+            },
+        ],
     };
 
     const salesData = {
-        labels: ['2024-10-01', '2024-10-02', '2024-10-03', '2024-10-04', '2024-10-05'], // Dates
+        labels: ['Organic Duck Eggs', 'Salted Eggs', 'Hatchling Eggs', 'Balut'],
         datasets: [
             {
                 label: 'Sales',
-                data: [150, 200, 180, 220, 300], // Sample sales amounts
-                fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                tension: 0.1
-            }
-        ]
+                data: [1200, 800, 600, 300],
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+            },
+        ],
     };
 
-    // Current date for display (assuming it's today's date)
-    const currentDate = '2024-10-05'; 
+    const eggForecastData = {
+        labels: ['Today', 'Tomorrow', 'Day After Tomorrow'],
+        datasets: [
+            {
+                label: 'Egg Forecast',
+                data: [100, 120, 110],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true,
+            },
+        ],
+    };
 
     return (
-        <div className="p-8 mt-8 bg-gray-50">
-            <h1 className="text-3xl mb-4 font-bold">Main Dashboard</h1>
-            
-            {/* Info Tiles */}
-            <div className="flex justify-around mb-9 flex-wrap">
-                <div className="bg-blue-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Egg Forecast</h2>
+        <div className="p-8 mt-8 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
+            <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
+                Dashboard <MdDashboard className="ml-2" />
+            </h1>
+                
+            <div className="flex justify-between mb-15 space-x-2">
+                <div className="bg-blue-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
+                    <h2 className="text-lg font-bold">Eggs Produced</h2>
                     <p className="text-xl">900 Eggs</p>
                 </div>
-                <div className="bg-green-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Orders Duration</h2>
-                    <p className="text-xl">10 Days</p>
+                <div className="bg-green-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
+                    <h2 className="text-lg font-bold">Orders</h2>
+                    <p className="text-xl">50 Orders</p>
                 </div>
-                {/* New Date Tile */}
-                <div className="bg-purple-200 p-4 rounded-lg shadow-md w-1/4">
-                    <h2 className="text-lg font-bold">Date</h2>
-                    <p className="text-xl">{currentDate}</p>
+                <div className="bg-purple-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
+                    <h2 className="text-lg font-bold">Sales</h2>
+                    <p className="text-xl">$3000</p>
+                </div>
+                <div className="bg-yellow-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
+                    <h2 className="text-lg font-bold">Egg Forecast Today</h2>
+                    <p className="text-xl">100 Eggs</p>
                 </div>
             </div>
 
-            {/* Graphs and Calendar */}
-            <div className="flex flex-col md:flex-row justify-around">
-                <div className="w-full md:w-1/2 mb-4 p-4 bg-white rounded-lg shadow-md">
-                    <h2 className="text-lg font-bold mb-2">Egg Forecast</h2>
-                    <div className="p-4 border border-gray-200 rounded-lg">
-                        <Line data={forecastData} />
-                    </div>
+            <div className="flex flex-wrap justify-between mb-4 space-x-2">
+                <div className="bg-white p-4 rounded-lg shadow-md w-full md:w-[48%] m-2" style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                    <h2 className="text-lg font-bold mb-2">Eggs Produced Line Chart</h2>
+                    <Line data={eggsProducedData} options={chartOptions} />
                 </div>
-                <div className="w-full md:w-1/2 mb-4 p-4 bg-white rounded-lg shadow-md">
-                    <h2 className="text-lg font-bold mb-2">Sales</h2>
-                    <div className="p-4 border border-gray-200 rounded-lg">
-                        <Line data={salesData} />
-                    </div>
+                <div className="bg-white p-4 rounded-lg shadow-md w-full md:w-[48%] m-2" style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                    <h2 className="text-lg font-bold mb-2">Orders Bar Graph</h2>
+                    <Bar data={ordersData} options={chartOptions} />
+                </div>
+            </div>
+
+            <div className="flex flex-wrap justify-between mb-4 space-x-2">
+                <div className="bg-white p-4 rounded-lg shadow-md w-full md:w-[48%] m-2" style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                    <h2 className="text-lg font-bold mb-2">Sales Horizontal Bar Chart</h2>
+                    <Bar data={salesData} options={{ ...chartOptions, indexAxis: 'y' }} />
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-md w-full md:w-[48%] m-2" style={{ maxHeight: '400px', overflow: 'hidden' }}>
+                    <h2 className="text-lg font-bold mb-2">Egg Forecast Line Chart</h2>
+                    <Line data={eggForecastData} options={chartOptions} />
                 </div>
             </div>
         </div>

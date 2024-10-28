@@ -16,7 +16,7 @@ function SignInPage() {
 
     try {
       await signInWithEmailAndPassword(auth, username, password);
-      navigate('/forecasting');
+      navigate('/pages/maindashboard');
     } catch (error) {
       console.error('Error signing in:', error);
       alert(error.message);
@@ -36,7 +36,18 @@ function SignInPage() {
       {/* Conditionally render the left side */}
       {!loading && (
         <div className="flex-1 hidden lg:flex items-center justify-center bg-gradient-to-br from-orange-300 to-yellow-700 animate-gradient-x">
-          <h1 className="text-5xl font-extrabold text-white">Patoplorer</h1>
+          <div className="text-center">
+            {/* Logo and Title Container */}
+            <div className="flex flex-col items-center mb-4">
+              <img
+                src="Patoplorer2.png" // Replace with your logo path
+                alt="Logo"
+                className="mb-2 w-32 h-auto" // Adjust width and height as needed
+              />
+              <h1 className="text-5xl font-extrabold text-white">Patoplorer</h1>
+              <h2 className="font-bold text-white">Make Duck Farming Sustainable</h2>
+            </div>
+          </div>
         </div>
       )}
 

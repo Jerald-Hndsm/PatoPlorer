@@ -61,7 +61,7 @@ function EggTab() {
   };
 
   return (
-    <div className="p-8 mt-8 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
+    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
       <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Egg Inventory Management <GiEggClutch className="ml-2" />
       </h1>
 

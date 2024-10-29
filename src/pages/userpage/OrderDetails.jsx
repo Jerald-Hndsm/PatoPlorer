@@ -23,7 +23,7 @@ const OrderDetails = () => {
     }
 
     return (
-        <div className="p-8 mt-8 bg-gray-50">
+        <div className="p-8 mt-10 bg-gray-50">
             <h1 className="text-2xl mb-4 font-bold">Order Details</h1>
             
             {/* Product Info */}

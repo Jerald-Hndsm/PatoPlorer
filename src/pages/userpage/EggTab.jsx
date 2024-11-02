@@ -162,7 +162,7 @@ function EggTab() {
   
             <div className="px-2">
               <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-                Submit
+                Add
               </button>
             </div>
           </form>

@@ -135,7 +135,7 @@ const Forecasting = () => {
                         </div>
                     </div>
                     <div className="border rounded-lg p-4 bg-blue-400 shadow-m">
-                            <h4 className="font-bold text-gray-50">Forecast Confidence</h4>
+                            <h4 className="font-bold text-gray-50">Egg Forecast Today</h4>
                             <p className="text-white">99.9%</p>
                         </div>
                 </div>

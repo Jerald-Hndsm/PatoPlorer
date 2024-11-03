@@ -57,7 +57,7 @@ const AdminUserManagement = () => {
                         />
                         <button
                             onClick={() => setShowAddUser(!showAddUser)}
-                            className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mb-0.5 flex items-center"
+                            className="focus:outline-none text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800 mb-0.5 flex items-center"
                         >
                             Add user <BiSolidUserPlus className="ml-2" />
                         </button>

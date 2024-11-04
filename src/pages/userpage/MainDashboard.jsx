@@ -85,23 +85,23 @@ const MainDashboard = () => {
             <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
                 Dashboard <MdDashboard className="ml-2" />
             </h1>
-                
+
             <div className="flex justify-between mb-15 space-x-2">
-                <div className="bg-blue-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
-                    <h2 className="text-lg font-bold">Eggs Produced</h2>
-                    <p className="text-xl">900 Eggs</p>
+                <div className="bg-blue-200 p-16 rounded-lg shadow-md flex-1 flex flex-col relative">
+                    <h2 className="text-lg font-bold absolute top-2 left-2">Eggs Produced</h2>
+                    <p className="text-xl absolute bottom-2 right-2">900 Eggs</p>
                 </div>
-                <div className="bg-green-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
-                    <h2 className="text-lg font-bold">Orders</h2>
-                    <p className="text-xl">50 Orders</p>
+                <div className="bg-green-200 p-16 rounded-lg shadow-md flex-1 flex flex-col relative">
+                    <h2 className="text-lg font-bold absolute top-2 left-2">Orders</h2>
+                    <p className="text-xl absolute bottom-2 right-2">50 Orders</p>
                 </div>
-                <div className="bg-purple-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
-                    <h2 className="text-lg font-bold">Sales</h2>
-                    <p className="text-xl">$3000</p>
+                <div className="bg-purple-200 p-16 rounded-lg shadow-md flex-1 flex flex-col relative">
+                    <h2 className="text-lg font-bold absolute top-2 left-2">Sales</h2>
+                    <p className="text-xl absolute bottom-2 right-2">$3000</p>
                 </div>
-                <div className="bg-yellow-200 p-10 rounded-lg shadow-md flex-1 flex flex-col items-center">
-                    <h2 className="text-lg font-bold">Egg Forecast Today</h2>
-                    <p className="text-xl">100 Eggs</p>
+                <div className="bg-yellow-200 p-16 rounded-lg shadow-md flex-1 flex flex-col relative">
+                    <h2 className="text-lg font-bold absolute top-2 left-2">Egg Forecast Today</h2>
+                    <p className="text-xl absolute bottom-2 right-2">100 Eggs</p>
                 </div>
             </div>
 

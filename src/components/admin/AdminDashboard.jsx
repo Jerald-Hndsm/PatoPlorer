@@ -15,7 +15,7 @@ const AdminDashboard = () => {
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-sky-800 p-2 shadow rounded flex flex-col justify-between">
-            <h2 className="text-lg font-semibold text-white text-lef h-20 flex">Users <BiSolidUserAccount className="ml-1 pt-0.5" /> </h2>
+            <h2 className="text-lg font-semibold text-white text-left h-20 flex">Users <BiSolidUserAccount className="ml-1 pt-0.5" /> </h2>
             <p className="text-lg text-white mt-auto text-right">150</p>
           </div>
           <div className="bg-red-400 p-2 shadow rounded flex flex-col justify-between">

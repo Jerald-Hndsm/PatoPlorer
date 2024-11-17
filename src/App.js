@@ -57,7 +57,7 @@ function App() {
     '/pages/orders',
     '/pages/eggtab',
     '/orderdetails',
-    '/marketmanagement',
+    '/pages/marketmanagement',
   ].includes(location.pathname);
 
   const isAdminPage = location.pathname.startsWith('/admin');
@@ -88,7 +88,7 @@ function App() {
             <Route path="/pages/orders" element={<Orders />} />
             <Route path="/pages/eggtab" element={<EggTab />} />
             <Route path="/orderdetails" element={<OrderDetails />} />
-            <Route path="/marketmanagement" element={<MarketManagement />} />
+            <Route path="/pages/marketmanagement" element={<MarketManagement />} />
 
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />

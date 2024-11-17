@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Events, scrollSpy, scroller } from "react-scroll";
+import React, { useState, useEffect, useCallback } from "react";
+import { scroller, scrollSpy } from "react-scroll";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -17,34 +17,21 @@ const Navbar = () => {
 
   const handleRefresh = () => {
     navigate("/", { replace: true });
-    window.location.reload();
   };
 
   const scrollToSection = (section) => {
     scroller.scrollTo(section, {
       duration: 800,
       delay: 0,
-      smooth: "",
+      smooth: "easeInOutQuart",
       offset: -30, // Adjust for fixed navbar height
     });
     setActiveSection(section);
   };
 
   useEffect(() => {
-    Events.scrollEvent.register("begin", function () {
-      console.log("begin", arguments);
-    });
-
-    Events.scrollEvent.register("end", function () {
-      console.log("end", arguments);
-    });
-
+    // Remove unnecessary event registrations
     scrollSpy.update();
-
-    return () => {
-      Events.scrollEvent.remove("begin");
-      Events.scrollEvent.remove("end");
-    };
   }, []);
 
   useEffect(() => {
@@ -66,7 +53,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [sections]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -74,22 +61,22 @@ const Navbar = () => {
     if (section) {
       scrollToSection(section);
     } else {
-      const currentSection = location.pathname.replace("/", "") || "home";
-      setActiveSection(currentSection);
+      setActiveSection("home");
     }
   }, [location]);
 
   const handleSectionClick = (section) => {
-    if (location.pathname !== "/") {
-      navigate("/", { replace: true });
-      setTimeout(() => {
-        scrollToSection(section);
-      }, 100); // Add a slight delay to ensure the page navigates before scrolling
-    } else {
-      scrollToSection(section);
-    }
+    navigate(`/?section=${section}`, { replace: true });
     setNav(false);
   };
+
+  useEffect(() => {
+    if (nav) {
+      document.body.classList.add("lock-scroll");
+    } else {
+      document.body.classList.remove("lock-scroll");
+    }
+  }, [nav]);
 
   return (
     <nav
@@ -105,12 +92,12 @@ const Navbar = () => {
             </NavLink>
           </h1>
         </div>
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8">
             {sections.map((section) => (
               <li key={section}>
-                <NavLink
-                  to="/"
+                <button
                   onClick={() => handleSectionClick(section)}
                   className={`cursor-pointer ${
                     activeSection === section
@@ -119,20 +106,18 @@ const Navbar = () => {
                   } `}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
-                </NavLink>
+                </button>
               </li>
             ))}
-
             {/* Marketplace Button */}
             <li>
               <NavLink
                 to="/marketplace"
-                className=" text-gray-600 py-2 px-4 rounded-full hover:bg-[#7b9fb8] hover:text-[#00003C] font-bold"
+                className="text-gray-600 py-2 px-4 rounded-full hover:bg-[#7b9fb8] hover:text-[#00003C] font-bold"
               >
                 Marketplace
               </NavLink>
             </li>
-
             <li>
               <NavLink
                 to="/signin"
@@ -143,15 +128,15 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-
-        <div onClick={handleNav} className="block px-2 md:hidden">
+        {/* Mobile Navigation Toggle */}
+        <button onClick={handleNav} className="block px-2 md:hidden" aria-label="Toggle menu">
           {nav ? (
-            <AiOutlineClose className="text-2xl" />
+            <AiOutlineClose className="text-2xl" aria-hidden="true" />
           ) : (
-            <AiOutlineMenu className="text-2xl" />
+            <AiOutlineMenu className="text-2xl" aria-hidden="true" />
           )}
-        </div>
-
+        </button>
+        {/* Mobile Navigation Menu */}
         <ul
           className={
             nav
@@ -166,9 +151,9 @@ const Navbar = () => {
                 <span style={{ color: "#7b9fb8" }}>Plorer</span>
               </NavLink>
             </h1>
-            <div onClick={handleNav}>
-              <AiOutlineClose className="text-2xl" />
-            </div>
+            <button onClick={handleNav} aria-label="Close menu">
+              <AiOutlineClose className="text-2xl" aria-hidden="true" />
+            </button>
           </li>
           {sections.map((section) => (
             <li
@@ -178,19 +163,16 @@ const Navbar = () => {
                   ? "text-[#7b9fb8] font-bold"
                   : "text-[#424242] font-medium"
               }`}
-              onClick={() => handleSectionClick(section)}
             >
-              <NavLink
-                to="/"
-                className="block"
+              <button
                 onClick={() => handleSectionClick(section)}
+                className="block w-full text-left"
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
-              </NavLink>
+              </button>
             </li>
           ))}
-          
-          {/* Marketplace for*/}
+          {/* Marketplace */}
           <li
             className="p-4 border-b border-gray-600 cursor-pointer"
             onClick={() => setNav(false)}
@@ -202,13 +184,11 @@ const Navbar = () => {
               Marketplace
             </NavLink>
           </li>
-
+          {/* Sign In */}
           <li className="p-4 border-b border-gray-600 cursor-pointer">
             <NavLink
               to="/signin"
-              className={`block text-[#424242] hover:text-[#7b9fb8] ${
-                activeSection === "register" ? "font-bold" : "font-medium"
-              }`}
+              className="block text-[#424242] hover:text-[#7b9fb8] font-medium"
               onClick={() => setNav(false)}
             >
               Sign In

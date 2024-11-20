@@ -30,17 +30,17 @@ import AdminSidebar from './components/admin/AdminSidebar';
 
 // ProtectedRoute Component
 const ProtectedRoute = ({ children }) => {
-  const isDeveloper = () => {
-    const developerToken = process.env.REACT_APP_DEVELOPER_TOKEN; // Developer token from .env
-    const userToken = localStorage.getItem('userToken'); // Token stored in localStorage
-    return userToken === developerToken;
+  const isAuthenticated = () => {
+    // Check if the user is authenticated (e.g., token in localStorage)
+    return localStorage.getItem('isAuthenticated') === 'true';
   };
 
-  if (!isDeveloper()) {
+  if (!isAuthenticated()) {
     // Redirect unauthorized users to the sign-in page
     return <Navigate to="/signin" />;
   }
-  return children; // Render the protected content
+
+  return children; // Render the protected content if authenticated
 };
 
 function App() {
@@ -49,12 +49,15 @@ function App() {
 
   // Define redirection logic for sign-in and sign-up flows
   const handleSignIn = () => {
+    // Simulate successful sign-in
+    localStorage.setItem('isAuthenticated', 'true');
     navigate('/loading');
     setTimeout(() => navigate('/dashboard'), 2000);
   };
 
   const handleSignOut = () => {
     console.log('User signed out');
+    localStorage.removeItem('isAuthenticated'); // Clear authentication flag
     navigate('/');
   };
 
@@ -96,29 +99,68 @@ function App() {
             <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
             <Route path="/loading" element={<Loader2 />} />
 
-            {/* User Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/forecasting" element={<Forecasting />} />
-            <Route path="/pages/maindashboard" element={<MainDashboard />} />
-            <Route path="/pages/orders" element={<Orders />} />
-            <Route path="/pages/eggtab" element={<EggTab />} />
-            <Route path="/orderdetails" element={<OrderDetails />} />
-            <Route path="/pages/marketmanagement" element={<MarketManagement />} />
+            {/* Protected User Routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/forecasting"
+              element={
+                <ProtectedRoute>
+                  <Forecasting />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pages/maindashboard"
+              element={
+                <ProtectedRoute>
+                  <MainDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pages/orders"
+              element={
+                <ProtectedRoute>
+                  <Orders />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pages/eggtab"
+              element={
+                <ProtectedRoute>
+                  <EggTab />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orderdetails"
+              element={
+                <ProtectedRoute>
+                  <OrderDetails />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pages/marketmanagement"
+              element={
+                <ProtectedRoute>
+                  <MarketManagement />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<UserManagement />} />
             <Route path="/admin/sales-demand" element={<SalesDemandDashboard />} />
-
-            {/* Protected Developer Route */}
-            <Route
-              path="/access"
-              element={
-                <ProtectedRoute>
-                  <div>Developer Access Page</div> {/* Replace with your actual page */}
-                </ProtectedRoute>
-              }
-            />
           </Routes>
         </div>
       </main>

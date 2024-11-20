@@ -29,7 +29,8 @@ function SignInPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/pages/maindashboard');
+      localStorage.setItem('isAuthenticated', 'true'); // Set authentication flag
+      navigate('/pages/maindashboard'); // Redirect to main dashboard
     } catch (error) {
       console.error('Error signing in:', error);
       setErrorMessage('Invalid email or password.');
@@ -115,7 +116,10 @@ function SignInPage() {
               <div className="mt-4 text-center">
                 <p className="text-sm text-gray-600">
                   Don't have an account?{' '}
-                  <Link to="/signup" className="text-blue-500 hover:text-blue-600 transition duration-200">
+                  <Link 
+                    to="/signup" 
+                    className="text-blue-500 hover:text-blue-600 transition duration-200"
+                  >
                     Create Account
                   </Link>
                 </p>

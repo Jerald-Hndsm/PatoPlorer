@@ -31,39 +31,24 @@ import AdminSidebar from './components/admin/AdminSidebar';
 // ProtectedRoute Component
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = () => {
-    // Check if the user is authenticated (e.g., token in localStorage)
     return localStorage.getItem('isAuthenticated') === 'true';
   };
 
   if (!isAuthenticated()) {
-    // Redirect unauthorized users to the sign-in page
     return <Navigate to="/signin" />;
   }
 
-  return children; // Render the protected content if authenticated
+  return children;
 };
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Define redirection logic for sign-in and sign-up flows
-  const handleSignIn = () => {
-    // Simulate successful sign-in
-    localStorage.setItem('isAuthenticated', 'true');
-    navigate('/loading');
-    setTimeout(() => navigate('/dashboard'), 2000);
-  };
-
   const handleSignOut = () => {
     console.log('User signed out');
     localStorage.removeItem('isAuthenticated'); // Clear authentication flag
-    navigate('/');
-  };
-
-  const handleSignUp = () => {
-    navigate('/loading');
-    setTimeout(() => navigate('/signin'), 2000);
+    navigate('/signin');
   };
 
   // Layout Conditions
@@ -95,8 +80,8 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/marketplace" element={<Marketplace />} />
-            <Route path="/signin" element={<SignInPage onSignIn={handleSignIn} />} />
-            <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
             <Route path="/loading" element={<Loader2 />} />
 
             {/* Protected User Routes */}

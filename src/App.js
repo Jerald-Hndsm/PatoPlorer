@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
 
 // Components and Pages
 import Header from './components/Header';
@@ -27,6 +27,21 @@ import UserManagement from './components/admin/UserManagement';
 import SalesDemandDashboard from './components/admin/SalesDemandDashboard';
 import AdminHeader from './components/admin/AdminHeader';
 import AdminSidebar from './components/admin/AdminSidebar';
+
+// ProtectedRoute Component
+const ProtectedRoute = ({ children }) => {
+  const isDeveloper = () => {
+    const developerToken = process.env.REACT_APP_DEVELOPER_TOKEN; // Developer token from .env
+    const userToken = localStorage.getItem('userToken'); // Token stored in localStorage
+    return userToken === developerToken;
+  };
+
+  if (!isDeveloper()) {
+    // Redirect unauthorized users to the sign-in page
+    return <Navigate to="/signin" />;
+  }
+  return children; // Render the protected content
+};
 
 function App() {
   const location = useLocation();
@@ -69,10 +84,10 @@ function App() {
       <main className="flex-grow flex">
         {isDashboardPage && <Sidebar />}
         {isAdminPage && <AdminSidebar />}
-        
+
         <div className={`flex-grow ${isDashboardPage || isAdminPage ? 'ml-64' : ''}`}>
           {isDashboardPage && <DashboardHeader onSignOut={handleSignOut} />}
-          
+
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
@@ -94,6 +109,16 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<UserManagement />} />
             <Route path="/admin/sales-demand" element={<SalesDemandDashboard />} />
+
+            {/* Protected Developer Route */}
+            <Route
+              path="/access"
+              element={
+                <ProtectedRoute>
+                  <div>Developer Access Page</div> {/* Replace with your actual page */}
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </main>

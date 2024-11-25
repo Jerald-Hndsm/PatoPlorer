@@ -88,7 +88,7 @@ const Navbar = () => {
           <h1 className="text-3xl font-bold cursor-pointer text-[#424242] px-2">
             <NavLink to="/" onClick={handleRefresh}>
               <span style={{ color: "#222426" }}>Pato</span>
-              <span style={{ color: "#FCFBFA" }}>Plorer</span>
+              <span style={{ color: "#222426" }}>Plorer</span>
             </NavLink>
           </h1>
         </div>

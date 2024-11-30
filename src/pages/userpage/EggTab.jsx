@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend } from 'chart.js';
-import { GiEggClutch } from "react-icons/gi";
+import { FaEgg } from "react-icons/fa6";
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
@@ -62,7 +62,7 @@ function EggTab() {
 
   return (
     <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
-      <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Egg Inventory Management <GiEggClutch className="ml-2" />
+      <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Egg Inventory Management <FaEgg className="ml-2" />
       </h1>
 
       {/* Input Functionalities Tile */}

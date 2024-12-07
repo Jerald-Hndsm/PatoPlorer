@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
 
 // Components and Pages
@@ -45,6 +45,9 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Shared products state
+  const [products, setProducts] = useState([]);
+
   const handleSignOut = () => {
     console.log('User signed out');
     localStorage.removeItem('isAuthenticated'); // Clear authentication flag
@@ -79,7 +82,7 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/marketplace" element={<Marketplace products={products} />} />
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/loading" element={<Loader2 />} />
@@ -137,7 +140,7 @@ function App() {
               path="/pages/marketmanagement"
               element={
                 <ProtectedRoute>
-                  <MarketManagement />
+                  <MarketManagement onProductsUpdate={setProducts} />
                 </ProtectedRoute>
               }
             />

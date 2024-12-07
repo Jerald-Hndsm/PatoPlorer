@@ -1,10 +1,8 @@
-// src/components/SignUp.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase';
-import { parsePhoneNumberFromString } from 'libphonenumber-js/max'; // Import the library
+import { auth, db } from '../firebase'; // Ensure correct path to firebase.js
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -14,79 +12,76 @@ const SignUp = () => {
   const [mobileNo, setMobileNo] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  // Validation function using libphonenumber-js
-  const validateMobileNo = (number) => {
-    const phoneNumber = parsePhoneNumberFromString(number, 'PH'); // 'PH' is the country code for the Philippines
-    return phoneNumber && phoneNumber.isValid() && phoneNumber.getType() === 'MOBILE';
-  };
-
-  // Formatting function
-  const formatMobileNo = (number) => {
-    const phoneNumber = parsePhoneNumberFromString(number, 'PH');
-    if (phoneNumber && phoneNumber.isValid()) {
-      return phoneNumber.formatInternational(); // e.g., '+63 917 123 4567'
-    }
-    return number; // Return the original number if invalid
-  };
-
   const validateEmail = (email) => {
-    // Simple email regex for demonstration purposes
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
-    return password.length >= 6;
-  };
+  const validatePassword = (password) => password.length >= 6;
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setErrorMessage('');
+    setLoading(true);
 
-    // Input Validations
+    // Validation
     if (!validateEmail(email)) {
-      setErrorMessage('Please enter a valid email address.');
+      setErrorMessage('Invalid email address.');
+      setLoading(false);
       return;
     }
-
     if (!validatePassword(password)) {
-      setErrorMessage('Password must be at least 6 characters long.');
+      setErrorMessage('Password must be at least 6 characters.');
+      setLoading(false);
       return;
     }
-
-    if (!validateMobileNo(mobileNo)) {
-      setErrorMessage('Please enter a valid Philippine mobile number.');
+    if (!mobileNo.match(/^(\+63|0)9\d{9}$/)) {
+      setErrorMessage('Invalid Philippine mobile number. Format: 09171234567 or +639171234567.');
+      setLoading(false);
       return;
     }
 
     try {
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Format the mobile number before storing
-      const formattedMobileNo = formatMobileNo(mobileNo);
+      console.log('Firebase User Created:', user.uid);
 
-      // Store additional user information in Firestore
+      // Store additional user data in Firestore
       await setDoc(doc(db, 'users', user.uid), {
         firstName,
         middleName,
         lastName,
         address,
-        mobileNo: formattedMobileNo,
+        mobileNo,
         email,
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
       });
 
-      alert('Signup successful!');
-      navigate('/signin');
+      console.log('User data saved in Firestore.');
+
+      alert('Account created successfully! You can now sign in.');
+      navigate('/signin'); // Redirect to sign-in page
     } catch (error) {
-      console.error('Error signing up:', error.message);
-      setErrorMessage('Failed to create an account. Please try again.');
+      console.error('Error signing up:', error.code, error.message);
+
+      if (error.code === 'auth/email-already-in-use') {
+        setErrorMessage('This email is already registered.');
+      } else if (error.code === 'auth/invalid-email') {
+        setErrorMessage('Invalid email address.');
+      } else if (error.code === 'auth/weak-password') {
+        setErrorMessage('Password is too weak.');
+      } else {
+        setErrorMessage('Failed to create account. Please try again later.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,13 +89,14 @@ const SignUp = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+
         {errorMessage && (
           <div className="text-red-500 text-sm text-center mb-4">
             {errorMessage}
           </div>
         )}
+
         <form onSubmit={handleSignup} className="space-y-4">
-          {/* First Name */}
           <div>
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
               First Name
@@ -111,13 +107,10 @@ const SignUp = () => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
-              autoFocus
-              autoComplete="given-name"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Middle Name */}
           <div>
             <label htmlFor="middleName" className="block text-sm font-medium text-gray-700">
               Middle Name
@@ -127,12 +120,10 @@ const SignUp = () => {
               type="text"
               value={middleName}
               onChange={(e) => setMiddleName(e.target.value)}
-              autoComplete="additional-name"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Last Name */}
           <div>
             <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
               Last Name
@@ -143,12 +134,10 @@ const SignUp = () => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
-              autoComplete="family-name"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Address */}
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700">
               Address
@@ -159,12 +148,10 @@ const SignUp = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
-              autoComplete="street-address"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Mobile Number */}
           <div>
             <label htmlFor="mobileNo" className="block text-sm font-medium text-gray-700">
               Mobile Number
@@ -175,13 +162,10 @@ const SignUp = () => {
               value={mobileNo}
               onChange={(e) => setMobileNo(e.target.value)}
               required
-              autoComplete="tel"
-              placeholder="e.g., 09171234567 or +639171234567"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email Address
@@ -192,12 +176,10 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              autoComplete="email"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Password */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
@@ -208,17 +190,16 @@ const SignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              autoComplete="new-password"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* Sign Up Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
 

@@ -1,225 +1,241 @@
-import React, { useState } from 'react';
-import { FaStore } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
+import { storage, db } from '../../firebase'; // Ensure the path to firebase.js is correct
 
 const MarketManagement = () => {
+    const [imageFile, setImageFile] = useState(null);
+    const [productName, setProductName] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [quantityType, setQuantityType] = useState('Per Tray');
+    const [dateUploaded, setDateUploaded] = useState('');
+    const [isUploading, setIsUploading] = useState(false);
     const [products, setProducts] = useState([]);
-    const [currentProduct, setCurrentProduct] = useState(null);
-    const [product, setProduct] = useState({
-        name: '',
-        description: '',
-        price: '',
-        quantityType: 'Boxes',
-        quantity: 1,
-        image: null,
-    });
-    const [isImageValid, setIsImageValid] = useState(true);
-    const [showUploadForm, setShowUploadForm] = useState(false);
+    const [editProductId, setEditProductId] = useState(null);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setProduct({ ...product, [name]: value });
-    };
+    // Fetch products from Firestore on component load
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'products'));
+                const fetchedProducts = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setProducts(fetchedProducts);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
 
+        fetchProducts();
+    }, []);
+
+    // Handle image file selection
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const img = new Image();
-            img.onload = () => {
-                if (img.width === img.height) {
-                    setIsImageValid(true);
-                    setProduct({ ...product, image: URL.createObjectURL(file) });
-                } else {
-                    setIsImageValid(false);
-                    alert('Image must have a 1x1 aspect ratio (square).');
-                }
-            };
-            img.src = URL.createObjectURL(file);
-        }
-    };
-
-    const handleSubmit = () => {
-        if (!product.name || !product.description || !product.price || !product.quantity || !product.image) {
-            alert('Please fill out all fields and upload an image.');
-            return;
-        }
-        if (!isImageValid) {
-            alert('Please ensure the image has a 1x1 aspect ratio.');
-            return;
-        }
-
-        if (currentProduct) {
-            // Edit existing product
-            setProducts(
-                products.map((p) =>
-                    p.id === currentProduct.id ? { ...currentProduct, ...product } : p
-                )
-            );
-            setCurrentProduct(null);
+            setImageFile(file);
+            console.log('Selected file:', file);
         } else {
-            // Add new product
-            setProducts([...products, { ...product, id: products.length + 1 }]);
+            alert('Please select a valid image file.');
+        }
+    };
+
+    // Upload or Update product to Firebase Storage and Firestore
+    const handleUpload = async () => {
+        if (!productName || !productDescription || !price || !quantityType || !dateUploaded || (!imageFile && !editProductId)) {
+            alert('Please fill out all fields.');
+            return;
         }
 
-        alert('Product saved successfully!');
+        try {
+            setIsUploading(true);
 
-        // Clear the form and hide it
-        setProduct({
-            name: '',
-            description: '',
-            price: '',
-            quantityType: 'Boxes',
-            quantity: 1,
-            image: null,
-        });
-        setShowUploadForm(false);
+            let imageUrl = '';
+            if (imageFile) {
+                const imageRef = ref(storage, `products/${Date.now()}_${imageFile.name}`);
+                const snapshot = await uploadBytes(imageRef, imageFile);
+                imageUrl = await getDownloadURL(snapshot.ref);
+            }
+
+            const productData = {
+                name: productName,
+                description: productDescription,
+                price: parseFloat(price),
+                quantityType,
+                image: imageUrl || (products.find((product) => product.id === editProductId)?.image || ''),
+                dateUploaded,
+            };
+
+            if (editProductId) {
+                // Update existing product
+                const productDocRef = doc(db, 'products', editProductId);
+                await updateDoc(productDocRef, productData);
+
+                const updatedProducts = products.map((product) =>
+                    product.id === editProductId ? { id: editProductId, ...productData } : product
+                );
+                setProducts(updatedProducts);
+                alert('Product updated successfully!');
+            } else {
+                // Add new product
+                const docRef = await addDoc(collection(db, 'products'), productData);
+                setProducts((prevProducts) => [...prevProducts, { id: docRef.id, ...productData }]);
+                alert('Product uploaded successfully!');
+            }
+
+            // Reset inputs
+            resetForm();
+        } catch (error) {
+            console.error('Error uploading product:', error);
+            alert('Failed to save product. Please try again.');
+        } finally {
+            setIsUploading(false);
+        }
     };
 
-    const handleEditClick = (product) => {
-        setCurrentProduct(product);
-        setProduct(product);
-        setShowUploadForm(true);
+    // Handle product deletion
+    const handleDelete = async (id) => {
+        try {
+            const productDocRef = doc(db, 'products', id);
+            await deleteDoc(productDocRef);
+
+            const updatedProducts = products.filter((product) => product.id !== id);
+            setProducts(updatedProducts);
+            alert('Product deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            alert('Failed to delete product. Please try again.');
+        }
     };
 
-    const handleRemoveProduct = (id) => {
-        setProducts(products.filter((product) => product.id !== id));
-        setCurrentProduct(null);
-        setShowUploadForm(false);
+    // Reset form inputs
+    const resetForm = () => {
+        setProductName('');
+        setProductDescription('');
+        setPrice('');
+        setQuantityType('Per Tray');
+        setDateUploaded('');
+        setImageFile(null);
+        setEditProductId(null);
     };
 
-    const handleAddProduct = () => {
-        setCurrentProduct(null);
-        setProduct({
-            name: '',
-            description: '',
-            price: '',
-            quantityType: 'Boxes',
-            quantity: 1,
-            image: null,
-        });
-        setShowUploadForm(true);
+    // Edit product
+    const handleEdit = (product) => {
+        setProductName(product.name);
+        setProductDescription(product.description);
+        setPrice(product.price);
+        setQuantityType(product.quantityType);
+        setDateUploaded(product.dateUploaded);
+        setEditProductId(product.id);
     };
 
     return (
-        <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
-            <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
-                Market Management <FaStore className="ml-2" />
-                </h1> 
+        <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
+            <h1 className="text-lg mb-4 font-bold">Market Management</h1>
 
-            {products.length === 0 && !showUploadForm ? (
-                <div className="flex justify-center items-center h-40">
-                    <button
-                        onClick={() => setShowUploadForm(true)}
-                        className="bg-blue-500 text-white p-8 rounded-lg text-lg"
-                    >
-                        Upload Product Now
-                    </button>
-                </div>
-            ) : null}
-
-            {showUploadForm && (
-                <div className="bg-white p-4 rounded-lg shadow-lg mb-4">
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Product Name"
-                        value={product.name}
-                        onChange={handleInputChange}
-                        className="border p-2 rounded w-full mb-2"
-                    />
-                    <textarea
-                        name="description"
-                        placeholder="Product Description"
-                        value={product.description}
-                        onChange={handleInputChange}
-                        className="border p-2 rounded w-full mb-2"
-                    />
-                    <input
-                        type="number"
-                        name="price"
-                        placeholder="Product Price"
-                        value={product.price}
-                        onChange={handleInputChange}
-                        className="border p-2 rounded w-full mb-2"
-                    />
-                    <div className="flex gap-4 items-center mb-2">
-                        <select
-                            name="quantityType"
-                            value={product.quantityType}
-                            onChange={handleInputChange}
-                            className="border p-2 rounded w-full"
-                        >
-                            <option value="Boxes">Boxes</option>
-                            <option value="Trays">Trays</option>
-                        </select>
-                        <input
-                            type="number"
-                            name="quantity"
-                            placeholder="Quantity"
-                            value={product.quantity}
-                            onChange={handleInputChange}
-                            className="border p-2 rounded w-full"
-                        />
-                    </div>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="border p-2 rounded w-full mb-2"
-                    />
-                    {!isImageValid && (
-                        <p className="text-red-500 text-sm">Image must have a 1x1 aspect ratio.</p>
-                    )}
-                    <button
-                        onClick={handleSubmit}
-                        className="bg-blue-500 text-white p-2 rounded mt-4"
-                    >
-                        {currentProduct ? 'Save Changes' : 'Upload Product'}
-                    </button>
-                    {currentProduct && (
-                        <button
-                            onClick={() => handleRemoveProduct(currentProduct.id)}
-                            className="bg-red-500 text-white p-2 rounded mt-4 ml-2"
-                        >
-                            Remove Product
-                        </button>
-                    )}
-                </div>
-            )}
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {products.map((product) => (
-                    <div key={product.id} className="bg-white p-4 rounded-lg shadow-md">
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-40 object-cover rounded-lg mb-4"
-                        />
-                        <h2 className="text-lg font-bold mb-2">{product.name}</h2>
-                        <p className="text-blue-600 font-semibold mb-4">
-                            Php{parseFloat(product.price).toFixed(2)}
-                        </p>
-                        <p className="text-gray-600 mb-4">{product.description}</p>
-                        <p className="text-gray-800 font-bold">
-                            Quantity: {product.quantity} {product.quantityType}
-                        </p>
-                        <button
-                            onClick={() => handleEditClick(product)}
-                            className="bg-green-500 text-white p-2 rounded mt-4"
-                        >
-                            Edit
-                        </button>
-                    </div>
-                ))}
+            {/* Product Upload/Edit Form */}
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="border p-2 rounded w-full mb-4"
+                />
+                <input
+                    type="text"
+                    placeholder="Product Name"
+                    value={productName}
+                    onChange={(e) => setProductName(e.target.value)}
+                    className="border p-2 rounded w-full mb-4"
+                />
+                <textarea
+                    placeholder="Product Description"
+                    value={productDescription}
+                    onChange={(e) => setProductDescription(e.target.value)}
+                    className="border p-2 rounded w-full mb-4"
+                />
+                <input
+                    type="number"
+                    placeholder="Price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className="border p-2 rounded w-full mb-4"
+                />
+                <select
+                    value={quantityType}
+                    onChange={(e) => setQuantityType(e.target.value)}
+                    className="border p-2 rounded w-full mb-4"
+                >
+                    <option value="Per Tray">Per Tray</option>
+                    <option value="Per Box">Per Box</option>
+                </select>
+                <input
+                    type="date"
+                    value={dateUploaded}
+                    onChange={(e) => setDateUploaded(e.target.value)}
+                    className="border p-2 rounded w-full mb-4"
+                />
+                <button
+                    onClick={handleUpload}
+                    className="bg-blue-500 text-white p-2 rounded"
+                    disabled={isUploading}
+                >
+                    {isUploading ? 'Uploading...' : editProductId ? 'Update Product' : 'Upload Product'}
+                </button>
             </div>
 
-            {products.length > 0 && !showUploadForm && (
-                <button
-                    onClick={handleAddProduct}
-                    className="bg-green-500 text-white p-2 rounded mt-4"
-                >
-                    Add Product
-                </button>
-            )}
+            {/* Products Table */}
+            <div className="mt-8">
+                <h2 className="text-lg font-bold mb-4">Uploaded Products</h2>
+                <table className="table-auto w-full bg-white rounded-lg shadow-lg">
+                    <thead>
+                        <tr className="bg-gray-200">
+                            <th className="px-4 py-2">Product Image</th>
+                            <th className="px-4 py-2">Product Name</th>
+                            <th className="px-4 py-2">Description</th>
+                            <th className="px-4 py-2">Price</th>
+                            <th className="px-4 py-2">Quantity Type</th>
+                            <th className="px-4 py-2">Date Uploaded</th>
+                            <th className="px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product) => (
+                            <tr key={product.id} className="text-center">
+                                <td className="px-4 py-2">
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className="w-20 h-20 object-cover rounded"
+                                    />
+                                </td>
+                                <td className="px-4 py-2">{product.name}</td>
+                                <td className="px-4 py-2">{product.description}</td>
+                                <td className="px-4 py-2">Php {product.price.toFixed(2)}</td>
+                                <td className="px-4 py-2">{product.quantityType}</td>
+                                <td className="px-4 py-2">{new Date(product.dateUploaded).toLocaleDateString()}</td>
+                                <td className="px-4 py-2">
+                                    <button
+                                        onClick={() => handleEdit(product)}
+                                        className="bg-green-500 text-white p-2 rounded mr-2"
+                                    >
+                                        Edit Product
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(product.id)}
+                                        className="bg-red-500 text-white p-2 rounded"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

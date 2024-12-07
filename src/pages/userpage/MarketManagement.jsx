@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
 import { storage, db } from '../../firebase'; // Ensure the path to firebase.js is correct
 
@@ -96,9 +96,22 @@ const MarketManagement = () => {
         }
     };
 
-    // Handle product deletion
+    // Handle product deletion (including image deletion from Storage)
     const handleDelete = async (id) => {
         try {
+            const productToDelete = products.find((product) => product.id === id);
+
+            if (productToDelete && productToDelete.image) {
+                // Extract the image path from the image URL
+                const imagePath = decodeURIComponent(productToDelete.image.split('/o/')[1].split('?')[0]);
+                const imageRef = ref(storage, imagePath);
+
+                // Delete the image from Storage
+                await deleteObject(imageRef);
+                console.log('Image deleted from storage.');
+            }
+
+            // Delete the product document from Firestore
             const productDocRef = doc(db, 'products', id);
             await deleteDoc(productDocRef);
 

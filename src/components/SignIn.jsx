@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Loader2 from './Loader2';
-import { auth } from '../firebase';
+import { adminAuth } from '../firebase'; // Ensure this path is correct
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 function SignInPage() {
@@ -28,7 +28,7 @@ function SignInPage() {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(adminAuth, email, password);
       localStorage.setItem('isAuthenticated', 'true'); // Set authentication flag
       navigate('/pages/maindashboard'); // Redirect to main dashboard
     } catch (error) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase'; // Ensure correct path to firebase.js
+import { adminAuth, adminFirestore } from '../firebase'; // Ensure correct path to firebase.js
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -48,13 +48,13 @@ const SignUp = () => {
 
     try {
       // Create user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(adminAuth, email, password);
       const user = userCredential.user;
 
       console.log('Firebase User Created:', user.uid);
 
       // Store additional user data in Firestore
-      await setDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(adminFirestore, 'users', user.uid), {
         firstName,
         middleName,
         lastName,

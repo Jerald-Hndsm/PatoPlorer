@@ -12,8 +12,8 @@ function DashboardHeader({ onSignOut }) {
   };
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const adminAuth = getAuth();
+    const unsubscribe = onAuthStateChanged(adminAuth, (user) => {
       if (user) {
         setUserEmail(user.email);
       } else {

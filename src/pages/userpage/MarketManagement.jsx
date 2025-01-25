@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { collection, addDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
-import { storage, db } from '../../firebase'; // Ensure the path to firebase.js is correct
+import { adminDatabase, adminFirestore, adminStorage } from '../../firebase'; // Ensure the path to firebase.js is correct
 
 const MarketManagement = () => {
     const [imageFile, setImageFile] = useState(null);
@@ -18,7 +18,7 @@ const MarketManagement = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const querySnapshot = await getDocs(collection(db, 'products'));
+                const querySnapshot = await getDocs(collection(adminFirestore, 'products'));
                 const fetchedProducts = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
@@ -55,7 +55,7 @@ const MarketManagement = () => {
 
             let imageUrl = '';
             if (imageFile) {
-                const imageRef = ref(storage, `products/${Date.now()}_${imageFile.name}`);
+                const imageRef = ref(adminStorage, `products/${Date.now()}_${imageFile.name}`);
                 const snapshot = await uploadBytes(imageRef, imageFile);
                 imageUrl = await getDownloadURL(snapshot.ref);
             }
@@ -71,7 +71,7 @@ const MarketManagement = () => {
 
             if (editProductId) {
                 // Update existing product
-                const productDocRef = doc(db, 'products', editProductId);
+                const productDocRef = doc(adminFirestore, 'products', editProductId);
                 await updateDoc(productDocRef, productData);
 
                 const updatedProducts = products.map((product) =>
@@ -81,7 +81,7 @@ const MarketManagement = () => {
                 alert('Product updated successfully!');
             } else {
                 // Add new product
-                const docRef = await addDoc(collection(db, 'products'), productData);
+                const docRef = await addDoc(collection(adminFirestore, 'products'), productData);
                 setProducts((prevProducts) => [...prevProducts, { id: docRef.id, ...productData }]);
                 alert('Product uploaded successfully!');
             }
@@ -104,7 +104,7 @@ const MarketManagement = () => {
             if (productToDelete && productToDelete.image) {
                 // Extract the image path from the image URL
                 const imagePath = decodeURIComponent(productToDelete.image.split('/o/')[1].split('?')[0]);
-                const imageRef = ref(storage, imagePath);
+                const imageRef = ref(adminStorage, imagePath);
 
                 // Delete the image from Storage
                 await deleteObject(imageRef);
@@ -112,7 +112,7 @@ const MarketManagement = () => {
             }
 
             // Delete the product document from Firestore
-            const productDocRef = doc(db, 'products', id);
+            const productDocRef = doc(adminFirestore, 'products', id);
             await deleteDoc(productDocRef);
 
             const updatedProducts = products.filter((product) => product.id !== id);

@@ -10,7 +10,7 @@ const AdminSidebar = () => {
         <ul className="space-y-1"> {/* Reduced space between buttons */}
           <li>
             <Link 
-              to="/admin" 
+              to="/404" 
               className="flex items-center p-3 text-white rounded-lg hover:bg-gray-700 transition duration-200"
             >
               <FaTachometerAlt className="mr-2" /> {/* Icon for Dashboard */}
@@ -19,7 +19,7 @@ const AdminSidebar = () => {
           </li>
           <li>
             <Link 
-              to="/admin/users" 
+              to="/404/users" 
               className="flex items-center p-3 text-white rounded-lg hover:bg-gray-700 transition duration-200"
             >
               <FaUsers className="mr-2" /> {/* Icon for User Management */}

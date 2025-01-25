@@ -66,7 +66,7 @@ function App() {
     '/pages/marketmanagement',
   ].includes(location.pathname);
 
-  const isAdminPage = location.pathname.startsWith('/admin');
+  const isAdminPage = location.pathname.startsWith('/404');
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -146,9 +146,9 @@ function App() {
             />
 
             {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/users" element={<UserManagement />} />
-            <Route path="/admin/sales-demand" element={<SalesDemandDashboard />} />
+            <Route path="/404" element={<AdminDashboard />} />
+            <Route path="/404/users" element={<UserManagement />} />
+            <Route path="/404/sales-demand" element={<SalesDemandDashboard />} />
           </Routes>
         </div>
       </main>

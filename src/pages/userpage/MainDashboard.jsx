@@ -81,7 +81,7 @@ const MainDashboard = () => {
     };
 
     return (
-        <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
+        <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
             <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
                 Dashboard <MdDashboard className="ml-2" />
             </h1>

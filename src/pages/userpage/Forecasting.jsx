@@ -1,274 +1,282 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
   Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
-import { FaPlus, FaMinus } from 'react-icons/fa'; // Importing icons for zoom in and zoom out
-import { FcComboChart } from 'react-icons/fc'; // Importing chart icon
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Forecasting = () => {
-  const [zoomLevel, setZoomLevel] = useState(1); // State to manage zoom level
-  const [timeFrame, setTimeFrame] = useState('daily'); // State to manage time frame
+  // Numeric fields
+  const [inputData, setInputData] = useState({
+    "Temperature": '',
+    "No. of Ducks": '',
+    "Kg of feeds / day": '',
+    "Nutrients in mL / day": '',
+  });
 
-  // State for info tiles
-  const [housing, setHousing] = useState('Indoor');
-  const [numberOfDucks, setNumberOfDucks] = useState(150);
-  const [feeds, setFeeds] = useState('Avialis');
-  const [nutrients, setNutrients] = useState('Revotech');
+  // Categorical or extra fields
+  const [extraInputs, setExtraInputs] = useState({
+    "Date": '',
+    "Weather": '',
+    "Breed": '',
+    "Housing": '',
+    "Feed Type": '',
+    "Nutrients": '',
+  });
 
-  // State for input fields
-  const [inputHousing, setInputHousing] = useState('');
-  const [inputNumberOfDucks, setInputNumberOfDucks] = useState('');
-  const [inputFeeds, setInputFeeds] = useState('');
-  const [inputNutrients, setInputNutrients] = useState('');
+  const [predictedEggs, setPredictedEggs] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Generate sample data
-  const generateData = (frame) => {
-    const data = [];
-    const now = new Date();
+  // Default suggestion now comes solely from the API.
+  // Expecting an array of suggestions from the API.
+  const [suggestion, setSuggestion] = useState("No Recommendation For Production.");
 
-    if (frame === 'daily') {
-      // Generate hourly data for today
-      for (let hour = 0; hour < 24; hour++) {
-        data.push({
-          time: `${hour}:00`,
-          eggs: Math.floor(Math.random() * 10) + 1, // Random eggs between 1 and 10
-        });
-      }
-    } else if (frame === 'monthly') {
-      // Generate daily data for current month
-      const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-      for (let day = 1; day <= daysInMonth; day++) {
-        data.push({
-          date: `${now.getMonth() + 1}/${day}`,
-          eggs: Math.floor(Math.random() * 100) + 20, // Random eggs between 20 and 120
-        });
-      }
-    } else if (frame === 'yearly') {
-      // Generate monthly data for current year
-      for (let month = 0; month < 12; month++) {
-        data.push({
-          month: new Date(now.getFullYear(), month).toLocaleString('default', { month: 'short' }),
-          eggs: Math.floor(Math.random() * 3000) + 500, // Random eggs between 500 and 3500
-        });
+  const [showAlert, setShowAlert] = useState(false);
+  const [showBreedWarning, setShowBreedWarning] = useState(false);
+  const [showHousingWarning, setShowHousingWarning] = useState(false);
+
+  // Numeric input handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputData((prevData) => ({
+      ...prevData,
+      [name]: Number(value) || 0,
+    }));
+  };
+
+  // Extra input handler (weather, breed, etc.)
+  const handleExtraChange = (e) => {
+    const { name, value } = e.target;
+    setExtraInputs((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Warnings for Breed and Housing
+    if (name === 'Breed') {
+      if (
+        value !== '' &&
+        value.toLowerCase() !== 'mixed' &&
+        value.toLowerCase() !== 'layer a' &&
+        value.toLowerCase() !== 'layer b'
+      ) {
+        setShowBreedWarning(true);
+      } else {
+        setShowBreedWarning(false);
       }
     }
-    return data;
+    if (name === 'Housing') {
+      if (
+        value !== '' &&
+        value.toLowerCase() !== 'indoor' &&
+        value.toLowerCase() !== 'outdoor'
+      ) {
+        setShowHousingWarning(true);
+      } else {
+        setShowHousingWarning(false);
+      }
+    }
   };
 
-  // Data to be displayed based on time frame
-  const displayedData = useMemo(() => generateData(timeFrame), [timeFrame]);
-
-  const handleZoomIn = () => {
-    setZoomLevel((prev) => Math.min(prev + 0.5, 5)); // Max zoom level of 5
+  // Check if numeric fields are filled
+  const areInputsFilled = () => {
+    return Object.values(inputData).every((value) => value !== '' && value !== 0);
   };
 
-  const handleZoomOut = () => {
-    setZoomLevel((prev) => Math.max(prev - 0.5, 1)); // Min zoom level of 1
+  // Combine numeric + categorical fields for the POST
+  const handleUpdate = async () => {
+    if (!areInputsFilled()) {
+      setShowAlert(true);
+      return;
+    }
+
+    const requestData = {
+      ...inputData,
+      "Weather": extraInputs["Weather"],
+      "Breed": extraInputs["Breed"],
+      "Housing": extraInputs["Housing"],
+      "Feed Type": extraInputs["Feed Type"],
+      "Nutrients": extraInputs["Nutrients"],
+    };
+    console.log("📤 Sending Data to Backend:", requestData);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.json();
+        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorMessage.error}`);
+      }
+
+      const data = await response.json();
+      console.log("✅ API response:", data);
+      setPredictedEggs(data.predicted_eggs);
+      setError(null);
+
+      // Set the suggestion state with the array returned from the API.
+      if (data.suggestions) {
+        setSuggestion(data.suggestions);
+      }
+    } catch (error) {
+      console.error("❌ Error fetching prediction:", error);
+      setError(error.message);
+    }
   };
 
-  const handleTimeFrameChange = (frame) => {
-    setTimeFrame(frame);
-    setZoomLevel(1); // Reset zoom level when time frame changes
+  // Blank Chart Data & Options (empty for now)
+  const chartData = {
+    labels: [],
+    datasets: [
+      {
+        label: 'Egg Production Trend',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+      },
+    ],
   };
 
-  const handleUpdate = () => {
-    // Update the info tiles with the input values
-    if (inputHousing) setHousing(inputHousing);
-    if (inputNumberOfDucks) setNumberOfDucks(inputNumberOfDucks);
-    if (inputFeeds) setFeeds(inputFeeds);
-    if (inputNutrients) setNutrients(inputNutrients);
-
-    // Clear input fields
-    setInputHousing('');
-    setInputNumberOfDucks('');
-    setInputFeeds('');
-    setInputNutrients('');
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
   };
-
-  // Adjusted data based on zoom level
-  const zoomedData = useMemo(() => {
-    const zoomedLength = Math.floor(displayedData.length / zoomLevel);
-    return displayedData.slice(-zoomedLength);
-  }, [zoomLevel, displayedData]);
 
   return (
-    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
+    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl flex flex-col w-full">
       <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
-        Forecasting <FcComboChart className="ml-2" />
+        Forecasting Page
       </h2>
 
-      <div className="flex flex-col lg:flex-row space-x-0 lg:space-x-4">
-        {/* Line Graph Tile */}
-        <div className="flex-1 border rounded-lg shadow-lg p-4 bg-blue-50 mb-4 hover:shadow-xl transition-shadow duration-300 relative">
-          <h3 className="font-bold text-base mb-2 text-gray-800">
-            Egg Production Forecast
-          </h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={zoomedData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              {timeFrame === 'daily' && (
-                <XAxis dataKey="time" />
-              )}
-              {timeFrame === 'monthly' && (
-                <XAxis dataKey="date" />
-              )}
-              {timeFrame === 'yearly' && (
-                <XAxis dataKey="month" />
-              )}
-              <YAxis />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="eggs"
-                stroke="#358FDE"
-                strokeWidth={3}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-          <div className="flex items-center mt-4 space-x-1">
-            <span className="text-gray-800 font-bold text-base">Zoom:</span>
+      {showAlert && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <p className="text-gray-600 font-bold text-lg">
+              You need to fill all numeric inputs!
+            </p>
             <button
-              onClick={handleZoomOut}
-              className="ml-2 bg-transparent text-blue-900 p-1 rounded-full hover:bg-red-100 transition duration-200 text-sm"
+              onClick={() => setShowAlert(false)}
+              className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200 shadow-md"
             >
-              <FaMinus />
-            </button>
-            <button
-              onClick={handleZoomIn}
-              className="bg-transparent text-blue-900 p-1 rounded-full hover:bg-green-100 transition duration-200 text-sm"
-            >
-              <FaPlus />
+              Proceed
             </button>
           </div>
-          <div className="flex justify-end mt-4 absolute bottom-4 right-4 space-x-2 pt-12">
-            <span className="text-gray-800 font-bold text-base">View:</span>
-            <button
-              onClick={() => handleTimeFrameChange('daily')}
-              className={`${
-                timeFrame === 'daily'
-                  ? 'bg-blue-600'
-                  : 'bg-blue-500 hover:bg-blue-600'
-              } text-white p-1 rounded transition duration-200 shadow-md text-sm`}
-            >
-              Daily
-            </button>
-            <button
-              onClick={() => handleTimeFrameChange('monthly')}
-              className={`${
-                timeFrame === 'monthly'
-                  ? 'bg-blue-600'
-                  : 'bg-blue-500 hover:bg-blue-600'
-              } text-white p-1 rounded transition duration-200 shadow-md text-sm`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => handleTimeFrameChange('yearly')}
-              className={`${
-                timeFrame === 'yearly'
-                  ? 'bg-blue-600'
-                  : 'bg-blue-500 hover:bg-blue-600'
-              } text-white p-1 rounded transition duration-200 shadow-md text-sm`}
-            >
-              Yearly
-            </button>
+        </div>
+      )}
+
+      <div className={`flex w-full ${showAlert ? 'pointer-events-none opacity-50' : ''}`}>
+        <div className="flex flex-col w-11/12 p-4 border rounded-lg bg-white shadow-md">
+          <h3 className="font-bold text-base mb-2 text-gray-800">Parameters Input</h3>
+          <div className="flex flex-col space-y-4">
+            {/* Extra Fields */}
+            {Object.keys(extraInputs).map((key, index) => (
+              <div key={index} className="relative">
+                <label className="block text-gray-700 capitalize">{key}:</label>
+                {key === "Date" ? (
+                  <input
+                    type="date"
+                    name={key}
+                    value={extraInputs[key]}
+                    onChange={handleExtraChange}
+                    className="border rounded p-2 w-full"
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    name={key}
+                    value={extraInputs[key]}
+                    onChange={handleExtraChange}
+                    className="border rounded p-2 w-full"
+                    placeholder={`Enter ${key}`}
+                  />
+                )}
+                {key === 'Breed' && showBreedWarning && (
+                  <div className="absolute top-0 right-0 mt-[-6px] bg-yellow-200 text-yellow-800 text-sm p-1 rounded-lg shadow-md w-72 whitespace-nowrap">
+                    Model trained on "Mixed", "Layer A", or "Layer B" only.
+                  </div>
+                )}
+                {key === 'Housing' && showHousingWarning && (
+                  <div className="absolute top-0 left-20 mt-[-6px] bg-yellow-200 text-yellow-800 text-sm p-1 rounded-lg shadow-md w-96 whitespace-nowrap">
+                    Model trained on "indoor" or "outdoor" only.
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
+          <div className="flex flex-col space-y-4 mt-4">
+            {/* Numeric Fields */}
+            {Object.keys(inputData).map((key, index) => (
+              <div key={index}>
+                <label className="block text-gray-700 capitalize">{key}:</label>
+                <input
+                  type="number"
+                  name={key}
+                  value={inputData[key]}
+                  onChange={handleChange}
+                  className="border rounded p-2 w-full"
+                  placeholder={`Enter ${key}`}
+                />
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={handleUpdate}
+            className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200 shadow-md"
+          >
+            Enter
+          </button>
         </div>
 
-        {/* Info Tiles Section */}
-        <div className="flex flex-col justify-between ml-0 lg:ml-4">
-          <div className="grid grid-cols-2 gap-4 pt-11">
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Temperature</h4>
-              <p className="text-gray-600">20°C</p>
-            </div>
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Weather</h4>
-              <p className="text-gray-600">Sunny</p>
-            </div>
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Housing</h4>
-              <p className="text-gray-600">{housing}</p>
-            </div>
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Number of Ducks</h4>
-              <p className="text-gray-600">{numberOfDucks}</p>
-            </div>
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Feeds</h4>
-              <p className="text-gray-600">{feeds}</p>
-            </div>
-            <div className="border rounded-lg p-4 bg-blue-200 shadow-md">
-              <h4 className="font-bold text-gray-800">Nutrients</h4>
-              <p className="text-gray-600">{nutrients}</p>
-            </div>
+        <div className="flex flex-col w-full space-y-4 ml-4">
+          <div className="border rounded-lg p-4 bg-white shadow-md h-2/6">
+            <h3 className="font-bold text-base mb-2 text-gray-800">Recommendation</h3>
+            {Array.isArray(suggestion) ? (
+              <ul className="list-disc pl-5 text-gray-600">
+                {suggestion.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-600">{suggestion}</p>
+            )}
           </div>
-          <div className="border rounded-lg p-4 bg-blue-400 shadow-md mt-4">
-            <h4 className="font-bold text-gray-50">Egg Forecast Today</h4>
-            <p className="text-white">99.9%</p>
+          <div className="border rounded-lg p-4 bg-white shadow-md h-40">
+            <h3 className="font-bold text-base mb-2 text-gray-800">Forecasted Eggs</h3>
+            <div className="text-gray-600 text-xl font-bold">
+              {predictedEggs !== null
+                ? predictedEggs
+                : "No Forecast yet, please fill the input."}
+            </div>
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+          </div>
+          {/* Blank Line Chart */}
+          <div className="border rounded-lg p-4 bg-white shadow-md mt-4">
+            <h3 className="font-bold text-base mb-2 text-gray-800">Daily Egg Forecast</h3>
+            <div className="h-64">
+              <Line data={chartData} options={chartOptions} />
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Input Fields for Parameters */}
-      <div className="border rounded-lg p-4 bg-white shadow-md mt-4 w-full">
-        <h3 className="font-bold text-base mb-2 text-gray-800">
-          Update Parameters
-        </h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700">Housing:</label>
-            <input
-              type="text"
-              value={inputHousing}
-              onChange={(e) => setInputHousing(e.target.value)}
-              className="border rounded p-2 w-full"
-              placeholder="Enter housing type"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Number of Ducks:</label>
-            <input
-              type="number"
-              value={inputNumberOfDucks}
-              onChange={(e) => setInputNumberOfDucks(e.target.value)}
-              className="border rounded p-2 w-full"
-              placeholder="Enter number of ducks"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Feeds:</label>
-            <input
-              type="text"
-              value={inputFeeds}
-              onChange={(e) => setInputFeeds(e.target.value)}
-              className="border rounded p-2 w-full"
-              placeholder="Enter feed type"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Nutrients:</label>
-            <input
-              type="text"
-              value={inputNutrients}
-              onChange={(e) => setInputNutrients(e.target.value)}
-              className="border rounded p-2 w-full"
-              placeholder="Enter nutrients"
-            />
-          </div>
-        </div>
-        <button
-          onClick={handleUpdate}
-          className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200 shadow-md"
-        >
-          Update
-        </button>
       </div>
     </div>
   );

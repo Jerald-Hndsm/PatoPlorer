@@ -18,7 +18,6 @@ import Forecasting from './pages/userpage/Forecasting';
 import MainDashboard from './pages/userpage/MainDashboard';
 import Orders from './pages/userpage/Orders';
 import EggTab from './pages/userpage/EggTab';
-import OrderDetails from './pages/userpage/OrderDetails';
 import MarketManagement from './pages/userpage/MarketManagement';
 
 // Admin Pages
@@ -125,14 +124,6 @@ function App() {
               element={
                 <ProtectedRoute>
                   <EggTab />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/orderdetails"
-              element={
-                <ProtectedRoute>
-                  <OrderDetails />
                 </ProtectedRoute>
               }
             />

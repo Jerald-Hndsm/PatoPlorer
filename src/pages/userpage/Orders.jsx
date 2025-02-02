@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { FaClipboardList } from "react-icons/fa6";
+import React, { useState, useEffect } from 'react';
+import { FaClipboardList, FaEdit, FaTrash } from "react-icons/fa";
+import { userFirestore } from '../../firebase'; // Make sure to import your Firestore configuration
+import { collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 
 const Orders = () => {
-    // State for storing orders
     const [orders, setOrders] = useState([]);
-    
-    // State for the new order input fields
     const [newOrder, setNewOrder] = useState({
         orderId: '',
         name: '',
@@ -14,11 +13,22 @@ const Orders = () => {
         productDescription: '',
         quantity: '',
         payment: '',
-        status: 'Processing', // Default status
+        date: '',
+        status: 'Processing',
     });
-
-    // State to track the order being edited
     const [editingIndex, setEditingIndex] = useState(null);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [confirmEdit, setConfirmEdit] = useState(false); // State for edit confirmation
+    const [orderToDelete, setOrderToDelete] = useState(null);
+    const [orderToEdit, setOrderToEdit] = useState(null); // Track which order is being edited
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(userFirestore, 'orders'), (snapshot) => {
+            const ordersData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setOrders(ordersData);
+        });
+        return () => unsubscribe();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -28,36 +38,20 @@ const Orders = () => {
         });
     };
 
-    const handleAddOrUpdateOrder = () => {
-        // Check if all fields are filled
+    const handleAddOrUpdateOrder = async () => {
         if (Object.values(newOrder).some(val => val === '')) {
             alert('All fields must be filled!');
             return;
         }
 
         if (editingIndex !== null) {
-            // Update existing order
-            const updatedOrders = [...orders];
-            updatedOrders[editingIndex] = newOrder;
-            setOrders(updatedOrders);
-            setEditingIndex(null); // Reset editing index
+            // Show edit confirmation modal
+            setOrderToEdit(orders[editingIndex]);
+            setConfirmEdit(true);
         } else {
-            // Add new order to the orders state
-            setOrders([...orders, newOrder]);
-        }
-
-        // Reset newOrder state only if not editing
-        if (editingIndex === null) {
-            setNewOrder({
-                orderId: '',
-                name: '',
-                address: '',
-                contactNumber: '',
-                productDescription: '',
-                quantity: '',
-                payment: '',
-                status: 'Processing', // Reset to default status
-            });
+            // Add new order to Firestore
+            await addDoc(collection(userFirestore, 'orders'), newOrder);
+            resetForm();
         }
     };
 
@@ -66,12 +60,43 @@ const Orders = () => {
         setEditingIndex(index);
     };
 
-    return (
-        <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
-            <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Orders <FaClipboardList className="ml-2" /> 
-            </h1>
+    const confirmEditOrder = async () => {
+        const orderRef = doc(userFirestore, 'orders', orderToEdit.id);
+        await updateDoc(orderRef, newOrder);
+        resetForm();
+        setConfirmEdit(false);
+    };
 
-            {/* Tile for adding or editing an order */}
+    const handleDeleteOrder = async (id) => {
+        await deleteDoc(doc(userFirestore, 'orders', id));
+        setConfirmDelete(false);
+        setOrderToDelete(null);
+    };
+
+    const confirmDeleteOrder = (id) => {
+        setOrderToDelete(id);
+        setConfirmDelete(true);
+    };
+
+    const resetForm = () => {
+        setNewOrder({
+            orderId: '',
+            name: '',
+            address: '',
+            contactNumber: '',
+            productDescription: '',
+            quantity: '',
+            payment: '',
+            date: '',
+            status: 'Processing',
+        });
+        setEditingIndex(null);
+    };
+
+    return (
+        <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
+            <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Orders <FaClipboardList className="ml-2" /></h1>
+
             <div className="bg-white shadow-md rounded-lg p-6 mb-6">
                 <h2 className="text-lg mb-2">{editingIndex !== null ? 'Edit Order' : 'Add New Order'}:</h2>
                 <div className="grid grid-cols-2 gap-4 mb-4">
@@ -131,14 +156,13 @@ const Orders = () => {
                         placeholder="Payment"
                         className="border border-gray-300 p-2 rounded-lg"
                     />
-                    <select
-                        name="status"
-                        value={newOrder.status}
+                    <input
+                        type="date"
+                        name="date"
+                        value={newOrder.date}
                         onChange={handleInputChange}
                         className="border border-gray-300 p-2 rounded-lg"
-                    >
-                                                <option value="Successful">Successful</option>
-                    </select>
+                    />
                 </div>
 
                 <button
@@ -149,7 +173,6 @@ const Orders = () => {
                 </button>
             </div>
 
-            {/* Tile for Orders Table */}
             <div className="bg-white shadow-md rounded-lg p-6">
                 <h2 className="text-lg mb-4">Orders List:</h2>
                 <div className="overflow-x-auto">
@@ -163,7 +186,7 @@ const Orders = () => {
                                 <th className="border border-gray-300 p-2">Product Description</th>
                                 <th className="border border-gray-300 p-2">Quantity</th>
                                 <th className="border border-gray-300 p-2">Payment</th>
-                                <th className="border border-gray-300 p-2">Order Status</th>
+                                <th className="border border-gray-300 p-2">Date</th>
                                 <th className="border border-gray-300 p-2">Actions</th>
                             </tr>
                         </thead>
@@ -176,7 +199,7 @@ const Orders = () => {
                                 </tr>
                             ) : (
                                 orders.map((order, index) => (
-                                    <tr key={index} className="bg-white">
+                                    <tr key={order.id} className="bg-white">
                                         <td className="border border-gray-300 p-2">{order.orderId}</td>
                                         <td className="border border-gray-300 p-2">{order.name}</td>
                                         <td className="border border-gray-300 p-2">{order.address}</td>
@@ -184,13 +207,19 @@ const Orders = () => {
                                         <td className="border border-gray-300 p-2">{order.productDescription}</td>
                                         <td className="border border-gray-300 p-2">{order.quantity}</td>
                                         <td className="border border-gray-300 p-2">{order.payment}</td>
-                                        <td className="border border-gray-300 p-2">{order.status}</td>
-                                        <td className="border border-gray-300 p-2">
+                                        <td className="border border-gray-300 p-2">{order.date}</td>
+                                        <td className="border border-gray-300 p-2 flex space-x-2">
                                             <button
                                                 onClick={() => handleEditOrder(index)}
                                                 className="bg-yellow-500 text-white p-1 rounded-lg hover:bg-yellow-600"
                                             >
-                                                Edit
+                                                <FaEdit />
+                                            </button>
+                                            <button
+                                                onClick={() => confirmDeleteOrder(order.id)}
+                                                className="bg-red-500 text-white p-1 rounded-lg hover:bg-red-600"
+                                            >
+                                                <FaTrash />
                                             </button>
                                         </td>
                                     </tr>
@@ -200,6 +229,50 @@ const Orders = () => {
                     </table>
                 </div>
             </div>
+
+            {confirmDelete && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-lg mb-4">Are you sure you want to delete this order?</h2>
+                        <div className="flex justify-between">
+                            <button
+                                onClick={() => handleDeleteOrder(orderToDelete)}
+                                className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600"
+                            >
+                                Delete
+                            </button>
+                            <button
+                                onClick={() => setConfirmDelete(false)}
+                                className="bg-gray-300 text-black p-2 rounded-lg hover:bg-gray-400"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {confirmEdit && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-lg mb-4">Are you sure you want to edit this order?</h2>
+                        <div className="flex justify-between">
+                            <button
+                                onClick={confirmEditOrder}
+                                className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+                            >
+                                Confirm Edit
+                            </button>
+                            <button
+                                onClick={() => setConfirmEdit(false)}
+                                className="bg-gray-300 text-black p-2 rounded-lg hover:bg-gray-400"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

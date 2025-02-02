@@ -17,6 +17,8 @@ function EggTab() {
 
   const [inventoryList, setInventoryList] = useState([]);
   const [editingId, setEditingId] = useState(null); // Track which entry is being edited
+  const [confirmDelete, setConfirmDelete] = useState(false); // State for delete confirmation
+  const [entryToDelete, setEntryToDelete] = useState(null); // Track which entry is to be deleted
 
   const handleChange = (e) => {
     setInventory({
@@ -87,20 +89,24 @@ function EggTab() {
     setEditingId(entry.id);
   };
 
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this row?");
-    if (confirmDelete) {
-      try {
-        await deleteDoc(doc(userFirestore, "inventory", id));
-        setInventoryList(inventoryList.filter(entry => entry.id !== id));
-      } catch (error) {
-        console.error("Error deleting document: ", error);
-      }
+  const handleDelete = (id) => {
+    setEntryToDelete(id);
+    setConfirmDelete(true);
+  };
+
+  const confirmDeleteEntry = async () => {
+    try {
+      await deleteDoc(doc(userFirestore, "inventory", entryToDelete));
+      setInventoryList(inventoryList.filter(entry => entry.id !== entryToDelete));
+      setConfirmDelete(false);
+      setEntryToDelete(null);
+    } catch (error) {
+      console.error("Error deleting document: ", error);
     }
   };
 
   return (
-    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transform transition-all duration-300 hover:shadow-xl flex flex-col w-full">
+    <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
       <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
         Egg Inventory Management <FaEgg className="ml-2" />
       </h1>
@@ -247,6 +253,29 @@ function EggTab() {
           </tbody>
         </table>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {confirmDelete && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-lg mb-4">Are you sure you want to delete this entry?</h2>
+            <div className="flex justify-between">
+              <button
+                onClick={confirmDeleteEntry}
+                className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => setConfirmDelete(false)}
+                className="bg-gray-300 text-black p-2 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

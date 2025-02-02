@@ -1,0 +1,1001 @@
+Date,Temperature,Weather,Breed,Housing,No. of Ducks,Feed Type,Kg of feeds / day,Nutrients,Nutrients in mL / day,No. of Eggs
+21/08/2023,30.4,rainy,Layer A,indoor,1610,CustomCP20,50,none,0,385
+22/08/2023,30.3,sunny,Mixed,indoor,1610,CustomCP20,50,honey,249,371
+23/08/2023,30.8,sunny,Layer B,indoor,1610,AvialisCP18,50,honey,402,380
+24/08/2023,30.7,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,373
+25/08/2023,30.1,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,377
+26/08/2023,30.8,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,381
+27/08/2023,29.3,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,393
+28/08/2023,30.6,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,454
+29/08/2023,29.9,overcast,Layer A,indoor,1610,CustomCP20,50,none,0,407
+30/08/2023,29.1,sunny,Layer B,indoor,1610,AvialisCP18,50,honey,363,392
+31/08/2023,30.5,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,414
+01/09/2023,28.8,overcast,Mixed,indoor,1610,AvialisCP18,50,none,0,373
+02/09/2023,28.9,overcast,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,444
+03/09/2023,29.7,overcast,Layer A,indoor,1610,CustomCP20,50,none,0,404
+04/09/2023,28.3,overcast,Layer A,indoor,1610,AvialisCP18,50,honey,289,450
+05/09/2023,29.7,sunny,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,468
+06/09/2023,29.4,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,394
+07/09/2023,28.3,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,392
+08/09/2023,29.4,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,404
+09/09/2023,28.5,sunny,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,440
+10/09/2023,28.7,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,423
+11/09/2023,28.2,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,425
+12/09/2023,28.4,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,398
+13/09/2023,29.7,sunny,Layer B,indoor,1610,AvialisCP18,50,honey,398,436
+14/09/2023,29.6,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,414
+15/09/2023,28.4,sunny,Mixed,indoor,1610,AvialisCP18,50,honey,449,453
+16/09/2023,28.8,overcast,Layer A,indoor,1610,AvialisCP18,50,honey,354,473
+17/09/2023,29.4,overcast,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,494
+18/09/2023,29.8,sunny,Mixed,indoor,1610,AvialisCP18,50,none,0,452
+19/09/2023,29.2,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,433
+20/09/2023,28.1,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,417
+21/09/2023,28.9,rainy,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,496
+22/09/2023,28.6,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,425
+23/09/2023,28.5,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,512
+24/09/2023,29.7,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,488
+25/09/2023,28.6,rainy,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,517
+26/09/2023,29.5,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,519
+27/09/2023,28.9,overcast,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,492
+28/09/2023,28.6,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,500
+29/09/2023,28.4,overcast,Layer A,indoor,1610,CustomCP20,50,honey,406,496
+30/09/2023,29.9,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,498
+01/10/2023,28.4,rainy,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,498
+02/10/2023,28.8,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,509
+03/10/2023,28,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,489
+04/10/2023,27.9,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,503
+05/10/2023,28.4,sunny,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,513
+06/10/2023,27.9,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,461
+07/10/2023,27.2,sunny,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,539
+08/10/2023,27.7,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,462
+09/10/2023,27.6,rainy,Layer B,indoor,1610,StandardCP16,50,honey,488,507
+10/10/2023,28.7,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,541
+11/10/2023,27.4,sunny,Layer A,indoor,1610,AvialisCP18,50,honey,267,497
+12/10/2023,28.1,sunny,Layer B,indoor,1610,CustomCP20,50,honey,268,535
+13/10/2023,28.9,overcast,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,524
+14/10/2023,27.2,overcast,Layer B,indoor,1610,CustomCP20,50,honey,305,516
+15/10/2023,28.1,rainy,Layer B,indoor,1610,AvialisCP18,50,honey,305,556
+16/10/2023,27.1,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,475
+17/10/2023,27,sunny,Mixed,indoor,1610,CustomCP20,50,none,0,527
+18/10/2023,28.5,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,513
+19/10/2023,27.8,overcast,Mixed,indoor,1610,AvialisCP18,50,none,0,489
+20/10/2023,28.3,overcast,Layer A,indoor,1610,StandardCP16,50,honey,469,547
+21/10/2023,27.1,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,533
+22/10/2023,28.6,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,501
+23/10/2023,27.1,overcast,Mixed,indoor,1610,AvialisCP18,50,none,0,501
+24/10/2023,27.7,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,542
+25/10/2023,27.9,overcast,Mixed,indoor,1610,AvialisCP18,50,honey,401,567
+26/10/2023,28.1,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,591
+27/10/2023,27.8,overcast,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,609
+28/10/2023,27.8,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,549
+29/10/2023,28.4,rainy,Layer B,indoor,1610,AvialisCP18,50,none,0,527
+30/10/2023,28,overcast,Layer B,indoor,1610,CustomCP20,50,honey,427,557
+31/10/2023,28.9,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,531
+01/11/2023,26.2,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,544
+02/11/2023,26.5,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,529
+03/11/2023,26.1,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,573
+04/11/2023,27.7,overcast,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,623
+05/11/2023,27.4,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,553
+06/11/2023,27.4,overcast,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,599
+07/11/2023,27.9,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,596
+08/11/2023,27,sunny,Mixed,indoor,1610,CustomCP20,50,honey,282,595
+09/11/2023,27.4,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,546
+10/11/2023,27.2,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,633
+11/11/2023,27.5,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,579
+12/11/2023,26.7,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,590
+13/11/2023,26.5,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,637
+14/11/2023,27.5,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,554
+15/11/2023,27.9,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,567
+16/11/2023,27.4,sunny,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,643
+17/11/2023,28,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,608
+18/11/2023,26.5,sunny,Layer B,indoor,1610,CustomCP20,50,honey,405,602
+19/11/2023,26,rainy,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,620
+20/11/2023,27.8,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,674
+21/11/2023,27,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,588
+22/11/2023,26.8,sunny,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,637
+23/11/2023,26.6,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,588
+24/11/2023,27.2,rainy,Layer A,indoor,1610,AvialisCP18,50,none,0,603
+25/11/2023,26.2,sunny,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,628
+26/11/2023,27.4,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,645
+27/11/2023,27,rainy,Mixed,indoor,1610,StandardCP16,50,honey,229,623
+28/11/2023,26.2,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,694
+29/11/2023,27.7,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,652
+30/11/2023,27.8,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,622
+01/12/2023,26.8,sunny,Mixed,indoor,1610,StandardCP16,50,none,0,646
+02/12/2023,27,sunny,Layer A,indoor,1610,StandardCP16,50,honey,224,668
+03/12/2023,26.3,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,690
+04/12/2023,26.7,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,618
+05/12/2023,25.1,rainy,Layer A,indoor,1610,StandardCP16,50,honey,468,652
+06/12/2023,26.6,overcast,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,671
+07/12/2023,26.7,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,635
+08/12/2023,25.2,sunny,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,694
+09/12/2023,26.1,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,689
+10/12/2023,26.8,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,654
+11/12/2023,25.6,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,706
+12/12/2023,25.8,sunny,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,716
+13/12/2023,26.8,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,636
+14/12/2023,25.7,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,697
+15/12/2023,25.3,rainy,Mixed,indoor,1610,CustomCP20,50,none,0,631
+16/12/2023,25,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,659
+17/12/2023,25.7,sunny,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,722
+18/12/2023,26.4,sunny,Mixed,indoor,1610,StandardCP16,50,none,0,673
+19/12/2023,25.5,overcast,Layer B,indoor,1610,StandardCP16,50,honey,454,715
+20/12/2023,26.7,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,655
+21/12/2023,25.8,sunny,Mixed,indoor,1610,CustomCP20,50,none,0,701
+22/12/2023,26.6,rainy,Layer A,indoor,1610,CustomCP20,50,none,0,688
+23/12/2023,26.5,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,673
+24/12/2023,26.1,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,683
+25/12/2023,26.1,sunny,Mixed,indoor,1610,CustomCP20,50,none,0,690
+26/12/2023,25.1,rainy,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,716
+27/12/2023,26.2,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,725
+28/12/2023,25.3,sunny,Layer A,indoor,1610,CustomCP20,50,honey,215,751
+29/12/2023,25.5,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,705
+30/12/2023,26.7,rainy,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,753
+31/12/2023,26.3,sunny,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,745
+01/01/2024,27.9,overcast,Mixed,indoor,1610,AvialisCP18,50,honey,475,755
+02/01/2024,26.7,rainy,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,768
+03/01/2024,27.1,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,719
+04/01/2024,27.1,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,736
+05/01/2024,26.8,sunny,Layer A,indoor,1610,StandardCP16,50,honey,448,758
+06/01/2024,26.5,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,719
+07/01/2024,27.8,sunny,Mixed,indoor,1610,CustomCP20,50,none,0,762
+08/01/2024,27.8,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,788
+09/01/2024,27.6,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,778
+10/01/2024,27.1,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,723
+11/01/2024,26.6,sunny,Layer A,indoor,1610,StandardCP16,50,honey,264,777
+12/01/2024,26.5,rainy,Layer B,indoor,1610,StandardCP16,50,honey,246,749
+13/01/2024,27.2,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,723
+14/01/2024,27.5,overcast,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,791
+15/01/2024,27.2,overcast,Layer A,indoor,1610,AvialisCP18,50,honey,460,792
+16/01/2024,26.5,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,725
+17/01/2024,27.4,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,779
+18/01/2024,26.1,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,792
+19/01/2024,26.3,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,750
+20/01/2024,27,sunny,Layer A,indoor,1610,StandardCP16,50,honey,477,815
+21/01/2024,26.8,sunny,Mixed,indoor,1610,CustomCP20,50,honey,266,801
+22/01/2024,27.7,overcast,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,831
+23/01/2024,26.8,sunny,Mixed,indoor,1610,StandardCP16,50,none,0,765
+24/01/2024,26.4,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,806
+25/01/2024,26.1,sunny,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,798
+26/01/2024,26,sunny,Mixed,indoor,1610,AvialisCP18,50,honey,278,829
+27/01/2024,27.8,rainy,Mixed,indoor,1610,CustomCP20,50,none,0,818
+28/01/2024,26.8,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,812
+29/01/2024,27.1,rainy,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,859
+30/01/2024,27,overcast,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,845
+31/01/2024,27.9,overcast,Layer B,indoor,1610,StandardCP16,50,honey,337,808
+01/02/2024,27.2,overcast,Mixed,indoor,1610,AvialisCP18,50,none,0,827
+02/02/2024,28.8,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,792
+03/02/2024,28.4,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,792
+04/02/2024,28.7,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,892
+05/02/2024,27.9,sunny,Mixed,indoor,1610,AvialisCP18,50,none,0,823
+06/02/2024,28.4,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,895
+07/02/2024,28.9,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,809
+08/02/2024,27.3,overcast,Layer A,indoor,1610,StandardCP16,50,honey,430,874
+09/02/2024,27.9,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,804
+10/02/2024,27.8,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,885
+11/02/2024,27.2,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,854
+12/02/2024,27.1,sunny,Mixed,indoor,1610,StandardCP16,50,honey,456,856
+13/02/2024,28.5,sunny,Layer B,indoor,1610,AvialisCP18,50,honey,249,843
+14/02/2024,27.7,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,877
+15/02/2024,28.2,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,858
+16/02/2024,27.8,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,818
+17/02/2024,28.7,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,879
+18/02/2024,27.1,sunny,Layer A,indoor,1610,CustomCP20,50,honey,458,887
+19/02/2024,28,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,844
+20/02/2024,27.8,overcast,Layer B,indoor,1610,StandardCP16,50,none,0,884
+21/02/2024,27.3,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,867
+22/02/2024,27.7,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,884
+23/02/2024,27.2,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,892
+24/02/2024,28.1,overcast,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,923
+25/02/2024,28.5,sunny,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,946
+26/02/2024,28.9,rainy,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,956
+27/02/2024,27.4,rainy,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,898
+28/02/2024,28.9,sunny,Layer A,indoor,1610,CustomCP20,50,honey,206,889
+29/02/2024,28.7,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,869
+01/03/2024,28.2,overcast,Mixed,indoor,1610,CustomCP20,50,honey,473,939
+02/03/2024,29.6,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,956
+03/03/2024,29.1,overcast,Layer A,indoor,1610,CustomCP20,50,honey,342,908
+04/03/2024,30,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,925
+05/03/2024,29.8,rainy,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,963
+06/03/2024,28.2,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,929
+07/03/2024,29.7,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,932
+08/03/2024,30,rainy,Layer A,indoor,1610,StandardCP16,50,none,0,894
+09/03/2024,29.5,overcast,Mixed,indoor,1610,StandardCP16,50,honey,381,921
+10/03/2024,29.1,sunny,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,981
+11/03/2024,29.5,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,903
+12/03/2024,28.2,sunny,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,971
+13/03/2024,29.4,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,940
+14/03/2024,28.7,rainy,Mixed,indoor,1610,AvialisCP18,50,none,0,926
+15/03/2024,28.8,sunny,Mixed,indoor,1610,StandardCP16,50,honey,471,954
+16/03/2024,29.3,sunny,Mixed,indoor,1610,AvialisCP18,50,none,0,907
+17/03/2024,28.4,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,932
+18/03/2024,28,overcast,Mixed,indoor,1610,StandardCP16,50,honey,477,987
+19/03/2024,28.2,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,990
+20/03/2024,28.4,rainy,Layer B,indoor,1610,AvialisCP18,50,none,0,947
+21/03/2024,28.2,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,947
+22/03/2024,29.6,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,973
+23/03/2024,29,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,927
+24/03/2024,28.4,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,999
+25/03/2024,28.8,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,970
+26/03/2024,28.7,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1010
+27/03/2024,28.1,overcast,Mixed,indoor,1610,CustomCP20,50,honey,395,1009
+28/03/2024,28.9,sunny,Layer A,indoor,1610,StandardCP16,50,honey,272,1025
+29/03/2024,29.1,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,985
+30/03/2024,28.1,overcast,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,1025
+31/03/2024,29.4,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1006
+01/04/2024,29.9,sunny,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,1034
+02/04/2024,29.5,rainy,Mixed,indoor,1610,CustomCP20,50,honey,408,1034
+03/04/2024,29.1,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,957
+04/04/2024,29.3,overcast,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,1012
+05/04/2024,29.9,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,1032
+06/04/2024,30.3,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,987
+07/04/2024,30.6,sunny,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,1065
+08/04/2024,30.4,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1052
+09/04/2024,30.4,overcast,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,1057
+10/04/2024,29.4,rainy,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1064
+11/04/2024,29,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,1018
+12/04/2024,29.6,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,1085
+13/04/2024,30.3,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,1034
+14/04/2024,29.1,overcast,Layer A,indoor,1610,AvialisCP18,50,none,0,1006
+15/04/2024,29.5,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,1005
+16/04/2024,30.4,sunny,Layer A,indoor,1610,CustomCP20,50,honey,497,1082
+17/04/2024,30.3,overcast,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,1081
+18/04/2024,29.1,sunny,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1066
+19/04/2024,29.1,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,1049
+20/04/2024,29.4,rainy,Layer B,indoor,1610,StandardCP16,50,none,0,1011
+21/04/2024,29,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1068
+22/04/2024,29.2,overcast,Layer B,indoor,1610,CustomCP20,50,honey,213,1085
+23/04/2024,30.5,sunny,Layer A,indoor,1610,CustomCP20,50,honey,451,1086
+24/04/2024,30.8,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,1054
+25/04/2024,30.5,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,1043
+26/04/2024,29.7,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,1055
+27/04/2024,29.1,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,1106
+28/04/2024,29.8,overcast,Layer B,indoor,1610,CustomCP20,50,none,0,1086
+29/04/2024,30.4,rainy,Layer B,indoor,1610,AvialisCP18,50,none,0,1046
+30/04/2024,30.2,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,1041
+01/05/2024,30.5,overcast,Layer A,indoor,1610,CustomCP20,50,none,0,1068
+02/05/2024,29.9,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1106
+03/05/2024,30.9,rainy,Layer A,indoor,1610,StandardCP16,50,honey,307,1131
+04/05/2024,30.8,sunny,Layer B,indoor,1610,CustomCP20,50,honey,381,1140
+05/05/2024,29.6,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,1062
+06/05/2024,30,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,1069
+07/05/2024,29.9,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1144
+08/05/2024,29.4,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1136
+09/05/2024,30.3,overcast,Layer A,indoor,1610,CustomCP20,50,none,0,1078
+10/05/2024,30.4,sunny,Layer A,indoor,1610,StandardCP16,50,antibiotics,530,1123
+11/05/2024,29.6,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,1095
+12/05/2024,29.3,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,1069
+13/05/2024,30.8,sunny,Layer B,indoor,1610,StandardCP16,50,antibiotics,530,1158
+14/05/2024,30.6,overcast,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,1172
+15/05/2024,30.9,rainy,Layer A,indoor,1610,CustomCP20,50,none,0,1140
+16/05/2024,31,sunny,Layer B,indoor,1610,CustomCP20,50,none,0,1143
+17/05/2024,29.5,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,1189
+18/05/2024,29.5,sunny,Layer A,indoor,1610,CustomCP20,50,honey,371,1159
+19/05/2024,30.7,sunny,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,1174
+20/05/2024,29.8,sunny,Layer A,indoor,1610,AvialisCP18,50,antibiotics,530,1190
+21/05/2024,30.8,sunny,Mixed,indoor,1610,StandardCP16,50,none,0,1115
+22/05/2024,30.9,overcast,Layer B,indoor,1610,CustomCP20,50,antibiotics,530,1186
+23/05/2024,30.5,sunny,Layer A,indoor,1610,StandardCP16,50,honey,322,1147
+24/05/2024,30.8,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,1210
+25/05/2024,29.2,rainy,Layer B,indoor,1610,AvialisCP18,50,none,0,1154
+26/05/2024,29.5,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,1142
+27/05/2024,30.6,sunny,Layer A,indoor,1610,AvialisCP18,50,none,0,1165
+28/05/2024,29,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,1113
+29/05/2024,30.7,sunny,Layer A,indoor,1610,StandardCP16,50,honey,463,1182
+30/05/2024,29.9,rainy,Layer B,indoor,1610,CustomCP20,50,none,0,1121
+31/05/2024,29.4,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,1143
+01/06/2024,31.7,sunny,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1194
+02/06/2024,31.5,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,1153
+03/06/2024,30.5,overcast,Layer A,indoor,1610,CustomCP20,50,none,0,1183
+04/06/2024,30.8,overcast,Mixed,indoor,1610,CustomCP20,50,none,0,1168
+05/06/2024,30,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,1153
+06/06/2024,31.6,overcast,Mixed,indoor,1610,StandardCP16,50,none,0,1175
+07/06/2024,30.1,sunny,Mixed,indoor,1610,StandardCP16,50,honey,283,1231
+08/06/2024,31.9,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1208
+09/06/2024,30.2,sunny,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1229
+10/06/2024,31.2,overcast,Layer B,indoor,1610,StandardCP16,50,honey,204,1203
+11/06/2024,30.2,overcast,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,1248
+12/06/2024,30.4,overcast,Layer A,indoor,1610,CustomCP20,50,honey,479,1188
+13/06/2024,30,sunny,Mixed,indoor,1610,AvialisCP18,50,none,0,1170
+14/06/2024,31.1,overcast,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1275
+15/06/2024,31.8,sunny,Mixed,indoor,1610,CustomCP20,50,none,0,1204
+16/06/2024,30.5,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,1175
+17/06/2024,31.3,sunny,Layer A,indoor,1610,StandardCP16,50,honey,249,1220
+18/06/2024,31.1,overcast,Layer B,indoor,1610,AvialisCP18,50,antibiotics,530,1233
+19/06/2024,31.2,sunny,Layer B,indoor,1610,StandardCP16,50,honey,263,1237
+20/06/2024,30.2,sunny,Layer B,indoor,1610,AvialisCP18,50,none,0,1227
+21/06/2024,31,sunny,Layer B,indoor,1610,AvialisCP18,50,honey,282,1220
+22/06/2024,30.3,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,1198
+23/06/2024,30.1,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1269
+24/06/2024,31.6,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1296
+25/06/2024,30.1,sunny,Mixed,indoor,1610,AvialisCP18,50,antibiotics,530,1254
+26/06/2024,31.1,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,1271
+27/06/2024,30.6,overcast,Mixed,indoor,1610,AvialisCP18,50,none,0,1204
+28/06/2024,31.5,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,1212
+29/06/2024,30.5,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,1246
+30/06/2024,31.5,sunny,Layer B,indoor,1610,StandardCP16,50,none,0,1243
+01/07/2024,31.5,overcast,Layer A,indoor,1610,StandardCP16,50,none,0,1230
+02/07/2024,31.2,overcast,Mixed,indoor,1610,CustomCP20,50,antibiotics,530,1294
+03/07/2024,31.3,sunny,Layer A,indoor,1610,CustomCP20,50,none,0,1258
+04/07/2024,30.9,overcast,Layer A,indoor,1610,AvialisCP18,50,honey,374,1283
+05/07/2024,31.4,sunny,Layer A,indoor,1610,StandardCP16,50,none,0,1235
+06/07/2024,31.4,rainy,Layer A,indoor,1610,CustomCP20,50,antibiotics,530,1281
+07/07/2024,31,sunny,Layer B,indoor,1610,StandardCP16,50,honey,242,1283
+08/07/2024,30.5,overcast,Layer A,indoor,1610,AvialisCP18,50,honey,435,1296
+09/07/2024,30,rainy,Mixed,indoor,1610,StandardCP16,50,none,0,1264
+10/07/2024,30.9,overcast,Layer B,indoor,1610,AvialisCP18,50,none,0,1278
+11/07/2024,31.5,sunny,Mixed,indoor,1610,StandardCP16,50,antibiotics,530,1348
+12/07/2024,30.8,sunny,Mixed,indoor,1610,CustomCP20,50,honey,366,1276
+13/07/2024,31.4,sunny,Layer B,indoor,1590,AvialisCP18,50,none,0,1262
+14/07/2024,31.6,overcast,Layer A,indoor,1590,CustomCP20,50,antibiotics,530,1348
+15/07/2024,30.9,overcast,Mixed,indoor,1590,CustomCP20,50,none,0,1275
+16/07/2024,31.2,rainy,Mixed,indoor,1590,StandardCP16,50,honey,213,1329
+17/07/2024,31.3,sunny,Layer B,indoor,1590,CustomCP20,50,none,0,1281
+18/07/2024,30,overcast,Layer B,indoor,1590,AvialisCP18,50,none,0,1273
+19/07/2024,31,sunny,Layer A,indoor,1590,CustomCP20,50,antibiotics,530,1331
+20/07/2024,30.5,overcast,Layer A,indoor,1590,AvialisCP18,50,antibiotics,530,1354
+21/07/2024,30.4,overcast,Layer B,indoor,1590,CustomCP20,50,antibiotics,530,1342
+22/07/2024,31.6,overcast,Layer B,indoor,1590,StandardCP16,50,none,0,1329
+23/07/2024,31.2,sunny,Mixed,indoor,1590,StandardCP16,50,none,0,1296
+24/07/2024,31.3,overcast,Layer A,indoor,1590,AvialisCP18,50,antibiotics,530,1374
+25/07/2024,31.7,sunny,Layer B,indoor,1590,CustomCP20,50,antibiotics,530,1392
+26/07/2024,30.3,overcast,Layer B,indoor,1590,StandardCP16,50,none,0,1304
+27/07/2024,30.4,sunny,Layer B,indoor,1589,StandardCP16,50,none,0,1307
+28/07/2024,30.2,overcast,Mixed,indoor,1589,StandardCP16,50,antibiotics,530,1367
+29/07/2024,30.2,overcast,Layer B,indoor,1589,CustomCP20,50,antibiotics,530,1394
+30/07/2024,31.3,overcast,Layer B,indoor,1588,AvialisCP18,50,none,0,1332
+31/07/2024,30.4,rainy,Mixed,indoor,1587,CustomCP20,50,none,0,1294
+01/08/2024,30.6,overcast,Layer B,indoor,1587,AvialisCP18,50,none,0,1349
+02/08/2024,30.1,sunny,Mixed,indoor,1587,StandardCP16,50,none,0,1323
+03/08/2024,30.7,rainy,Mixed,indoor,1587,AvialisCP18,50,none,0,1314
+04/08/2024,30.8,sunny,Layer A,indoor,1587,AvialisCP18,50,honey,480,1363
+05/08/2024,30.4,sunny,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1368
+06/08/2024,30.9,sunny,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1409
+07/08/2024,29.7,overcast,Mixed,indoor,1587,StandardCP16,50,none,0,1321
+08/08/2024,30.8,overcast,Mixed,indoor,1587,AvialisCP18,50,honey,369,1388
+09/08/2024,30.6,overcast,Layer B,indoor,1587,CustomCP20,50,honey,375,1379
+10/08/2024,29.2,overcast,Mixed,indoor,1587,StandardCP16,50,none,0,1341
+11/08/2024,30.9,overcast,Layer B,indoor,1587,CustomCP20,50,none,0,1383
+12/08/2024,30.4,overcast,Mixed,indoor,1587,CustomCP20,50,none,0,1376
+13/08/2024,29.6,sunny,Layer B,indoor,1587,StandardCP16,50,none,0,1359
+14/08/2024,30.7,rainy,Layer B,indoor,1587,AvialisCP18,50,honey,364,1416
+15/08/2024,29.4,sunny,Layer B,indoor,1587,StandardCP16,50,honey,448,1381
+16/08/2024,30,rainy,Layer A,indoor,1587,StandardCP16,50,none,0,1369
+17/08/2024,29.9,overcast,Layer A,indoor,1587,CustomCP20,50,none,0,1349
+18/08/2024,29.3,overcast,Layer B,indoor,1587,CustomCP20,50,honey,318,1380
+19/08/2024,31,sunny,Layer B,indoor,1587,CustomCP20,50,none,0,1350
+20/08/2024,30.6,sunny,Layer A,indoor,1587,StandardCP16,50,none,0,1372
+21/08/2024,29.6,sunny,Mixed,indoor,1587,StandardCP16,50,antibiotics,530,1424
+22/08/2024,29.1,sunny,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1425
+23/08/2024,29.2,overcast,Layer A,indoor,1587,AvialisCP18,50,antibiotics,530,1443
+24/08/2024,29.2,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1380
+25/08/2024,29.5,overcast,Mixed,indoor,1587,AvialisCP18,50,antibiotics,530,1460
+26/08/2024,29.1,overcast,Mixed,indoor,1587,CustomCP20,50,none,0,1405
+27/08/2024,30.6,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1396
+28/08/2024,29.9,rainy,Layer A,indoor,1587,AvialisCP18,50,honey,287,1429
+29/08/2024,30.8,overcast,Mixed,indoor,1587,CustomCP20,50,antibiotics,530,1467
+30/08/2024,30.9,rainy,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1484
+31/08/2024,29.6,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1417
+01/09/2024,29.8,overcast,Mixed,indoor,1587,AvialisCP18,50,antibiotics,530,1462
+02/09/2024,28.8,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1407
+03/09/2024,29,sunny,Layer A,indoor,1587,CustomCP20,50,antibiotics,530,1438
+04/09/2024,29.9,overcast,Mixed,indoor,1587,AvialisCP18,50,honey,432,1451
+05/09/2024,29.5,overcast,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1462
+06/09/2024,29.6,overcast,Layer B,indoor,1587,AvialisCP18,50,honey,227,1453
+07/09/2024,28.4,rainy,Layer A,indoor,1587,StandardCP16,50,none,0,1442
+08/09/2024,28.5,overcast,Layer B,indoor,1587,StandardCP16,50,honey,430,1438
+09/09/2024,29.6,sunny,Layer A,indoor,1587,CustomCP20,50,none,0,1446
+10/09/2024,29.8,overcast,Layer B,indoor,1587,AvialisCP18,50,none,0,1425
+11/09/2024,28.5,sunny,Layer A,indoor,1587,CustomCP20,50,none,0,1449
+12/09/2024,29.5,overcast,Layer A,indoor,1587,AvialisCP18,50,none,0,1449
+13/09/2024,29.6,overcast,Mixed,indoor,1587,StandardCP16,50,antibiotics,530,1508
+14/09/2024,29.3,overcast,Layer B,indoor,1587,StandardCP16,50,antibiotics,530,1509
+15/09/2024,29.6,sunny,Layer A,indoor,1587,StandardCP16,50,antibiotics,530,1478
+16/09/2024,29,overcast,Mixed,indoor,1587,CustomCP20,50,honey,458,1477
+17/09/2024,29.6,sunny,Layer B,indoor,1587,CustomCP20,50,none,0,1450
+18/09/2024,29.4,overcast,Mixed,indoor,1587,CustomCP20,50,none,0,1461
+19/09/2024,29.9,rainy,Mixed,indoor,1587,AvialisCP18,50,none,0,1466
+20/09/2024,29.6,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1436
+21/09/2024,29.4,sunny,Mixed,indoor,1587,AvialisCP18,50,none,0,1475
+22/09/2024,28.2,overcast,Layer B,indoor,1587,AvialisCP18,50,honey,201,1518
+23/09/2024,29.3,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1447
+24/09/2024,29,overcast,Mixed,indoor,1587,AvialisCP18,50,antibiotics,530,1523
+25/09/2024,28.2,overcast,Layer A,indoor,1587,StandardCP16,50,none,0,1466
+26/09/2024,28.8,sunny,Layer B,indoor,1587,AvialisCP18,50,honey,297,1493
+27/09/2024,28.4,overcast,Mixed,indoor,1587,AvialisCP18,50,antibiotics,530,1538
+28/09/2024,29.4,rainy,Layer B,indoor,1587,StandardCP16,50,none,0,1492
+29/09/2024,28,rainy,Layer A,indoor,1587,StandardCP16,50,antibiotics,530,1555
+30/09/2024,29.7,overcast,Layer B,indoor,1587,StandardCP16,50,none,0,1461
+01/10/2024,28.3,sunny,Layer A,indoor,1587,StandardCP16,50,antibiotics,530,1524
+02/10/2024,27.4,sunny,Layer A,indoor,1587,CustomCP20,50,none,0,1481
+03/10/2024,27,overcast,Mixed,indoor,1587,AvialisCP18,50,none,0,1481
+04/10/2024,27.7,sunny,Layer B,indoor,1587,StandardCP16,50,none,0,1479
+05/10/2024,28.2,sunny,Layer B,indoor,1587,CustomCP20,50,none,0,1492
+06/10/2024,28.2,overcast,Layer A,indoor,1587,StandardCP16,50,honey,241,1529
+07/10/2024,27.5,overcast,Layer B,indoor,1587,StandardCP16,50,honey,471,1515
+08/10/2024,27.3,rainy,Layer B,indoor,1587,AvialisCP18,50,none,0,1521
+09/10/2024,27.5,rainy,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1551
+10/10/2024,27.7,sunny,Mixed,indoor,1587,StandardCP16,50,none,0,1477
+11/10/2024,27.8,overcast,Layer B,indoor,1587,AvialisCP18,50,none,0,1536
+12/10/2024,28,rainy,Layer B,indoor,1587,AvialisCP18,50,none,0,1504
+13/10/2024,27.7,overcast,Mixed,indoor,1587,StandardCP16,50,none,0,1538
+14/10/2024,28.3,rainy,Layer B,indoor,1587,CustomCP20,50,antibiotics,530,1574
+15/10/2024,28.4,overcast,Layer A,indoor,1587,CustomCP20,50,antibiotics,530,1548
+16/10/2024,27.9,overcast,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1551
+17/10/2024,27.1,overcast,Layer A,indoor,1587,CustomCP20,50,honey,326,1526
+18/10/2024,28.9,sunny,Layer B,indoor,1587,AvialisCP18,50,antibiotics,530,1564
+19/10/2024,27.6,overcast,Mixed,indoor,1587,StandardCP16,50,antibiotics,530,1600
+20/10/2024,27.8,overcast,Layer A,indoor,1587,AvialisCP18,50,antibiotics,530,1601
+21/10/2024,28.5,sunny,Layer A,indoor,1587,AvialisCP18,50,none,0,1566
+22/10/2024,28.8,overcast,Mixed,indoor,1587,StandardCP16,50,none,0,1540
+23/10/2024,28.3,sunny,Layer B,indoor,1587,CustomCP20,50,none,0,1573
+24/10/2024,27.5,sunny,Layer B,indoor,1587,StandardCP16,50,none,0,1516
+25/10/2024,28.5,overcast,Layer B,indoor,1587,CustomCP20,50,none,0,1568
+26/10/2024,27.5,overcast,Layer B,indoor,1587,CustomCP20,50,none,0,1561
+27/10/2024,28.7,sunny,Layer A,indoor,1587,StandardCP16,50,honey,243,1577
+28/10/2024,27.8,sunny,Layer B,indoor,1587,StandardCP16,50,honey,496,1577
+29/10/2024,27.8,overcast,Layer A,indoor,1587,CustomCP20,50,honey,448,1590
+30/10/2024,27.9,overcast,Mixed,indoor,1587,AvialisCP18,50,none,0,1562
+31/10/2024,28.6,sunny,Mixed,indoor,1587,CustomCP20,50,honey,469,1612
+01/11/2024,27.6,sunny,Layer A,indoor,1587,AvialisCP18,50,none,0,1577
+02/11/2024,26.2,sunny,Layer A,indoor,1587,CustomCP20,50,antibiotics,530,1613
+03/11/2024,27.9,overcast,Layer A,indoor,1587,AvialisCP18,50,none,0,1582
+04/11/2024,27.2,overcast,Layer A,indoor,1586,CustomCP20,50,none,0,1572
+05/11/2024,27.9,sunny,Layer B,indoor,1586,CustomCP20,50,honey,471,1579
+06/11/2024,27.7,sunny,Mixed,indoor,1586,StandardCP16,50,none,0,1605
+07/11/2024,26.6,sunny,Mixed,indoor,1586,StandardCP16,50,honey,272,1596
+08/11/2024,26.2,rainy,Layer A,indoor,1586,StandardCP16,50,antibiotics,530,1617
+09/11/2024,26.7,overcast,Layer B,indoor,1586,AvialisCP18,50,none,0,1565
+10/11/2024,26.6,sunny,Layer B,indoor,1586,CustomCP20,50,antibiotics,530,1641
+11/11/2024,27.1,overcast,Layer B,indoor,1586,StandardCP16,50,antibiotics,530,1660
+12/11/2024,26.6,sunny,Mixed,indoor,1586,AvialisCP18,50,none,0,1616
+13/11/2024,26.6,rainy,Layer A,indoor,1586,StandardCP16,50,antibiotics,530,1625
+14/11/2024,26.3,sunny,Mixed,indoor,1586,StandardCP16,50,none,0,1613
+15/11/2024,26.2,sunny,Layer A,indoor,1586,CustomCP20,50,antibiotics,530,1675
+16/11/2024,27,sunny,Layer B,indoor,1586,StandardCP16,50,antibiotics,530,1641
+17/11/2024,27.5,rainy,Layer A,indoor,1586,CustomCP20,50,none,0,1594
+18/11/2024,27.6,sunny,Layer B,indoor,1585,StandardCP16,50,none,0,1604
+19/11/2024,27.9,overcast,Layer A,indoor,1585,StandardCP16,50,honey,280,1656
+20/11/2024,27.9,overcast,Mixed,indoor,1585,StandardCP16,50,none,0,1603
+21/11/2024,27.9,overcast,Mixed,indoor,1585,CustomCP20,50,antibiotics,530,1659
+22/11/2024,27.3,overcast,Layer A,indoor,1585,AvialisCP18,50,none,0,1630
+23/11/2024,27.3,overcast,Layer A,indoor,1585,AvialisCP18,50,honey,397,1634
+24/11/2024,27.3,sunny,Layer A,indoor,1585,CustomCP20,50,none,0,1605
+25/11/2024,26.3,overcast,Layer B,indoor,1585,CustomCP20,50,none,0,1657
+26/11/2024,26.3,overcast,Layer A,indoor,1585,StandardCP16,50,none,0,1608
+27/11/2024,27.5,overcast,Layer A,indoor,1585,CustomCP20,50,none,0,1647
+28/11/2024,26.6,rainy,Mixed,indoor,1585,AvialisCP18,50,none,0,1657
+29/11/2024,26.3,sunny,Layer A,indoor,1585,StandardCP16,50,honey,343,1652
+30/11/2024,27.7,overcast,Layer A,indoor,1584,CustomCP20,50,none,0,1643
+01/12/2024,25.7,sunny,Mixed,indoor,1584,StandardCP16,50,none,0,1626
+02/12/2024,26.1,sunny,Layer A,indoor,1584,StandardCP16,50,none,0,1674
+03/12/2024,25.6,sunny,Layer B,indoor,1584,AvialisCP18,50,none,0,1664
+04/12/2024,26.5,overcast,Layer A,indoor,1584,StandardCP16,50,honey,201,1695
+05/12/2024,26.1,sunny,Layer A,indoor,1584,AvialisCP18,50,antibiotics,530,1695
+06/12/2024,26.5,sunny,Layer A,indoor,1584,AvialisCP18,50,none,0,1671
+07/12/2024,25.2,overcast,Layer A,indoor,1584,StandardCP16,50,antibiotics,530,1700
+08/12/2024,26.2,overcast,Layer A,indoor,1584,AvialisCP18,50,antibiotics,530,1700
+09/12/2024,26.1,overcast,Layer A,indoor,1584,CustomCP20,50,honey,419,1672
+10/12/2024,25.4,sunny,Layer A,indoor,1584,AvialisCP18,50,none,0,1649
+11/12/2024,25.3,overcast,Layer A,indoor,1584,AvialisCP18,50,antibiotics,530,1700
+12/12/2024,26.6,sunny,Layer A,indoor,1584,AvialisCP18,50,antibiotics,530,1700
+13/12/2024,26.8,overcast,Layer B,indoor,1584,StandardCP16,50,honey,283,1700
+14/12/2024,26.9,sunny,Layer A,indoor,1583,CustomCP20,50,none,0,1666
+15/12/2024,26.1,rainy,Layer A,indoor,1583,CustomCP20,50,honey,350,1700
+16/12/2024,26.5,overcast,Layer B,indoor,1583,CustomCP20,50,honey,249,1700
+17/12/2024,26.8,overcast,Layer A,indoor,1583,CustomCP20,50,none,0,1691
+18/12/2024,26.1,sunny,Layer B,indoor,1583,StandardCP16,50,none,0,1700
+19/12/2024,25.7,overcast,Layer A,indoor,1583,CustomCP20,50,antibiotics,530,1700
+20/12/2024,25.9,sunny,Layer A,indoor,1583,AvialisCP18,50,antibiotics,530,1700
+21/12/2024,25.5,sunny,Mixed,indoor,1583,AvialisCP18,50,antibiotics,530,1700
+22/12/2024,26.1,overcast,Mixed,indoor,1583,CustomCP20,50,none,0,1700
+23/12/2024,25.9,overcast,Layer B,indoor,1583,CustomCP20,50,none,0,1700
+24/12/2024,25.3,overcast,Layer B,indoor,1583,StandardCP16,50,none,0,1700
+25/12/2024,25.3,sunny,Layer A,indoor,1583,AvialisCP18,50,none,0,1700
+26/12/2024,25.6,sunny,Mixed,indoor,1583,StandardCP16,50,none,0,1700
+27/12/2024,26.7,overcast,Layer A,indoor,1583,StandardCP16,50,none,0,1700
+28/12/2024,25.8,rainy,Layer B,indoor,1583,CustomCP20,50,antibiotics,530,1700
+29/12/2024,26.5,sunny,Layer A,indoor,1583,CustomCP20,50,antibiotics,530,1700
+30/12/2024,25.6,rainy,Layer A,indoor,1583,StandardCP16,50,none,0,1700
+31/12/2024,25.6,sunny,Layer B,indoor,1583,CustomCP20,50,none,0,1700
+01/01/2025,26.2,overcast,Mixed,indoor,1583,CustomCP20,50,honey,251,1700
+02/01/2025,27,overcast,Layer B,indoor,1583,AvialisCP18,50,antibiotics,530,1700
+03/01/2025,28,sunny,Layer A,indoor,1583,StandardCP16,50,honey,459,1700
+04/01/2025,26.4,sunny,Layer A,indoor,1583,CustomCP20,50,none,0,1700
+05/01/2025,26.5,overcast,Mixed,indoor,1583,AvialisCP18,50,antibiotics,530,1700
+06/01/2025,26.8,sunny,Layer A,indoor,1583,AvialisCP18,50,none,0,1700
+07/01/2025,26.8,overcast,Mixed,indoor,1583,StandardCP16,50,antibiotics,530,1700
+08/01/2025,27.3,sunny,Mixed,indoor,1583,StandardCP16,50,antibiotics,530,1700
+09/01/2025,26.9,overcast,Layer A,indoor,1583,AvialisCP18,50,antibiotics,530,1700
+10/01/2025,27.7,overcast,Layer B,indoor,1583,StandardCP16,50,none,0,1700
+11/01/2025,27,rainy,Mixed,indoor,1583,AvialisCP18,50,honey,438,1700
+12/01/2025,27.7,sunny,Layer B,indoor,1583,AvialisCP18,50,none,0,1700
+13/01/2025,26.2,rainy,Mixed,indoor,1583,CustomCP20,50,antibiotics,530,1700
+14/01/2025,26.2,rainy,Layer A,indoor,1582,AvialisCP18,50,none,0,1668
+15/01/2025,28,sunny,Layer A,indoor,1582,AvialisCP18,50,none,0,1680
+16/01/2025,26.7,overcast,Layer A,indoor,1582,AvialisCP18,50,none,0,1700
+17/01/2025,27,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1700
+18/01/2025,26.1,overcast,Layer A,indoor,1582,AvialisCP18,50,antibiotics,530,1700
+19/01/2025,26.4,overcast,Layer B,indoor,1582,AvialisCP18,50,none,0,1687
+20/01/2025,27.8,sunny,Mixed,indoor,1582,CustomCP20,50,honey,278,1694
+21/01/2025,27.2,overcast,Mixed,indoor,1582,StandardCP16,50,antibiotics,530,1700
+22/01/2025,27.7,overcast,Layer A,indoor,1582,StandardCP16,50,none,0,1683
+23/01/2025,26.5,overcast,Layer B,indoor,1582,CustomCP20,50,antibiotics,530,1700
+24/01/2025,26.5,overcast,Layer B,indoor,1582,AvialisCP18,50,honey,429,1700
+25/01/2025,27.4,sunny,Layer B,indoor,1582,AvialisCP18,50,none,0,1655
+26/01/2025,27.7,sunny,Layer B,indoor,1582,CustomCP20,50,none,0,1679
+27/01/2025,26.2,overcast,Layer B,indoor,1582,CustomCP20,50,antibiotics,530,1700
+28/01/2025,27.9,rainy,Layer B,indoor,1582,AvialisCP18,50,honey,478,1700
+29/01/2025,26.1,sunny,Layer A,indoor,1582,CustomCP20,50,none,0,1657
+30/01/2025,27.1,sunny,Mixed,indoor,1582,CustomCP20,50,antibiotics,530,1688
+31/01/2025,27.6,overcast,Layer B,indoor,1582,CustomCP20,50,honey,490,1693
+01/02/2025,27.4,rainy,Layer B,indoor,1582,CustomCP20,50,none,0,1655
+02/02/2025,27.2,overcast,Layer A,indoor,1582,StandardCP16,50,none,0,1672
+03/02/2025,28.9,sunny,Layer A,indoor,1582,AvialisCP18,50,none,0,1655
+04/02/2025,28,sunny,Layer A,indoor,1582,AvialisCP18,50,antibiotics,530,1700
+05/02/2025,28.3,overcast,Mixed,indoor,1582,CustomCP20,50,honey,467,1690
+06/02/2025,27.5,sunny,Layer A,indoor,1582,StandardCP16,50,honey,432,1663
+07/02/2025,27.4,sunny,Layer A,indoor,1582,StandardCP16,50,antibiotics,530,1695
+08/02/2025,27.1,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1700
+09/02/2025,27.4,overcast,Layer B,indoor,1582,AvialisCP18,50,honey,413,1641
+10/02/2025,28,sunny,Layer A,indoor,1582,CustomCP20,50,none,0,1630
+11/02/2025,27.4,sunny,Layer B,indoor,1582,CustomCP20,50,honey,376,1679
+12/02/2025,27.8,sunny,Mixed,indoor,1582,CustomCP20,50,antibiotics,530,1700
+13/02/2025,27.7,overcast,Mixed,indoor,1582,StandardCP16,50,none,0,1597
+14/02/2025,28.9,sunny,Mixed,indoor,1582,StandardCP16,50,none,0,1644
+15/02/2025,28.5,sunny,Mixed,indoor,1582,AvialisCP18,50,none,0,1597
+16/02/2025,27.9,overcast,Mixed,indoor,1582,CustomCP20,50,honey,337,1627
+17/02/2025,28.8,sunny,Layer B,indoor,1582,StandardCP16,50,none,0,1607
+18/02/2025,28.7,sunny,Layer B,indoor,1582,StandardCP16,50,none,0,1614
+19/02/2025,27.4,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1677
+20/02/2025,28.6,sunny,Layer A,indoor,1582,AvialisCP18,50,honey,464,1646
+21/02/2025,27.2,sunny,Layer B,indoor,1582,StandardCP16,50,honey,309,1624
+22/02/2025,27.8,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1676
+23/02/2025,27.4,overcast,Layer A,indoor,1582,StandardCP16,50,none,0,1596
+24/02/2025,28.4,sunny,Layer B,indoor,1582,CustomCP20,50,antibiotics,530,1658
+25/02/2025,27.6,overcast,Layer B,indoor,1582,CustomCP20,50,honey,309,1614
+26/02/2025,27,overcast,Layer A,indoor,1582,AvialisCP18,50,honey,494,1595
+27/02/2025,28.4,sunny,Layer B,indoor,1582,CustomCP20,50,none,0,1609
+28/02/2025,27.6,overcast,Layer B,indoor,1582,AvialisCP18,50,honey,319,1602
+01/03/2025,29.4,overcast,Layer B,indoor,1582,AvialisCP18,50,none,0,1572
+02/03/2025,29.6,sunny,Mixed,indoor,1582,AvialisCP18,50,antibiotics,530,1628
+03/03/2025,29,overcast,Layer B,indoor,1582,CustomCP20,50,antibiotics,530,1654
+04/03/2025,29,sunny,Mixed,indoor,1582,StandardCP16,50,none,0,1587
+05/03/2025,28.1,sunny,Layer B,indoor,1582,AvialisCP18,50,none,0,1560
+06/03/2025,29.3,sunny,Layer B,indoor,1582,CustomCP20,50,none,0,1569
+07/03/2025,28.3,overcast,Mixed,indoor,1582,StandardCP16,50,honey,445,1600
+08/03/2025,29.9,sunny,Mixed,indoor,1582,CustomCP20,50,honey,405,1570
+09/03/2025,28.8,sunny,Layer B,indoor,1582,CustomCP20,50,none,0,1551
+10/03/2025,29.3,overcast,Layer B,indoor,1582,StandardCP16,50,none,0,1558
+11/03/2025,29.6,sunny,Layer A,indoor,1582,AvialisCP18,50,none,0,1566
+12/03/2025,28.6,rainy,Layer A,indoor,1582,StandardCP16,50,antibiotics,530,1581
+13/03/2025,29.3,overcast,Mixed,indoor,1582,StandardCP16,50,antibiotics,530,1603
+14/03/2025,28.6,overcast,Layer B,indoor,1582,StandardCP16,50,honey,309,1589
+15/03/2025,29.9,rainy,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1590
+16/03/2025,28.1,sunny,Mixed,indoor,1582,CustomCP20,50,none,0,1538
+17/03/2025,28.3,overcast,Mixed,indoor,1582,StandardCP16,50,antibiotics,530,1564
+18/03/2025,29.9,rainy,Mixed,indoor,1582,CustomCP20,50,antibiotics,530,1593
+19/03/2025,29,sunny,Mixed,indoor,1582,StandardCP16,50,none,0,1532
+20/03/2025,28.3,sunny,Layer B,indoor,1582,CustomCP20,50,antibiotics,530,1587
+21/03/2025,29,sunny,Layer A,indoor,1582,CustomCP20,50,honey,431,1579
+22/03/2025,29.5,overcast,Layer B,indoor,1582,StandardCP16,50,none,0,1527
+23/03/2025,28.3,rainy,Mixed,indoor,1582,StandardCP16,50,none,0,1541
+24/03/2025,29.6,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1580
+25/03/2025,28.7,overcast,Layer B,indoor,1582,CustomCP20,50,honey,360,1562
+26/03/2025,28.3,overcast,Layer B,indoor,1582,CustomCP20,50,none,0,1496
+27/03/2025,29.8,overcast,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1574
+28/03/2025,29.1,sunny,Layer B,indoor,1582,AvialisCP18,50,none,0,1531
+29/03/2025,28.8,sunny,Layer B,indoor,1582,AvialisCP18,50,antibiotics,530,1531
+30/03/2025,29.5,overcast,Layer B,indoor,1582,CustomCP20,50,none,0,1535
+31/03/2025,29.9,overcast,Mixed,indoor,1582,StandardCP16,50,none,0,1507
+01/04/2025,29.4,sunny,Layer B,indoor,1582,StandardCP16,50,antibiotics,530,1542
+02/04/2025,29.8,overcast,Mixed,indoor,1582,AvialisCP18,50,honey,200,1537
+03/04/2025,29.9,sunny,Mixed,indoor,1582,AvialisCP18,50,none,0,1493
+04/04/2025,29.1,sunny,Layer B,indoor,1582,AvialisCP18,50,none,0,1503
+05/04/2025,30.9,sunny,Layer B,indoor,1582,CustomCP20,50,none,0,1473
+06/04/2025,30.5,overcast,Layer B,indoor,1582,AvialisCP18,50,honey,336,1499
+07/04/2025,29.2,sunny,Layer A,indoor,1582,CustomCP20,50,none,0,1459
+08/04/2025,29.1,sunny,Layer A,indoor,1582,StandardCP16,50,antibiotics,530,1525
+09/04/2025,30.9,sunny,Mixed,indoor,1582,CustomCP20,50,antibiotics,530,1550
+10/04/2025,30.5,overcast,Mixed,indoor,1582,CustomCP20,50,none,0,1484
+11/04/2025,30.9,overcast,Layer B,indoor,1582,AvialisCP18,50,honey,460,1501
+12/04/2025,30.1,sunny,Mixed,indoor,1582,StandardCP16,50,antibiotics,530,1547
+13/04/2025,29.5,overcast,Layer A,indoor,1582,CustomCP20,50,antibiotics,530,1514
+14/04/2025,29.3,sunny,Layer A,indoor,1582,StandardCP16,50,none,0,1466
+15/04/2025,30.1,sunny,Layer A,indoor,1581,CustomCP20,50,none,0,1475
+16/04/2025,29.2,overcast,Layer B,indoor,1581,AvialisCP18,50,antibiotics,530,1476
+17/04/2025,30.9,sunny,Layer B,indoor,1581,CustomCP20,50,antibiotics,530,1518
+18/04/2025,30.9,overcast,Layer B,indoor,1581,CustomCP20,50,none,0,1440
+19/04/2025,30.3,overcast,Layer B,indoor,1581,StandardCP16,50,none,0,1460
+20/04/2025,30.6,rainy,Layer B,indoor,1580,CustomCP20,50,antibiotics,530,1489
+21/04/2025,30.2,sunny,Mixed,indoor,1580,AvialisCP18,50,antibiotics,530,1508
+22/04/2025,30.2,sunny,Layer B,indoor,1580,CustomCP20,50,none,0,1459
+23/04/2025,29.3,overcast,Layer B,indoor,1580,AvialisCP18,50,antibiotics,530,1475
+24/04/2025,29.4,sunny,Mixed,indoor,1580,CustomCP20,50,antibiotics,530,1460
+25/04/2025,29.9,sunny,Mixed,indoor,1580,AvialisCP18,50,honey,274,1474
+26/04/2025,30.3,sunny,Layer B,indoor,1580,StandardCP16,50,none,0,1449
+27/04/2025,30.8,sunny,Mixed,indoor,1580,CustomCP20,50,antibiotics,530,1456
+28/04/2025,30.7,overcast,Layer A,indoor,1580,AvialisCP18,50,honey,457,1455
+29/04/2025,30.5,sunny,Mixed,indoor,1580,CustomCP20,50,antibiotics,530,1499
+30/04/2025,29.8,sunny,Layer A,indoor,1580,CustomCP20,50,none,0,1436
+01/05/2025,29.2,overcast,Layer B,indoor,1580,StandardCP16,50,honey,395,1455
+02/05/2025,29.9,overcast,Layer B,indoor,1580,CustomCP20,50,antibiotics,530,1458
+03/05/2025,29.4,overcast,Mixed,indoor,1580,AvialisCP18,50,none,0,1411
+04/05/2025,30,overcast,Layer B,indoor,1580,AvialisCP18,50,antibiotics,530,1452
+05/05/2025,29.8,overcast,Layer A,indoor,1580,CustomCP20,50,honey,380,1415
+06/05/2025,29.3,overcast,Layer A,indoor,1580,StandardCP16,50,none,0,1403
+07/05/2025,30.2,sunny,Mixed,indoor,1580,StandardCP16,50,honey,349,1418
+08/05/2025,30,overcast,Mixed,indoor,1580,CustomCP20,50,none,0,1394
+09/05/2025,30.3,sunny,Mixed,indoor,1580,CustomCP20,50,antibiotics,530,1456
+10/05/2025,30.9,overcast,Layer A,indoor,1580,StandardCP16,50,none,0,1404
+11/05/2025,30.2,overcast,Layer B,indoor,1580,StandardCP16,50,antibiotics,530,1409
+12/05/2025,31,sunny,Layer B,indoor,1580,CustomCP20,50,none,0,1362
+13/05/2025,30.8,overcast,Layer B,indoor,1580,AvialisCP18,50,antibiotics,530,1423
+14/05/2025,29.1,overcast,Layer A,indoor,1580,AvialisCP18,50,antibiotics,530,1455
+15/05/2025,29.7,overcast,Layer B,indoor,1579,AvialisCP18,50,antibiotics,530,1404
+16/05/2025,31,overcast,Layer B,indoor,1579,StandardCP16,50,honey,422,1399
+17/05/2025,31,sunny,Layer B,indoor,1579,AvialisCP18,50,antibiotics,530,1443
+18/05/2025,29.1,overcast,Layer B,indoor,1579,CustomCP20,50,none,0,1385
+19/05/2025,29.9,sunny,Layer B,indoor,1579,AvialisCP18,50,none,0,1352
+20/05/2025,29.9,sunny,Layer A,indoor,1579,StandardCP16,50,none,0,1365
+21/05/2025,30.9,sunny,Layer B,indoor,1579,StandardCP16,50,antibiotics,530,1384
+22/05/2025,29.2,overcast,Layer B,indoor,1579,StandardCP16,50,honey,363,1390
+23/05/2025,29.7,overcast,Layer B,indoor,1579,CustomCP20,50,none,0,1336
+24/05/2025,30.3,sunny,Layer B,indoor,1579,CustomCP20,50,none,0,1338
+25/05/2025,31,overcast,Layer A,indoor,1579,CustomCP20,50,none,0,1361
+26/05/2025,29.9,sunny,Mixed,indoor,1579,CustomCP20,50,antibiotics,530,1365
+27/05/2025,29.6,sunny,Mixed,indoor,1579,CustomCP20,50,none,0,1358
+28/05/2025,29.4,overcast,Mixed,indoor,1579,StandardCP16,50,honey,352,1361
+29/05/2025,30.7,sunny,Layer A,indoor,1579,StandardCP16,50,none,0,1340
+30/05/2025,29.2,sunny,Mixed,indoor,1579,AvialisCP18,50,none,0,1322
+31/05/2025,30.9,overcast,Layer B,indoor,1579,StandardCP16,50,antibiotics,530,1401
+01/06/2025,30.4,overcast,Mixed,indoor,1579,CustomCP20,50,honey,211,1373
+02/06/2025,31.5,overcast,Mixed,indoor,1579,StandardCP16,50,none,0,1320
+03/06/2025,31.7,overcast,Mixed,indoor,1579,CustomCP20,50,none,0,1346
+04/06/2025,31.4,overcast,Mixed,indoor,1579,CustomCP20,50,none,0,1341
+05/06/2025,31.8,sunny,Layer B,indoor,1579,CustomCP20,50,antibiotics,530,1354
+06/06/2025,31.4,rainy,Layer A,indoor,1579,CustomCP20,50,none,0,1323
+07/06/2025,30.9,rainy,Mixed,indoor,1579,AvialisCP18,50,antibiotics,530,1358
+08/06/2025,30.9,overcast,Layer A,indoor,1579,StandardCP16,50,antibiotics,530,1385
+09/06/2025,31.5,sunny,Mixed,indoor,1579,AvialisCP18,50,none,0,1295
+10/06/2025,30.8,sunny,Layer B,indoor,1579,CustomCP20,50,none,0,1326
+11/06/2025,31.6,sunny,Layer A,indoor,1579,StandardCP16,50,antibiotics,530,1370
+12/06/2025,30.4,overcast,Layer B,indoor,1579,AvialisCP18,50,none,0,1281
+13/06/2025,31.9,rainy,Layer B,indoor,1579,StandardCP16,50,honey,342,1330
+14/06/2025,30,overcast,Layer B,indoor,1579,CustomCP20,50,antibiotics,530,1354
+15/06/2025,30.6,sunny,Mixed,indoor,1579,CustomCP20,50,none,0,1291
+16/06/2025,30,sunny,Layer B,indoor,1579,AvialisCP18,50,none,0,1291
+17/06/2025,30.4,overcast,Layer B,indoor,1579,AvialisCP18,50,none,0,1303
+18/06/2025,30.3,sunny,Layer A,indoor,1579,CustomCP20,50,none,0,1310
+19/06/2025,31.8,rainy,Mixed,indoor,1579,StandardCP16,50,antibiotics,530,1332
+20/06/2025,31.8,overcast,Layer A,indoor,1579,AvialisCP18,50,none,0,1270
+21/06/2025,30.1,overcast,Layer A,indoor,1579,CustomCP20,50,honey,316,1315
+22/06/2025,31.2,sunny,Mixed,indoor,1579,AvialisCP18,50,none,0,1302
+23/06/2025,30.9,overcast,Layer A,indoor,1579,CustomCP20,50,none,0,1252
+24/06/2025,30.9,sunny,Mixed,indoor,1579,CustomCP20,50,honey,428,1311
+25/06/2025,31.8,overcast,Layer A,indoor,1579,CustomCP20,50,none,0,1295
+26/06/2025,31.4,overcast,Layer B,indoor,1579,StandardCP16,50,none,0,1295
+27/06/2025,31.5,sunny,Layer A,indoor,1579,CustomCP20,50,antibiotics,530,1314
+28/06/2025,31.5,overcast,Mixed,indoor,1579,StandardCP16,50,none,0,1243
+29/06/2025,31.2,overcast,Mixed,indoor,1579,AvialisCP18,50,antibiotics,530,1282
+30/06/2025,30.1,rainy,Layer B,indoor,1579,AvialisCP18,50,none,0,1227
+01/07/2025,31,overcast,Layer B,indoor,1579,CustomCP20,50,antibiotics,530,1294
+02/07/2025,31.7,rainy,Layer B,indoor,1579,AvialisCP18,50,none,0,1227
+03/07/2025,30.4,sunny,Layer B,indoor,1579,CustomCP20,50,none,0,1233
+04/07/2025,30.5,sunny,Mixed,indoor,1579,StandardCP16,50,honey,375,1259
+05/07/2025,30.3,overcast,Layer A,indoor,1579,CustomCP20,50,none,0,1219
+06/07/2025,30.1,sunny,Mixed,indoor,1579,CustomCP20,50,antibiotics,530,1272
+07/07/2025,32,overcast,Layer B,indoor,1579,CustomCP20,50,none,0,1241
+08/07/2025,30.7,overcast,Mixed,indoor,1579,StandardCP16,50,none,0,1210
+09/07/2025,30.7,overcast,Layer A,indoor,1579,StandardCP16,50,antibiotics,530,1264
+10/07/2025,31.5,rainy,Layer B,indoor,1579,StandardCP16,50,none,0,1234
+11/07/2025,31.4,overcast,Layer B,indoor,1579,CustomCP20,50,antibiotics,530,1274
+12/07/2025,31.7,sunny,Layer A,indoor,1579,AvialisCP18,50,none,0,1216
+13/07/2025,31.2,rainy,Layer A,indoor,1579,CustomCP20,50,honey,288,1240
+14/07/2025,31.7,overcast,Mixed,indoor,1578,CustomCP20,50,none,0,1231
+15/07/2025,31.6,overcast,Mixed,indoor,1578,CustomCP20,50,honey,214,1225
+16/07/2025,30.5,sunny,Layer A,indoor,1578,StandardCP16,50,antibiotics,530,1284
+17/07/2025,32,rainy,Layer B,indoor,1578,AvialisCP18,50,none,0,1187
+18/07/2025,31.2,sunny,Mixed,indoor,1578,StandardCP16,50,none,0,1233
+19/07/2025,30.6,overcast,Layer B,indoor,1578,AvialisCP18,50,none,0,1202
+20/07/2025,31.9,sunny,Layer B,indoor,1578,AvialisCP18,50,honey,260,1201
+21/07/2025,31.6,rainy,Layer A,indoor,1578,StandardCP16,50,none,0,1223
+22/07/2025,30.7,overcast,Mixed,indoor,1578,AvialisCP18,50,antibiotics,530,1228
+23/07/2025,30.1,rainy,Layer A,indoor,1578,AvialisCP18,50,none,0,1207
+24/07/2025,30.2,overcast,Layer A,indoor,1578,CustomCP20,50,honey,211,1220
+25/07/2025,30.3,sunny,Mixed,indoor,1578,StandardCP16,50,antibiotics,530,1253
+26/07/2025,31.9,overcast,Layer A,indoor,1578,StandardCP16,50,none,0,1203
+27/07/2025,30.4,overcast,Layer B,indoor,1578,CustomCP20,50,antibiotics,530,1208
+28/07/2025,30.7,overcast,Layer A,indoor,1578,CustomCP20,50,none,0,1142
+29/07/2025,31.7,sunny,Mixed,indoor,1578,StandardCP16,50,none,0,1196
+30/07/2025,31.3,sunny,Layer B,indoor,1578,CustomCP20,50,none,0,1175
+31/07/2025,31.5,overcast,Layer B,indoor,1578,AvialisCP18,50,none,0,1144
+01/08/2025,29.2,sunny,Layer A,indoor,1578,CustomCP20,50,none,0,1164
+02/08/2025,30.8,sunny,Layer B,indoor,1578,StandardCP16,50,none,0,1135
+03/08/2025,29.7,sunny,Layer B,indoor,1578,CustomCP20,50,antibiotics,530,1218
+04/08/2025,30.6,sunny,Mixed,indoor,1578,StandardCP16,50,none,0,1138
+05/08/2025,30.7,rainy,Layer A,indoor,1578,StandardCP16,50,none,0,1174
+06/08/2025,30.1,sunny,Layer B,indoor,1578,AvialisCP18,50,antibiotics,530,1172
+07/08/2025,30.6,sunny,Mixed,indoor,1578,AvialisCP18,50,antibiotics,530,1224
+08/08/2025,30.6,sunny,Layer A,indoor,1578,StandardCP16,50,none,0,1157
+09/08/2025,29.2,sunny,Layer B,indoor,1578,AvialisCP18,50,antibiotics,530,1168
+10/08/2025,29.9,sunny,Mixed,indoor,1578,CustomCP20,50,none,0,1143
+11/08/2025,30.2,overcast,Mixed,indoor,1578,CustomCP20,50,none,0,1146
+12/08/2025,30.6,overcast,Layer B,indoor,1578,CustomCP20,50,none,0,1141
+13/08/2025,29.7,overcast,Layer B,indoor,1578,StandardCP16,50,none,0,1128
+14/08/2025,30.7,overcast,Layer B,indoor,1578,AvialisCP18,50,none,0,1149
+15/08/2025,30.4,overcast,Mixed,indoor,1578,StandardCP16,50,none,0,1147
+16/08/2025,31,overcast,Layer B,indoor,1578,CustomCP20,50,none,0,1150
+17/08/2025,30.4,sunny,Layer B,indoor,1578,StandardCP16,50,none,0,1104
+18/08/2025,29.2,sunny,Layer B,indoor,1578,AvialisCP18,50,antibiotics,530,1132
+19/08/2025,30.9,sunny,Mixed,indoor,1578,CustomCP20,50,honey,316,1154
+20/08/2025,29.4,overcast,Layer A,indoor,1578,StandardCP16,50,antibiotics,530,1125
+21/08/2025,29.9,sunny,Layer A,indoor,1578,StandardCP16,50,none,0,1085
+22/08/2025,29.8,overcast,Mixed,indoor,1578,AvialisCP18,50,honey,428,1098
+23/08/2025,29.9,overcast,Layer B,indoor,1578,StandardCP16,50,honey,410,1117
+24/08/2025,29.6,overcast,Layer A,indoor,1578,AvialisCP18,50,none,0,1105
+25/08/2025,30.7,rainy,Mixed,indoor,1578,StandardCP16,50,honey,219,1109
+26/08/2025,29.5,overcast,Mixed,indoor,1578,AvialisCP18,50,none,0,1108
+27/08/2025,30,sunny,Layer B,indoor,1578,CustomCP20,50,honey,269,1107
+28/08/2025,29.9,overcast,Layer A,indoor,1578,CustomCP20,50,antibiotics,530,1119
+29/08/2025,30.8,overcast,Layer A,indoor,1578,CustomCP20,50,honey,436,1097
+30/08/2025,30.8,overcast,Layer B,indoor,1578,CustomCP20,50,antibiotics,530,1110
+31/08/2025,29.7,sunny,Mixed,indoor,1578,StandardCP16,50,antibiotics,530,1138
+01/09/2025,29.5,overcast,Layer B,indoor,1578,AvialisCP18,50,antibiotics,530,1144
+02/09/2025,29.2,overcast,Layer B,indoor,1578,CustomCP20,50,none,0,1052
+03/09/2025,28.5,sunny,Mixed,indoor,1577,StandardCP16,50,none,0,1050
+04/09/2025,29.4,sunny,Mixed,indoor,1577,AvialisCP18,50,antibiotics,530,1116
+05/09/2025,28.3,overcast,Mixed,indoor,1577,StandardCP16,50,none,0,1049
+06/09/2025,29.7,overcast,Layer B,indoor,1577,CustomCP20,50,none,0,1059
+07/09/2025,29.9,overcast,Layer B,indoor,1577,CustomCP20,50,honey,425,1077
+08/09/2025,28.4,sunny,Mixed,indoor,1576,StandardCP16,50,none,0,1061
+09/09/2025,29.4,sunny,Layer B,indoor,1576,StandardCP16,50,none,0,1020
+10/09/2025,28.8,overcast,Layer B,indoor,1576,CustomCP20,50,honey,237,1039
+11/09/2025,28.6,sunny,Layer A,indoor,1576,CustomCP20,50,antibiotics,530,1082
+12/09/2025,29.5,overcast,Layer A,indoor,1576,StandardCP16,50,antibiotics,530,1094
+13/09/2025,28.4,overcast,Layer B,indoor,1576,CustomCP20,50,antibiotics,530,1048
+14/09/2025,29.2,overcast,Layer A,indoor,1576,StandardCP16,50,honey,240,1029
+15/09/2025,28.1,overcast,Mixed,indoor,1576,StandardCP16,50,none,0,1035
+16/09/2025,28.7,overcast,Layer B,indoor,1576,StandardCP16,50,none,0,1003
+17/09/2025,28.1,overcast,Layer A,indoor,1576,StandardCP16,50,none,0,1013
+18/09/2025,28.2,overcast,Layer A,indoor,1576,StandardCP16,50,honey,468,1050
+19/09/2025,29.6,rainy,Mixed,indoor,1576,StandardCP16,50,antibiotics,530,1040
+20/09/2025,28,overcast,Layer B,indoor,1576,StandardCP16,50,none,0,994
+21/09/2025,29.9,rainy,Layer A,indoor,1576,AvialisCP18,50,none,0,998
+22/09/2025,28.1,sunny,Layer B,indoor,1576,AvialisCP18,50,none,0,977
+23/09/2025,29.8,overcast,Mixed,indoor,1576,AvialisCP18,50,honey,316,1046
+24/09/2025,29,overcast,Layer B,indoor,1576,CustomCP20,50,antibiotics,530,1056
+25/09/2025,29.7,overcast,Layer B,indoor,1576,CustomCP20,50,none,0,1002
+26/09/2025,29.4,sunny,Layer B,indoor,1576,StandardCP16,50,none,0,998
+27/09/2025,28.9,overcast,Layer B,indoor,1576,AvialisCP18,50,antibiotics,530,1042
+28/09/2025,29.1,rainy,Layer B,indoor,1576,AvialisCP18,50,antibiotics,530,1044
+29/09/2025,30,sunny,Mixed,indoor,1576,AvialisCP18,50,honey,471,1015
+30/09/2025,28.1,rainy,Layer A,indoor,1576,CustomCP20,50,none,0,979
+01/10/2025,28.6,overcast,Layer B,indoor,1576,AvialisCP18,50,antibiotics,530,1053
+02/10/2025,27.1,sunny,Mixed,indoor,1576,CustomCP20,50,honey,360,984
+03/10/2025,28.2,sunny,Layer A,indoor,1576,AvialisCP18,50,antibiotics,530,1008
+04/10/2025,28.9,sunny,Layer B,indoor,1576,StandardCP16,50,antibiotics,530,1012
+05/10/2025,28,rainy,Layer B,indoor,1576,StandardCP16,50,none,0,968
+06/10/2025,27.6,sunny,Mixed,indoor,1576,AvialisCP18,50,none,0,945
+07/10/2025,27.7,overcast,Mixed,indoor,1576,AvialisCP18,50,none,0,980
+08/10/2025,28.9,overcast,Layer B,indoor,1576,CustomCP20,50,none,0,973
+09/10/2025,27.4,overcast,Mixed,indoor,1576,AvialisCP18,50,none,0,951
+10/10/2025,28.3,overcast,Layer A,indoor,1576,CustomCP20,50,none,0,932
+11/10/2025,28.3,sunny,Mixed,indoor,1576,StandardCP16,50,none,0,929
+12/10/2025,28.5,overcast,Layer A,indoor,1576,AvialisCP18,50,none,0,962
+13/10/2025,28.1,overcast,Layer B,indoor,1576,CustomCP20,50,antibiotics,530,981
+14/10/2025,27.2,rainy,Layer A,indoor,1576,CustomCP20,50,honey,265,976
+15/10/2025,28,sunny,Mixed,indoor,1576,StandardCP16,50,none,0,956
+16/10/2025,28.9,sunny,Layer B,indoor,1576,CustomCP20,50,antibiotics,530,988
+17/10/2025,28.1,sunny,Layer B,indoor,1576,AvialisCP18,50,honey,213,934
+18/10/2025,28.6,sunny,Layer B,indoor,1576,AvialisCP18,50,none,0,931
+19/10/2025,28.6,sunny,Layer A,indoor,1576,AvialisCP18,50,none,0,939
+20/10/2025,28.7,sunny,Mixed,indoor,1576,CustomCP20,50,antibiotics,530,971
+21/10/2025,28.5,overcast,Layer B,indoor,1576,StandardCP16,50,none,0,924
+22/10/2025,27.7,overcast,Layer A,indoor,1576,CustomCP20,50,honey,339,974
+23/10/2025,28.3,overcast,Mixed,indoor,1576,CustomCP20,50,antibiotics,530,978
+24/10/2025,28.8,overcast,Layer B,indoor,1576,StandardCP16,50,antibiotics,530,946
+25/10/2025,28.8,sunny,Layer B,indoor,1576,AvialisCP18,50,antibiotics,530,990
+26/10/2025,27.5,overcast,Layer A,indoor,1576,StandardCP16,50,none,0,932
+27/10/2025,28.7,overcast,Mixed,indoor,1576,CustomCP20,50,none,0,907
+28/10/2025,28.7,sunny,Layer B,indoor,1576,StandardCP16,50,antibiotics,530,941
+29/10/2025,28.6,overcast,Layer B,indoor,1576,CustomCP20,50,none,0,927
+30/10/2025,27.1,rainy,Layer B,indoor,1576,AvialisCP18,50,none,0,914
+31/10/2025,27.1,sunny,Layer A,indoor,1576,CustomCP20,50,honey,332,945
+01/11/2025,27.1,sunny,Layer B,indoor,1576,StandardCP16,50,honey,261,922
+02/11/2025,26.5,sunny,Layer A,indoor,1576,AvialisCP18,50,honey,356,885
+03/11/2025,27.2,sunny,Layer B,indoor,1576,CustomCP20,50,none,0,869
+04/11/2025,27,sunny,Layer B,indoor,1576,AvialisCP18,50,antibiotics,530,916
+05/11/2025,26.8,overcast,Mixed,indoor,1576,StandardCP16,50,none,0,891
+06/11/2025,27.1,overcast,Mixed,indoor,1576,StandardCP16,50,none,0,886
+07/11/2025,27.7,overcast,Mixed,indoor,1576,CustomCP20,50,honey,322,916
+08/11/2025,27.9,overcast,Layer A,indoor,1576,StandardCP16,50,antibiotics,530,903
+09/11/2025,27.6,sunny,Layer B,indoor,1576,StandardCP16,50,none,0,864
+10/11/2025,27.4,sunny,Mixed,indoor,1576,AvialisCP18,50,none,0,833
+11/11/2025,27.7,overcast,Layer A,indoor,1576,AvialisCP18,50,none,0,851
+12/11/2025,27.1,overcast,Layer A,indoor,1576,AvialisCP18,50,antibiotics,530,898
+13/11/2025,26.5,overcast,Layer A,indoor,1576,AvialisCP18,50,honey,451,890
+14/11/2025,27.6,overcast,Mixed,indoor,1576,CustomCP20,50,honey,349,865
+15/11/2025,26.2,overcast,Layer A,indoor,1576,AvialisCP18,50,none,0,822
+16/11/2025,26.2,rainy,Mixed,indoor,1576,CustomCP20,50,honey,380,891
+17/11/2025,26.8,sunny,Layer A,indoor,1576,AvialisCP18,50,none,0,839
+18/11/2025,27.7,sunny,Mixed,indoor,1576,CustomCP20,50,honey,479,857
+19/11/2025,26,rainy,Layer A,indoor,1576,StandardCP16,50,none,0,846
+20/11/2025,26.8,sunny,Layer B,indoor,1576,StandardCP16,50,honey,489,867
+21/11/2025,27.9,overcast,Layer A,indoor,1576,AvialisCP18,50,none,0,861
+22/11/2025,27.6,sunny,Layer B,indoor,1576,StandardCP16,50,none,0,847
+23/11/2025,27.6,sunny,Layer A,indoor,1576,StandardCP16,50,none,0,834
+24/11/2025,26.6,overcast,Layer B,indoor,1576,AvialisCP18,50,none,0,817
+25/11/2025,27.7,overcast,Layer A,indoor,1576,StandardCP16,50,honey,391,822
+26/11/2025,26.2,sunny,Layer A,indoor,1575,AvialisCP18,50,none,0,826
+27/11/2025,27.5,sunny,Layer B,indoor,1575,StandardCP16,50,none,0,804
+28/11/2025,27.7,overcast,Layer B,indoor,1575,StandardCP16,50,none,0,816
+29/11/2025,27.6,sunny,Layer B,indoor,1575,AvialisCP18,50,none,0,831
+30/11/2025,27.6,overcast,Mixed,indoor,1575,CustomCP20,50,none,0,833
+01/12/2025,25.6,overcast,Layer A,indoor,1575,StandardCP16,50,antibiotics,530,872
+02/12/2025,26.8,rainy,Layer B,indoor,1575,StandardCP16,50,none,0,798
+03/12/2025,25.7,overcast,Layer B,indoor,1575,AvialisCP18,50,none,0,794
+04/12/2025,25.3,overcast,Layer A,indoor,1575,StandardCP16,50,antibiotics,530,817
+05/12/2025,26.9,sunny,Layer A,indoor,1575,StandardCP16,50,none,0,806
+06/12/2025,26.2,sunny,Mixed,indoor,1575,CustomCP20,50,none,0,759
+07/12/2025,26.4,sunny,Layer B,indoor,1575,StandardCP16,50,none,0,767
+08/12/2025,26.9,sunny,Layer A,indoor,1575,CustomCP20,50,none,0,775
+09/12/2025,26.6,overcast,Layer B,indoor,1575,CustomCP20,50,honey,264,819
+10/12/2025,25.2,sunny,Layer A,indoor,1575,CustomCP20,50,none,0,737
+11/12/2025,26.5,sunny,Layer B,indoor,1575,CustomCP20,50,none,0,794
+12/12/2025,26.7,overcast,Mixed,indoor,1575,AvialisCP18,50,antibiotics,530,815
+13/12/2025,26.6,rainy,Layer B,indoor,1575,StandardCP16,50,antibiotics,530,800
+14/12/2025,26.3,sunny,Mixed,indoor,1575,CustomCP20,50,none,0,767
+15/12/2025,26.9,overcast,Layer A,indoor,1575,StandardCP16,50,antibiotics,530,798
+16/12/2025,25.8,overcast,Layer B,indoor,1575,CustomCP20,50,none,0,758
+17/12/2025,25.5,sunny,Mixed,indoor,1574,StandardCP16,50,antibiotics,530,793
+18/12/2025,26.1,rainy,Layer A,indoor,1574,AvialisCP18,50,none,0,768
+19/12/2025,25.1,sunny,Layer B,indoor,1574,CustomCP20,50,none,0,758
+20/12/2025,26.2,rainy,Mixed,indoor,1574,CustomCP20,50,none,0,723
+21/12/2025,25.9,overcast,Layer A,indoor,1574,AvialisCP18,50,none,0,727
+22/12/2025,26,sunny,Layer B,indoor,1574,StandardCP16,50,none,0,735
+23/12/2025,26.1,overcast,Mixed,indoor,1574,AvialisCP18,50,none,0,730
+24/12/2025,25.2,sunny,Mixed,indoor,1574,StandardCP16,50,antibiotics,530,793
+25/12/2025,26.1,overcast,Layer A,indoor,1574,CustomCP20,50,none,0,705
+26/12/2025,26.1,sunny,Layer A,indoor,1574,AvialisCP18,50,none,0,754
+27/12/2025,26.8,sunny,Mixed,indoor,1574,AvialisCP18,50,none,0,702
+28/12/2025,25.3,overcast,Mixed,indoor,1574,CustomCP20,50,none,0,727
+29/12/2025,26.9,sunny,Layer A,indoor,1574,CustomCP20,50,none,0,701
+30/12/2025,25,sunny,Layer B,indoor,1574,AvialisCP18,50,antibiotics,530,729
+31/12/2025,26.6,sunny,Layer A,indoor,1574,StandardCP16,50,none,0,703
+01/01/2026,27.6,overcast,Layer B,indoor,1574,CustomCP20,50,none,0,727
+02/01/2026,26.6,overcast,Layer A,indoor,1574,CustomCP20,50,none,0,727
+03/01/2026,27.4,sunny,Layer A,indoor,1574,StandardCP16,50,none,0,729
+04/01/2026,27.7,sunny,Mixed,indoor,1574,CustomCP20,50,honey,456,766
+05/01/2026,26.8,sunny,Mixed,indoor,1574,CustomCP20,50,honey,399,706
+06/01/2026,26.2,overcast,Layer A,indoor,1574,StandardCP16,50,honey,462,719
+07/01/2026,27,rainy,Mixed,indoor,1574,StandardCP16,50,none,0,704
+08/01/2026,27.9,overcast,Mixed,indoor,1574,CustomCP20,50,antibiotics,530,737
+09/01/2026,26.6,overcast,Layer B,indoor,1574,AvialisCP18,50,honey,335,715
+10/01/2026,27,sunny,Layer B,indoor,1574,AvialisCP18,50,none,0,666
+11/01/2026,26.2,sunny,Layer A,indoor,1574,AvialisCP18,50,none,0,669
+12/01/2026,26.6,sunny,Layer A,indoor,1574,CustomCP20,50,antibiotics,530,732
+13/01/2026,27.2,sunny,Layer B,indoor,1574,CustomCP20,50,honey,220,735
+14/01/2026,27.4,overcast,Layer A,indoor,1574,AvialisCP18,50,antibiotics,530,699
+15/01/2026,26.1,sunny,Mixed,indoor,1574,StandardCP16,50,antibiotics,530,726
+16/01/2026,26.4,overcast,Mixed,indoor,1574,StandardCP16,50,none,0,661
+17/01/2026,27.5,sunny,Layer B,indoor,1574,CustomCP20,50,honey,287,707
+18/01/2026,27.7,sunny,Mixed,indoor,1574,StandardCP16,50,none,0,666
+19/01/2026,27.3,sunny,Layer B,indoor,1574,StandardCP16,50,none,0,682
+20/01/2026,26.9,overcast,Mixed,indoor,1574,CustomCP20,50,none,0,648
+21/01/2026,26.8,sunny,Layer B,indoor,1574,StandardCP16,50,antibiotics,530,707
+22/01/2026,26,sunny,Layer A,indoor,1574,CustomCP20,50,none,0,668
+23/01/2026,27.3,sunny,Mixed,indoor,1574,AvialisCP18,50,antibiotics,530,692
+24/01/2026,27.1,overcast,Layer B,indoor,1574,StandardCP16,50,honey,396,681
+25/01/2026,27.8,sunny,Mixed,indoor,1574,StandardCP16,50,none,0,642
+26/01/2026,27.6,sunny,Mixed,indoor,1574,AvialisCP18,50,antibiotics,530,710
+27/01/2026,27.4,sunny,Mixed,indoor,1574,StandardCP16,50,none,0,613
+28/01/2026,27.5,sunny,Layer B,indoor,1574,CustomCP20,50,antibiotics,530,679
+29/01/2026,26.6,overcast,Mixed,indoor,1574,AvialisCP18,50,antibiotics,530,689
+30/01/2026,26.1,sunny,Layer A,indoor,1574,AvialisCP18,50,none,0,615
+31/01/2026,26.3,rainy,Layer A,indoor,1574,AvialisCP18,50,none,0,654
+01/02/2026,27.5,sunny,Layer B,indoor,1574,CustomCP20,50,none,0,636
+02/02/2026,27.2,overcast,Mixed,indoor,1574,AvialisCP18,50,none,0,600
+03/02/2026,28.8,overcast,Layer B,indoor,1574,AvialisCP18,50,honey,494,641
+04/02/2026,28,overcast,Layer A,indoor,1574,AvialisCP18,50,honey,396,639
+05/02/2026,27.6,sunny,Mixed,indoor,1574,CustomCP20,50,none,0,592
+06/02/2026,27.4,overcast,Mixed,indoor,1574,AvialisCP18,50,honey,483,653
+07/02/2026,28.9,overcast,Layer A,indoor,1574,AvialisCP18,50,honey,247,649
+08/02/2026,27.9,sunny,Layer A,indoor,1574,StandardCP16,50,none,0,637
+09/02/2026,27.9,rainy,Mixed,indoor,1574,CustomCP20,50,none,0,602
+10/02/2026,27.7,overcast,Mixed,indoor,1574,AvialisCP18,50,none,0,575
+11/02/2026,27.8,rainy,Layer B,indoor,1574,CustomCP20,50,none,0,607
+12/02/2026,27.6,sunny,Layer B,indoor,1574,CustomCP20,50,none,0,624
+13/02/2026,28.2,rainy,Mixed,indoor,1574,StandardCP16,50,antibiotics,530,664
+14/02/2026,28.8,rainy,Layer B,indoor,1573,CustomCP20,50,antibiotics,530,619
+15/02/2026,28.4,sunny,Layer B,indoor,1573,CustomCP20,50,antibiotics,530,653
+16/02/2026,28.3,sunny,Layer A,indoor,1572,CustomCP20,50,none,0,579
+17/02/2026,27.1,overcast,Layer A,indoor,1572,AvialisCP18,50,none,0,597
+18/02/2026,27.4,sunny,Mixed,indoor,1572,CustomCP20,50,none,0,549
+19/02/2026,27.4,rainy,Layer A,indoor,1572,StandardCP16,50,none,0,586
+20/02/2026,28,overcast,Layer A,indoor,1572,AvialisCP18,50,none,0,575
+21/02/2026,28.4,sunny,Layer A,indoor,1572,CustomCP20,50,none,0,584
+22/02/2026,28.7,sunny,Mixed,indoor,1572,StandardCP16,50,none,0,598
+23/02/2026,29,sunny,Layer B,indoor,1572,CustomCP20,50,none,0,584
+24/02/2026,27.7,sunny,Mixed,indoor,1572,StandardCP16,50,antibiotics,530,602
+25/02/2026,27.2,overcast,Layer A,indoor,1572,AvialisCP18,50,antibiotics,530,589
+26/02/2026,28,rainy,Layer A,indoor,1572,StandardCP16,50,antibiotics,530,621
+27/02/2026,28.4,overcast,Layer A,indoor,1572,StandardCP16,50,antibiotics,530,611
+28/02/2026,27.1,overcast,Layer B,indoor,1572,AvialisCP18,50,none,0,533
+01/03/2026,29.4,overcast,Mixed,indoor,1572,StandardCP16,50,none,0,581
+02/03/2026,28.3,rainy,Mixed,indoor,1572,AvialisCP18,50,honey,413,568
+03/03/2026,29.1,overcast,Layer B,indoor,1572,AvialisCP18,50,none,0,521
+04/03/2026,28.1,overcast,Layer A,indoor,1571,AvialisCP18,50,none,0,544
+05/03/2026,29.7,sunny,Layer A,indoor,1571,CustomCP20,50,none,0,542
+06/03/2026,28.5,overcast,Layer A,indoor,1571,CustomCP20,50,none,0,530
+07/03/2026,29.4,sunny,Layer A,indoor,1571,CustomCP20,50,none,0,551
+08/03/2026,28.1,sunny,Mixed,indoor,1571,CustomCP20,50,none,0,554
+09/03/2026,29.4,overcast,Layer A,indoor,1571,StandardCP16,50,none,0,556
+10/03/2026,28.5,overcast,Mixed,indoor,1571,AvialisCP18,50,antibiotics,530,600
+11/03/2026,29.8,sunny,Mixed,indoor,1571,AvialisCP18,50,honey,488,548
+12/03/2026,28.1,sunny,Layer A,indoor,1571,CustomCP20,50,honey,369,529
+13/03/2026,29.9,overcast,Mixed,indoor,1571,StandardCP16,50,honey,462,551
+14/03/2026,29.4,sunny,Layer B,indoor,1571,CustomCP20,50,none,0,500
+15/03/2026,29,sunny,Layer B,indoor,1571,AvialisCP18,50,none,0,500
+16/03/2026,29.2,sunny,Mixed,indoor,1571,AvialisCP18,50,antibiotics,530,559
+17/03/2026,29.3,sunny,Layer B,indoor,1571,StandardCP16,50,none,0,498
+18/03/2026,28.9,sunny,Layer A,indoor,1571,AvialisCP18,50,antibiotics,530,534
+19/03/2026,29.4,overcast,Layer A,indoor,1571,AvialisCP18,50,none,0,515
+20/03/2026,28.1,overcast,Mixed,indoor,1571,StandardCP16,50,none,0,474
+21/03/2026,29.3,overcast,Layer B,indoor,1571,AvialisCP18,50,none,0,527
+22/03/2026,29.7,sunny,Mixed,indoor,1571,AvialisCP18,50,none,0,502
+23/03/2026,29,overcast,Layer A,indoor,1570,AvialisCP18,50,none,0,520
+24/03/2026,29.1,sunny,Mixed,indoor,1570,StandardCP16,50,none,0,502
+25/03/2026,29.6,overcast,Layer B,indoor,1570,AvialisCP18,50,none,0,510
+26/03/2026,29.8,overcast,Layer B,indoor,1570,StandardCP16,50,antibiotics,530,561
+27/03/2026,28.5,rainy,Layer B,indoor,1570,CustomCP20,50,honey,438,532
+28/03/2026,29.6,sunny,Layer B,indoor,1570,StandardCP16,50,none,0,463
+29/03/2026,29.8,overcast,Layer A,indoor,1570,CustomCP20,50,none,0,476
+30/03/2026,28.1,overcast,Layer A,indoor,1570,AvialisCP18,50,antibiotics,530,535
+31/03/2026,28.8,sunny,Layer B,indoor,1570,StandardCP16,50,antibiotics,530,549
+01/04/2026,30.2,sunny,Layer B,indoor,1570,CustomCP20,50,honey,409,498
+02/04/2026,30.7,sunny,Layer A,indoor,1570,CustomCP20,50,antibiotics,530,541
+03/04/2026,29.6,overcast,Mixed,indoor,1570,AvialisCP18,50,antibiotics,530,494
+04/04/2026,30.1,overcast,Mixed,indoor,1570,AvialisCP18,50,none,0,475
+05/04/2026,29.8,rainy,Layer B,indoor,1570,AvialisCP18,50,antibiotics,530,503
+06/04/2026,29.3,overcast,Layer B,indoor,1570,AvialisCP18,50,none,0,460
+07/04/2026,29.6,sunny,Layer A,indoor,1570,CustomCP20,50,none,0,479
+08/04/2026,30.6,sunny,Layer B,indoor,1569,AvialisCP18,50,none,0,456
+09/04/2026,29.2,overcast,Layer B,indoor,1569,AvialisCP18,50,none,0,423
+10/04/2026,30,overcast,Layer B,indoor,1569,AvialisCP18,50,antibiotics,530,521
+11/04/2026,29.5,overcast,Layer A,indoor,1569,AvialisCP18,50,none,0,436
+12/04/2026,30.8,rainy,Layer B,indoor,1569,StandardCP16,50,none,0,447
+13/04/2026,30.5,overcast,Layer B,indoor,1569,AvialisCP18,50,none,0,454
+14/04/2026,30.1,sunny,Layer A,indoor,1569,AvialisCP18,50,none,0,457
+15/04/2026,29.9,sunny,Layer A,indoor,1569,CustomCP20,50,honey,268,479
+16/04/2026,29.1,overcast,Mixed,indoor,1569,StandardCP16,50,none,0,404
+17/04/2026,30.6,sunny,Layer A,indoor,1569,CustomCP20,50,none,0,404
+18/04/2026,30.9,rainy,Layer B,indoor,1569,StandardCP16,50,antibiotics,530,503
+19/04/2026,29.8,overcast,Layer A,indoor,1569,StandardCP16,50,none,0,391
+20/04/2026,29.9,overcast,Layer B,indoor,1569,AvialisCP18,50,none,0,436
+21/04/2026,30,sunny,Mixed,indoor,1569,AvialisCP18,50,none,0,416
+22/04/2026,29.1,overcast,Layer B,indoor,1569,AvialisCP18,50,none,0,397
+23/04/2026,30.6,overcast,Mixed,indoor,1569,CustomCP20,50,honey,429,451
+24/04/2026,30.7,sunny,Layer B,indoor,1569,AvialisCP18,50,none,0,385
+25/04/2026,30.8,sunny,Mixed,indoor,1569,CustomCP20,50,antibiotics,530,432
+26/04/2026,30,overcast,Layer A,indoor,1569,StandardCP16,50,none,0,432
+27/04/2026,29,sunny,Layer A,indoor,1569,CustomCP20,50,honey,206,420
+28/04/2026,30.8,rainy,Layer A,indoor,1569,StandardCP16,50,antibiotics,530,426
+29/04/2026,29.2,overcast,Layer B,indoor,1569,StandardCP16,50,none,0,415
+30/04/2026,30.6,sunny,Layer B,indoor,1569,StandardCP16,50,antibiotics,530,430
+01/05/2026,29,sunny,Layer A,indoor,1569,CustomCP20,50,antibiotics,530,459
+02/05/2026,29.1,overcast,Mixed,indoor,1569,CustomCP20,50,none,0,374
+03/05/2026,30.9,sunny,Layer A,indoor,1569,CustomCP20,50,none,0,418
+04/05/2026,29.3,sunny,Mixed,indoor,1569,AvialisCP18,50,none,0,354
+05/05/2026,29.3,sunny,Layer B,indoor,1568,CustomCP20,50,none,0,387
+06/05/2026,29.1,rainy,Layer A,indoor,1568,StandardCP16,50,honey,499,394
+07/05/2026,29.6,overcast,Mixed,indoor,1568,StandardCP16,50,antibiotics,530,444
+08/05/2026,29.7,overcast,Mixed,indoor,1568,CustomCP20,50,honey,232,415
+09/05/2026,30.1,sunny,Mixed,indoor,1568,AvialisCP18,50,antibiotics,530,390
+10/05/2026,30.9,overcast,Layer B,indoor,1568,AvialisCP18,50,antibiotics,530,444
+11/05/2026,29.8,rainy,Layer B,indoor,1568,CustomCP20,50,none,0,375
+12/05/2026,30.6,sunny,Mixed,indoor,1568,CustomCP20,50,none,0,347
+13/05/2026,30,overcast,Mixed,indoor,1568,CustomCP20,50,none,0,357
+14/05/2026,30.4,overcast,Layer A,indoor,1568,AvialisCP18,50,none,0,352
+15/05/2026,30.7,overcast,Layer B,indoor,1568,AvialisCP18,50,none,0,326
+16/05/2026,29.3,rainy,Layer A,indoor,1568,AvialisCP18,50,none,0,353

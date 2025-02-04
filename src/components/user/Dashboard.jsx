@@ -6,6 +6,7 @@ import Forecasting from '../../pages/userpage/Forecasting'; // Adjust the import
 import MainDashboard from '../../pages/userpage/MainDashboard';
 import Orders from '../../pages/userpage/Orders';
 import EggTab from '../../pages/userpage/EggTab';
+import ForecastRecords from '../../pages/userpage/ForecastRecords';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ function Dashboard() {
         <DashboardHeader onSignOut={handleSignOut} />
         <Routes>
           <Route path="/forecasting" element={<Forecasting />} />
+          <Route path="/forecastrecords" element={<ForecastRecords/>} />
           <Route path="/maindashboard" element={<MainDashboard />} />
+          
           <Route path="/orders" element={Orders} />
           <Route path="/eggtab" element={EggTab} />
         </Routes>
@@ -33,4 +36,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-

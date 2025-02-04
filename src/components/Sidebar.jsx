@@ -1,17 +1,27 @@
-// Sidebar.jsx
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { LuLayoutDashboard, LuClipboardList } from 'react-icons/lu';
 import { LiaEggSolid, LiaStoreSolid } from 'react-icons/lia';
 import { VscGraphLine } from 'react-icons/vsc';
 import { HiMenuAlt3 } from 'react-icons/hi';
+import { IoIosArrowDown } from 'react-icons/io';
+
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const menuItems = [
     { to: '/pages/maindashboard', icon: LuLayoutDashboard, label: 'Dashboard' },
-    { to: '/forecasting', icon: VscGraphLine, label: 'Production Forecast' },
+    { 
+      label: 'Forecasting Page', 
+      icon: VscGraphLine, 
+      hasDropdown: true, 
+      subItems: [
+        { to: '/forecasting', label: 'Forecasting' }, // 🔹 Routed to Forecasting.jsx
+        { to: '/pages/forecastrecords', label: 'Forecast Records' } // 🔹 Routed to ForecastingRecords.jsx
+      ]
+    },
     { to: '/pages/orders', icon: LuClipboardList, label: 'Orders' },
     { to: '/pages/eggtab', icon: LiaEggSolid, label: 'Egg-Laying Tab' },
     { to: '/pages/marketmanagement', icon: LiaStoreSolid, label: 'Market Management' },
@@ -39,22 +49,59 @@ function Sidebar() {
         </div>
         <nav className="mt-2">
           <ul className="space-y-2">
-            {menuItems.map((item) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `flex items-center p-2 mx-2 rounded-lg transition duration-200 ${
-                      isActive
-                        ? 'bg-amber-200 text-gray-900'
-                        : 'text-gray-700 hover:bg-amber-200 bg-khaki-light'
-                    }`
-                  }
-                  onClick={() => setIsOpen(false)} // Close menu on click (mobile)
-                >
-                  <item.icon className="mr-3 w-5 h-5" />
-                  {item.label}
-                </NavLink>
+            {menuItems.map((item, index) => (
+              <li key={index} className="relative">
+                {item.hasDropdown ? (
+                  <>
+                    <button
+                      className="flex items-center justify-between w-full p-2 mx-2 rounded-lg transition duration-200 text-gray-700 hover:bg-amber-200 bg-khaki-light"
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                      <div className="flex items-center">
+                        <item.icon className="mr-3 w-5 h-5" />
+                        {item.label}
+                      </div>
+                      <IoIosArrowDown
+                        className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    {isDropdownOpen && (
+                      <ul className="ml-6 mt-1 space-y-1">
+                        {item.subItems.map((subItem) => (
+                          <li key={subItem.to}>
+                            <NavLink
+                              to={subItem.to}
+                              className={({ isActive }) =>
+                                `block p-2 rounded-lg transition duration-200 ${
+                                  isActive
+                                    ? 'bg-amber-200 text-gray-900'
+                                    : 'text-gray-700 hover:bg-amber-200'
+                                }`
+                              }
+                            >
+                              {subItem.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `flex items-center p-2 mx-2 rounded-lg transition duration-200 ${
+                        isActive
+                          ? 'bg-amber-200 text-gray-900'
+                          : 'text-gray-700 hover:bg-amber-200 bg-khaki-light'
+                      }`
+                    }
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <item.icon className="mr-3 w-5 h-5" />
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>

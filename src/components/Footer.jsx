@@ -30,7 +30,7 @@ const Footer = () => {
 
   return (
     <div
-      className="max-w-[1240px] mx-auto px-8 mt-5 grid gap-8 text-[#424242]"
+      className="max-w-[1240px] mx-auto px-8 mt-96 grid gap-8 text-[#424242]"
       style={{ userSelect: "none" }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

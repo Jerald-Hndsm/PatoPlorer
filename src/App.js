@@ -11,13 +11,23 @@ import Loader2 from './components/Loader2';
 import Sidebar from './components/Sidebar';
 import Marketplace from './components/Marketplace';
 
-// User Pages
 import DashboardHeader from './components/user/DashboardHeader';
 import Dashboard from './components/user/Dashboard';
+
+// Forecasting Page
 import Forecasting from './pages/userpage/Forecasting';
+import ForecastRecords from './pages/userpage/ForecastRecords';
+
+// Main Dashboard Page
 import MainDashboard from './pages/userpage/MainDashboard';
+
 import Orders from './pages/userpage/Orders';
+import OrderRecords from './pages/userpage/OrderRecords';
+
+// Inventory Page
 import EggTab from './pages/userpage/EggTab';
+
+// Market Page
 import MarketManagement from './pages/userpage/MarketManagement';
 
 // Admin Pages
@@ -57,9 +67,15 @@ function App() {
   const isAuthPage = ['/signin', '/signup', '/loading'].includes(location.pathname);
   const isDashboardPage = [
     '/dashboard',
+
     '/forecasting',
+    '/pages/forecastrecords',
+
     '/pages/maindashboard',
+
     '/pages/orders',
+    '/pages/orderrecords',
+
     '/pages/eggtab',
     '/orderdetails',
     '/pages/marketmanagement',
@@ -118,6 +134,14 @@ function App() {
                   <Orders />
                 </ProtectedRoute>
               }
+              />
+            <Route
+              path="/pages/orderrecords"
+              element={
+                <ProtectedRoute>
+                  <OrderRecords />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/pages/eggtab"
@@ -132,6 +156,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MarketManagement onProductsUpdate={setProducts} />
+   
+                </ProtectedRoute>
+              }
+              />
+              <Route
+              path="/pages/forecastrecords"
+              element={
+                <ProtectedRoute>
+                  <ForecastRecords onProductsUpdate={setProducts} />
                 </ProtectedRoute>
               }
             />

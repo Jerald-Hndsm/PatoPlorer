@@ -25,7 +25,7 @@ function DashboardHeader({ onSignOut }) {
   }, []);
 
   return (
-    <header className="bg-sky-600 w-full fixed top-0 left-0 z-50 h-16 shadow-md">
+    <header className="bg-sky-800 w-full fixed top-0 left-0 z-50 h-16 shadow-md">
       <div className="flex justify-between items-center h-full px-4">
         {/* Logo and Title */}
         <div className="flex items-center">

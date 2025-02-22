@@ -59,7 +59,7 @@ const MainDashboard = () => {
     }
   };
 
-  // Fetch "No. of Ducks" from the latest forecast document in adminFirestore
+  // Fetch "Number of Ducks" from inputData inside the latest forecast document
   const fetchNumberOfDucks = async () => {
     try {
       const forecastsRef = collection(adminFirestore, "forecasts");
@@ -67,7 +67,20 @@ const MainDashboard = () => {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        setNumberOfDucks(querySnapshot.docs[0].data()["No. of Ducks"]);
+        const docData = querySnapshot.docs[0].data();
+        console.log("📌 Firestore Document Data:", docData); // Debugging: Check the document structure
+
+        // Access "Number of Ducks" inside inputData
+        const ducksValue = docData.inputData?.["Number of Ducks"];
+
+        if (ducksValue !== undefined) {
+          console.log("✅ Fetched Number of Ducks:", ducksValue);
+          setNumberOfDucks(ducksValue);
+        } else {
+          console.error("❌ Number of Ducks field is missing inside inputData!");
+        }
+      } else {
+        console.error("❌ No forecast document found in Firestore.");
       }
     } catch (error) {
       console.error("❌ Error fetching number of ducks:", error);

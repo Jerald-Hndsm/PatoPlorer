@@ -4,17 +4,17 @@ import { LuLayoutDashboard, LuClipboardList } from 'react-icons/lu';
 import { LiaEggSolid, LiaStoreSolid } from 'react-icons/lia';
 import { VscGraphLine } from 'react-icons/vsc';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import { IoIosArrowDown } from 'react-icons/io';
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
 
-  // Toggle dropdown for each menu group
-  const handleToggleDropdown = (index) => {
-    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+  // Toggles which dropdown is open. Clicking the same main item again closes it.
+  const handleParentClick = (index) => {
+    setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  // Menu items
   const menuItems = [
     {
       to: '/pages/maindashboard',
@@ -22,32 +22,35 @@ function Sidebar() {
       label: 'Dashboard',
     },
     {
+      to: '/forecasting',
       label: 'Forecasting Page',
       icon: VscGraphLine,
       hasDropdown: true,
       subItems: [
-        { to: '/forecasting', label: 'Forecasting' },
+
         { to: '/pages/forecastrecords', label: 'Forecast Records' },
       ],
     },
     {
+      to: '/pages/orders',
       label: 'Orders Page',
       icon: LuClipboardList,
       hasDropdown: true,
       subItems: [
-        { to: '/pages/orders', label: 'Orders' },
         { to: '/pages/orderrecords', label: 'Order Records' },
       ],
     },
     {
+      to: '/pages/eggtab',
       label: 'Egg-Laying Tab',
       icon: LiaEggSolid,
       hasDropdown: true,
       subItems: [
-        { to: '/pages/eggcollection', label: 'Collection Records' },
+        { to: '/pages/eggrecords', label: 'Collection Records' },
       ],
     },
     {
+      to: '/pages/marketmanagement',
       label: 'Market Management',
       icon: LiaStoreSolid,
       hasDropdown: true,
@@ -84,22 +87,28 @@ function Sidebar() {
               <li key={index} className="relative">
                 {item.hasDropdown ? (
                   <>
-                    <button
-                      className="flex items-center justify-between w-full p-2 mx-2 
-                                 rounded-lg transition duration-200 text-gray-700 
-                                 hover:bg-amber-200 bg-khaki-light"
-                      onClick={() => handleToggleDropdown(index)}
+                    {/* Parent link: Clicking it navigates AND toggles sub-items */}
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `flex items-center justify-between p-2 mx-0 rounded-lg transition duration-300 ml-2 ${isActive
+                          ? 'bg-amber-200 text-gray-900'
+                          : 'text-gray-700 hover:bg-amber-200 bg-khaki-light'
+                        }`
+                      }
+                      onClick={() => {
+                        // Closes sidebar on mobile, toggles dropdown
+                        setIsOpen(false);
+                        handleParentClick(index);
+                      }}
                     >
                       <div className="flex items-center">
                         <item.icon className="mr-3 w-5 h-5" />
                         {item.label}
                       </div>
-                      <IoIosArrowDown
-                        className={`w-4 h-4 transition-transform ${
-                          openDropdownIndex === index ? 'rotate-180' : ''
-                        }`}
-                      />
-                    </button>
+                    </NavLink>
+
+                    {/* Show sub-items if this dropdown is open */}
                     {openDropdownIndex === index && (
                       <ul className="ml-6 mt-1 space-y-1">
                         {item.subItems.map((subItem) => (
@@ -107,10 +116,9 @@ function Sidebar() {
                             <NavLink
                               to={subItem.to}
                               className={({ isActive }) =>
-                                `block p-2 rounded-lg transition duration-200 ${
-                                  isActive
-                                    ? 'bg-amber-200 text-gray-900'
-                                    : 'text-gray-700 hover:bg-amber-200'
+                                `block p-2 rounded-lg transition duration-300 ${isActive
+                                  ? 'bg-amber-200 text-gray-900'
+                                  : 'text-gray-700 hover:bg-amber-200'
                                 }`
                               }
                               onClick={() => setIsOpen(false)}
@@ -123,20 +131,24 @@ function Sidebar() {
                     )}
                   </>
                 ) : (
+                  // No dropdown, just a normal NavLink
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `flex items-center p-2 mx-2 rounded-lg transition duration-200 ${
-                        isActive
-                          ? 'bg-amber-200 text-gray-900'
-                          : 'text-gray-700 hover:bg-amber-200 bg-khaki-light'
+                      `flex items-center p-2 mx-0 rounded-lg transition duration-300 ml-2 ${isActive
+                        ? 'bg-amber-200 text-gray-900'
+                        : 'text-gray-700 hover:bg-amber-200 bg-khaki-light'
                       }`
                     }
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      setOpenDropdownIndex(null); // <-- Add this to close any open dropdown
+                    }}
                   >
                     <item.icon className="mr-3 w-5 h-5" />
                     {item.label}
                   </NavLink>
+
                 )}
               </li>
             ))}

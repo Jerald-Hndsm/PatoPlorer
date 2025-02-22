@@ -26,9 +26,11 @@ import OrderRecords from './pages/userpage/OrderRecords';
 
 // Inventory Page
 import EggTab from './pages/userpage/EggTab';
+import EggRecords from './pages/userpage/EggRecords';
 
 // Market Page
 import MarketManagement from './pages/userpage/MarketManagement';
+import MarketProducts from './pages/userpage/MarketProducts';
 
 // Admin Pages
 import AdminDashboard from './components/admin/AdminDashboard';
@@ -68,17 +70,24 @@ function App() {
   const isDashboardPage = [
     '/dashboard',
 
+    //Forecasting Page
     '/forecasting',
     '/pages/forecastrecords',
 
+    //Main Dashboard Page
     '/pages/maindashboard',
 
+    //Orders Page
     '/pages/orders',
     '/pages/orderrecords',
 
+    //Inventory Page
     '/pages/eggtab',
-    '/orderdetails',
+    '/pages/eggrecords',
+    
+    // Market Page
     '/pages/marketmanagement',
+    '/pages/marketproducts',
   ].includes(location.pathname);
 
   const isAdminPage = location.pathname.startsWith('/404');
@@ -111,6 +120,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Main Dashboard Routes */}
+            <Route
+              path="/pages/maindashboard"
+              element={
+                <ProtectedRoute>
+                  <MainDashboard />
+                </ProtectedRoute>
+              }
+            />
+            {/* Forecasting Routes */}
             <Route
               path="/forecasting"
               element={
@@ -120,13 +140,15 @@ function App() {
               }
             />
             <Route
-              path="/pages/maindashboard"
+              path="/pages/forecastrecords"
               element={
                 <ProtectedRoute>
-                  <MainDashboard />
+                  <ForecastRecords onProductsUpdate={setProducts} />
                 </ProtectedRoute>
               }
             />
+
+            {/* Orders Routes */}
             <Route
               path="/pages/orders"
               element={
@@ -143,6 +165,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Egg Inventory Routes */}
             <Route
               path="/pages/eggtab"
               element={
@@ -151,6 +175,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/pages/eggrecords"
+              element={
+                <ProtectedRoute>
+                  <EggRecords />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Market Routes */}
             <Route
               path="/pages/marketmanagement"
               element={
@@ -161,13 +195,14 @@ function App() {
               }
               />
               <Route
-              path="/pages/forecastrecords"
+              path="/pages/marketproducts"
               element={
                 <ProtectedRoute>
-                  <ForecastRecords onProductsUpdate={setProducts} />
+                  <MarketProducts />
+   
                 </ProtectedRoute>
               }
-            />
+              />
 
             {/* Admin Routes */}
             <Route path="/404" element={<AdminDashboard />} />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaEgg, FaTrash } from "react-icons/fa6"; // Import icons
-import { FaRegEdit } from "react-icons/fa";
-import { userFirestore } from '../../firebase'; // Import the Firestore database
-import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { FaEgg } from 'react-icons/fa6'; // Import any icons you like
+import { userFirestore } from '../../firebase'; 
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 function EggTab() {
+  // Form fields for adding a new entry
   const [inventory, setInventory] = useState({
     date: '',
     eggsCollected: '',
@@ -15,11 +15,10 @@ function EggTab() {
     forecastedEggs: '',
   });
 
+  // Only used here to check for existing dates. No table displayed in this component.
   const [inventoryList, setInventoryList] = useState([]);
-  const [editingId, setEditingId] = useState(null); // Track which entry is being edited
-  const [confirmDelete, setConfirmDelete] = useState(false); // State for delete confirmation
-  const [entryToDelete, setEntryToDelete] = useState(null); // Track which entry is to be deleted
 
+  // 1) Handle form input changes
   const handleChange = (e) => {
     setInventory({
       ...inventory,
@@ -27,32 +26,27 @@ function EggTab() {
     });
   };
 
+  // 2) Handle form submission (ADD a new entry)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting:", inventory); // Debugging log
+    console.log('Submitting:', inventory); // Debugging log
 
-    // Check if the entry with the same date already exists
-    const existingEntry = inventoryList.find(entry => entry.date === inventory.date && entry.id !== editingId);
-    
+    // Check if there's an existing entry with the same date
+    const existingEntry = inventoryList.find(
+      (entry) => entry.date === inventory.date
+    );
     if (existingEntry) {
-      alert("An entry for this date already exists. Please update the existing entry.");
-      return; // Prevent adding a duplicate entry
+      alert('An entry for this date already exists. Please update it in EggCollection.');
+      return;
     }
 
     try {
-      if (editingId) {
-        // Update existing entry
-        const entryRef = doc(userFirestore, "inventory", editingId);
-        await updateDoc(entryRef, inventory);
-        setInventoryList(inventoryList.map(entry => (entry.id === editingId ? { ...entry, ...inventory } : entry)));
-        setEditingId(null); // Reset editingId after saving
-        console.log("Document updated with ID: ", editingId);
-      } else {
-        // Add the new entry to Firestore
-        const docRef = await addDoc(collection(userFirestore, "inventory"), inventory);
-        setInventoryList([...inventoryList, { id: docRef.id, ...inventory }]);
-        console.log("Document written with ID: ", docRef.id);
-      }
+      // Add the new entry to Firestore
+      const docRef = await addDoc(collection(userFirestore, 'inventory'), inventory);
+      console.log('Document written with ID: ', docRef.id);
+
+      // Optionally update local state if you want to keep track here
+      setInventoryList([...inventoryList, { id: docRef.id, ...inventory }]);
 
       // Reset the form
       setInventory({
@@ -65,45 +59,27 @@ function EggTab() {
         forecastedEggs: '',
       });
     } catch (error) {
-      console.error("Error adding/updating document: ", error);
+      console.error('Error adding document: ', error);
     }
   };
 
-  // Fetch inventory data from Firestore
+  // 3) Fetch inventory data so we can check for duplicates
   const fetchInventory = async () => {
     try {
-      const querySnapshot = await getDocs(collection(userFirestore, "inventory"));
-      const fetchedInventory = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const querySnapshot = await getDocs(collection(userFirestore, 'inventory'));
+      const fetchedInventory = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setInventoryList(fetchedInventory);
     } catch (error) {
-      console.error("Error fetching inventory: ", error);
+      console.error('Error fetching inventory: ', error);
     }
   };
 
   useEffect(() => {
-    fetchInventory(); // Fetch inventory data when the component mounts
+    fetchInventory();
   }, []);
-
-  const handleEdit = (entry) => {
-    setInventory(entry);
-    setEditingId(entry.id);
-  };
-
-  const handleDelete = (id) => {
-    setEntryToDelete(id);
-    setConfirmDelete(true);
-  };
-
-  const confirmDeleteEntry = async () => {
-    try {
-      await deleteDoc(doc(userFirestore, "inventory", entryToDelete));
-      setInventoryList(inventoryList.filter(entry => entry.id !== entryToDelete));
-      setConfirmDelete(false);
-      setEntryToDelete(null);
-    } catch (error) {
-      console.error("Error deleting document: ", error);
-    }
-  };
 
   return (
     <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
@@ -111,7 +87,7 @@ function EggTab() {
         Egg Inventory Management <FaEgg className="ml-2" />
       </h1>
 
-      {/* Input Functionalities Tile */}
+      {/* Input Functionalities Tile - No table here, only the form for adding */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap -mx-2 mb-4">
@@ -208,74 +184,11 @@ function EggTab() {
 
           <div className="px-2">
             <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-              {editingId ? 'Save' : 'Add'}
+              Add
             </button>
           </div>
         </form>
       </div>
-
-      {/* Inventory Entries Tile */}
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">Inventory Entries</h2>
-        <table className="min-w-full border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 p-2">Date</th>
-              <th className="border border-gray-300 p-2">Eggs Collected</th>
-              <th className="border border-gray-300 p-2">Housing</th>
-              <th className="border border-gray-300 p-2">Hatching Eggs</th>
-              <th className="border border-gray-300 p-2">Breeds</th>
-              <th className="border border-gray-300 p-2">Duck Mortality</th>
-              <th className="border border-gray-300 p-2">Forecasted Eggs</th>
-              <th className="border border-gray-300 p-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {inventoryList.map((entry) => (
-              <tr key={entry.id}>
-                <td className="border border-gray-300 p-2">{entry.date}</td>
-                <td className="border border-gray-300 p-2">{entry.eggsCollected}</td>
-                <td className="border border-gray-300 p-2">{entry.housing}</td>
-                <td className="border border-gray-300 p-2">{entry.hatchingEggs}</td>
-                <td className="border border-gray-300 p-2">{entry.breeds}</td>
-                <td className="border border-gray-300 p-2">{entry.duckMortality}</td>
-                <td className="border border-gray-300 p-2">{entry.forecastedEggs}</td>
-                <td className="border border-gray-300 p-2 flex space-x-2">
-                  <button onClick={() => handleEdit(entry)} className="text-blue-500">
-                    <FaRegEdit />
-                  </button>
-                  <button onClick={() => handleDelete(entry.id)} className="text-red-500">
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Delete Confirmation Modal */}
-      {confirmDelete && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-lg mb-4">Are you sure you want to delete this entry?</h2>
-            <div className="flex justify-between">
-              <button
-                onClick={confirmDeleteEntry}
-                className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => setConfirmDelete(false)}
-                className="bg-gray-300 text-black p-2 rounded hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

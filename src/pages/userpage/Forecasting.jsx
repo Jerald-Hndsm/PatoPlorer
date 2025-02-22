@@ -26,7 +26,7 @@
   const Forecasting = () => {
     const [inputData, setInputData] = useState({
       "Temperature": '',
-      "No. of Ducks": '',
+      "Number of Ducks": '',
       "Kg of feeds / day": '',
       "Nutrients in mL / day": '',
     });
@@ -122,7 +122,7 @@
         fetchForecastHistory();
         setInputData({
           "Temperature": '',
-          "No. of Ducks": '',
+          "Number of Ducks": '',
           "Kg of feeds / day": '',
           "Nutrients in mL / day": '',
         });

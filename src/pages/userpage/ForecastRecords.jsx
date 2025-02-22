@@ -59,7 +59,7 @@ const ForecastRecords = () => {
                             <th className="border border-gray-300 p-2">Feed Type</th>
                             <th className="border border-gray-300 p-2">Nutrients</th>
                             <th className="border border-gray-300 p-2">Temperature</th>
-                            <th className="border border-gray-300 p-2">No. of Ducks</th>
+                            <th className="border border-gray-300 p-2">Number of Ducks</th>
                             <th className="border border-gray-300 p-2">Feed (kg)</th>
                             <th className="border border-gray-300 p-2">Nutrients (ml)</th>
                             <th className="border border-gray-300 p-2">Eggs Forecasted</th>
@@ -77,7 +77,7 @@ const ForecastRecords = () => {
                                     <td className="border border-gray-300 p-2">{record.inputData["Feed Type"]}</td>
                                     <td className="border border-gray-300 p-2">{record.inputData.Nutrients}</td>
                                     <td className="border border-gray-300 p-2">{record.inputData.Temperature}</td>
-                                    <td className="border border-gray-300 p-2">{record.inputData["No. of Ducks"]}</td>
+                                    <td className="border border-gray-300 p-2">{record.inputData["Number of Ducks"]}</td>
                                     <td className="border border-gray-300 p-2">{record.inputData["Kg of feeds / day"]}</td>
                                     <td className="border border-gray-300 p-2">{record.inputData["Nutrients in mL / day"]}</td>
                                     <td className="border border-gray-300 p-2 font-bold">{record.predictedEggs}</td>

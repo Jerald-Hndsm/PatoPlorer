@@ -80,7 +80,7 @@ def predict():
                               "Weather",
                               "Breed",
                               "Housing",
-                              "No. of Ducks",
+                              "Number of Ducks",
                               "Feed Type",
                               "Kg of feeds / day",
                               "Nutrients",

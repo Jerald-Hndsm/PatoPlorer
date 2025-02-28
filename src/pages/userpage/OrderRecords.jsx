@@ -9,6 +9,9 @@ import {
   deleteDoc
 } from 'firebase/firestore';
 
+// Import XLSX for Excel export
+import * as XLSX from 'xlsx';
+
 const OrdersRecords = () => {
   // 1) State for all orders from Firestore
   const [orders, setOrders] = useState([]);
@@ -49,14 +52,14 @@ const OrdersRecords = () => {
   const handleEdit = (order) => {
     setEditingOrderId(order.id);
     setEditFields({
-      orderId: order.orderId,
-      name: order.name,
-      address: order.address,
-      contact: order.contact,
-      productDescription: order.productDescription,
-      quantity: order.quantity,
-      payment: order.payment,
-      date: order.date,
+      orderId: order.orderId || '',
+      name: order.name || '',
+      address: order.address || '',
+      contact: order.contact || '',
+      productDescription: order.productDescription || '',
+      quantity: order.quantity || '',
+      payment: order.payment || '',
+      date: order.date || '',
       status: order.status || 'Processing',
     });
   };
@@ -116,10 +119,129 @@ const OrdersRecords = () => {
     }
   };
 
-  // 8) Render
+  // 8) DOWNLOAD CSV
+  const handleDownloadCSV = () => {
+    if (orders.length === 0) {
+      alert('No data to download!');
+      return;
+    }
+    
+    // CSV headers in the order you'd like columns displayed
+    const headers = [
+      'Order ID',
+      'Name',
+      'Address',
+      'Contact',
+      'Product Description',
+      'Quantity',
+      'Payment',
+      'Date',
+      'Status'
+    ];
+
+    // Start CSV content with a header row
+    let csvContent = headers.join(',') + '\n';
+
+    // Build rows from each order
+    orders.forEach((order) => {
+      const row = [
+        order.orderId || '',
+        order.name || '',
+        order.address || '',
+        order.contact || '',
+        order.productDescription || '',
+        order.quantity || '',
+        order.payment || '',
+        order.date || '',
+        order.status || 'Processing'
+      ];
+      csvContent += row.join(',') + '\n';
+    });
+
+    // Create a Blob from the CSV
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a hidden link, click it to download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'orders_records.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // 9) DOWNLOAD EXCEL (.xlsx)
+  const handleDownloadExcel = () => {
+    if (orders.length === 0) {
+      alert('No data to download!');
+      return;
+    }
+
+    // Create a 2D array with headers, then data
+    const worksheetData = [
+      [
+        'Order ID',
+        'Name',
+        'Address',
+        'Contact',
+        'Product Description',
+        'Quantity',
+        'Payment',
+        'Date',
+        'Status'
+      ]
+    ];
+
+    orders.forEach((order) => {
+      worksheetData.push([
+        order.orderId || '',
+        order.name || '',
+        order.address || '',
+        order.contact || '',
+        order.productDescription || '',
+        order.quantity || '',
+        order.payment || '',
+        order.date || '',
+        order.status || 'Processing'
+      ]);
+    });
+
+    // Convert array to worksheet
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+    // Create a new workbook and append the worksheet
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'OrdersRecords');
+
+    // Write the workbook to a buffer
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array'
+    });
+
+    // Convert buffer to a Blob
+    const blob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+
+    // Create a link and force download
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'orders_records.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // 10) Render
   return (
     <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
-      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Orders List</h2>
+      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
+        Orders List
+      </h2>
+
       <div className="overflow-x-auto">
         <table className="min-w-full border border-collapse border-gray-300">
           <thead>
@@ -315,6 +437,22 @@ const OrdersRecords = () => {
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* Download Buttons BELOW the table */}
+      <div className="mt-4">
+        <button
+          onClick={handleDownloadCSV}
+          className="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-600 transition duration-200"
+        >
+          Download CSV
+        </button>
+        <button
+          onClick={handleDownloadExcel}
+          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition duration-200"
+        >
+          Download Excel
+        </button>
       </div>
 
       {/* Delete Confirmation Modal */}

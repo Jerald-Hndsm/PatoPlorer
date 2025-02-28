@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaRegEdit, FaTrash } from 'react-icons/fa';
 import { userFirestore } from '../../firebase';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import * as XLSX from 'xlsx'; // For Excel export
 
 function EggCollection() {
   // --- 1) State ---
@@ -126,10 +127,123 @@ function EggCollection() {
     }
   };
 
-  // --- 8) Render the table ---
+  // --- 8) DOWNLOAD CSV ---
+  const handleDownloadCSV = () => {
+    if (inventoryList.length === 0) {
+      alert('No data to download!');
+      return;
+    }
+
+    // Define your CSV headers in the same order you want columns to appear:
+    const headers = [
+      'Date',
+      'Eggs Collected',
+      'Housing',
+      'Hatching Eggs',
+      'Breeds',
+      'Duck Mortality',
+      'Forecasted Eggs'
+    ];
+
+    // Start CSV content with a header row:
+    let csvContent = headers.join(',') + '\n';
+
+    // Build CSV rows for each entry
+    inventoryList.forEach((entry) => {
+      const row = [
+        entry.date,
+        entry.eggsCollected,
+        entry.housing,
+        entry.hatchingEggs,
+        entry.breeds,
+        entry.duckMortality,
+        entry.forecastedEggs
+      ];
+      csvContent += row.join(',') + '\n';
+    });
+
+    // Create a Blob from the CSV
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link and click it to download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'egg_inventory.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // --- 9) DOWNLOAD EXCEL (.xlsx) ---
+  const handleDownloadExcel = () => {
+    if (inventoryList.length === 0) {
+      alert('No data to download!');
+      return;
+    }
+
+    // 1) Create a 2D array: first row is headers, then data rows
+    const worksheetData = [
+      [
+        'Date',
+        'Eggs Collected',
+        'Housing',
+        'Hatching Eggs',
+        'Breeds',
+        'Duck Mortality',
+        'Forecasted Eggs'
+      ]
+    ];
+
+    // Add each item as a row
+    inventoryList.forEach((entry) => {
+      worksheetData.push([
+        entry.date,
+        entry.eggsCollected,
+        entry.housing,
+        entry.hatchingEggs,
+        entry.breeds,
+        entry.duckMortality,
+        entry.forecastedEggs
+      ]);
+    });
+
+    // 2) Convert array to worksheet
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+
+    // 3) Create a new workbook and append the worksheet
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'EggInventory');
+
+    // 4) Write workbook to a buffer
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array'
+    });
+
+    // 5) Convert buffer to Blob
+    const blob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+
+    // 6) Create a link and force download
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'egg_inventory.xlsx');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // --- 10) RENDER TABLE & BUTTONS ---
   return (
     <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
-      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">Inventory Entries</h2>
+      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
+        Inventory Entries
+      </h2>
+
+      {/* Inventory Table */}
       <table className="min-w-full border-collapse border border-gray-300">
         <thead>
           <tr>
@@ -286,6 +400,22 @@ function EggCollection() {
           })}
         </tbody>
       </table>
+
+      {/* Download Buttons BELOW the table */}
+      <div className="mt-4">
+        <button
+          onClick={handleDownloadCSV}
+          className="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-600 transition duration-200"
+        >
+          Download CSV
+        </button>
+        <button
+          onClick={handleDownloadExcel}
+          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition duration-200"
+        >
+          Download Excel
+        </button>
+      </div>
 
       {/* Delete Confirmation Modal */}
       {confirmDelete && (

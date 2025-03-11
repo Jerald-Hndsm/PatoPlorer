@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { adminFirestore, userFirestore } from '../../firebase';
 import { collection, getDocs, orderBy, query, limit } from 'firebase/firestore';
 import { MdDashboard } from "react-icons/md";
+import { TbEggs } from "react-icons/tb";
+import { FaRegClipboard } from "react-icons/fa";
+import { RiNumbersLine } from "react-icons/ri";
+import { MdStackedLineChart } from "react-icons/md";
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -151,21 +155,21 @@ const MainDashboard = () => {
 
       {/* Info Tiles */}
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <div className="bg-blue-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold">Eggs Produced</h2>
-          <p className="text-xl">{latestEggsCollected ?? "Loading..."} Eggs</p>
+        <div className="bg-sky-800 p-2 shadow rounded flex flex-col justify-between">
+          <h2 className="text-lg font-sans font-semibold text-white text-left h-20 flex">Eggs Produced <TbEggs className='pt-0.5 ml-1 translate-y-1'/> </h2>
+          <p className="text-lg text-white mt-auto text-right font-mono">{latestEggsCollected ?? "Loading..."} Eggs</p>
         </div>
-        <div className="bg-green-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold">Orders</h2>
-          <p className="text-xl">{orderCount ?? "Loading..."} Orders</p>
+        <div className="bg-sky-800 p-2 shadow rounded flex flex-col justify-between">
+          <h2 className="text-lg font-sans font-semibold text-white text-left h-20 flex">Orders <FaRegClipboard className='pt-0.5 ml-1 translate-y-1'/></h2>
+          <p className="text-lg text-white mt-auto text-right font-mono">{orderCount ?? "Loading..."} Orders</p>
         </div>
-        <div className="bg-purple-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold">Number of Ducks</h2>
-          <p className="text-xl">{numberOfDucks ?? "Loading..."} Ducks</p>
+        <div className="bg-sky-800 p-2 shadow rounded flex flex-col justify-between">
+          <h2 className="text-lg font-sans font-semibold text-white text-left h-20 flex">Number of Ducks <RiNumbersLine className='pt-0.5 ml-1 translate-y-1'/></h2>
+          <p className="text-lg text-white mt-auto text-right font-mono">{numberOfDucks ?? "Loading..."} Ducks</p>
         </div>
-        <div className="bg-yellow-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold">Egg Forecast Today</h2>
-          <p className="text-xl">{latestEggForecast ?? "Loading..."} Eggs</p>
+        <div className="bg-sky-800 p-2 shadow rounded flex flex-col justify-between">
+          <h2 className="text-lg font-sans font-semibold text-white text-left h-20 flex">Egg Forecast Today <MdStackedLineChart className='pt-0.5 ml-1 translate-y-1'/></h2>
+          <p className="text-lg text-white mt-auto text-right font-mono">{latestEggForecast ?? "Loading..."} Eggs</p>
         </div>
       </div>
 

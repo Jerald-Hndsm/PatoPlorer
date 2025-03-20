@@ -148,7 +148,7 @@ const MainDashboard = () => {
   };
 
   return (
-    <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
+    <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg h-[745px]">
       <h1 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
         Dashboard <MdDashboard className="ml-2" />
       </h1>
@@ -176,7 +176,7 @@ const MainDashboard = () => {
       {/* Charts Row: Eggs Produced & Orders */}
       <div className="grid grid-cols-2 gap-4">
         {/* Eggs Produced Chart */}
-        <div className="bg-white p-6 rounded-lg shadow-md max-h-96">
+        <div className="bg-white p-9 rounded-lg shadow-md max-h-96">
           <h2 className="text-lg font-bold mb-2">Eggs Produced Over Time</h2>
           <Line
             data={{
@@ -196,7 +196,7 @@ const MainDashboard = () => {
         </div>
 
         {/* Orders Chart */}
-        <div className="bg-white p-6 rounded-lg shadow-md max-h-96">
+        <div className="bg-white p-9 rounded-lg shadow-md max-h-96">
           <h2 className="text-lg font-bold mb-2">Orders Over Time</h2>
           <Line
             data={{

@@ -76,7 +76,7 @@ const ForecastRecords = () => {
   };
 
   return (
-    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl flex flex-col w-full h-full">
+    <div className="p-8 bg-blue-50 min-h-screen mt-10">
       <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1 mt-10">Forecast Records</h2>
       <div className="overflow-auto max-h-[60vh] border rounded-lg mt-5">
         <table className="min-w-full divide-y divide-gray-200">

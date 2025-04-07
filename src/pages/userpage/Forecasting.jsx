@@ -44,7 +44,6 @@ const Forecasting = () => {
   });
 
   const [predictedEggs, setPredictedEggs] = useState(null);
-  // CHANGED: suggestion is now an array by default
   const [suggestion, setSuggestion] = useState([]);
   const [error, setError] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -94,7 +93,7 @@ const Forecasting = () => {
       setShowAlert(true);
       return;
     }
-    setShowConfirmation(true);
+    handleProceed();
   };
 
   const handleProceed = async () => {
@@ -114,7 +113,6 @@ const Forecasting = () => {
 
       const data = await response.json();
       setPredictedEggs(data.predicted_eggs);
-      // CHANGED: now storing an array of suggestions
       setSuggestion(data.suggestions || []);
       setError(null);
 
@@ -147,22 +145,12 @@ const Forecasting = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(adminFirestore, "forecasts", id));
-      fetchForecastHistory();
-    } catch (error) {
-      console.error("Error deleting forecast: ", error);
-    }
-  };
-
-  // Chart Data
   const chartData = {
-    labels: forecastHistory.map(entry => entry.date), // Dates as X-axis
+    labels: forecastHistory.map(entry => entry.date),
     datasets: [
       {
         label: 'Forecasted Eggs',
-        data: forecastHistory.map(entry => entry.predictedEggs), // Forecasted Eggs as Y-axis
+        data: forecastHistory.map(entry => entry.predictedEggs),
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
@@ -182,47 +170,16 @@ const Forecasting = () => {
   };
 
   return (
-    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl flex flex-col w-full">
-      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
-        Forecasting Page
-      </h2>
-
-      {showAlert && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <p className="text-gray-600 font-bold text-lg">
-              You need to fill all numeric inputs!
-            </p>
-            <button onClick={() => setShowAlert(false)} className="mt-4 bg-blue-500 text-white p-2 rounded">
-              Proceed
-            </button>
-          </div>
-        </div>
-      )}
-
-      {showConfirmation && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <p className="text-gray-600 font-bold text-lg">
-              Are you sure about your input? If yes, press Proceed. If not, kindly double check.
-            </p>
-            <button onClick={handleProceed} className="mt-4 bg-blue-500 text-white p-2 rounded">
-              Proceed
-            </button>
-            <button onClick={() => setShowConfirmation(false)} className="mt-4 bg-red-500 text-white p-2 rounded">
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div className={`flex w-full ${showAlert || showConfirmation ? 'pointer-events-none opacity-50' : ''}`}>
-        <div className="flex flex-col w-11/12 p-4 border rounded-lg bg-white shadow-md">
-          <h3 className="font-bold text-base mb-2 text-gray-800">Parameters Input</h3>
-          <div className="flex flex-col space-y-4">
+    <div className="p-8 bg-blue-50 min-h-screen mt-10">
+      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1 mt-10">Forecasting Page</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-5">
+        {/* Input form */}
+        <div className="col-span-1 lg:col-span-2 bg-white rounded-lg shadow p-6">
+          <h3 className="text-xl font-semibold mb-4">Input Parameters</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.keys(extraInputs).map((key, index) => (
-              <div key={index} className="relative">
-                <label className="block text-gray-700 capitalize">{key}:</label>
+              <div key={index} className="flex flex-col">
+                <label className="text-gray-700 capitalize mb-1">{key}</label>
                 <input
                   type={key === "Date" ? "date" : "text"}
                   name={key}
@@ -233,11 +190,9 @@ const Forecasting = () => {
                 />
               </div>
             ))}
-          </div>
-          <div className="flex flex-col space-y-4 mt-4">
             {Object.keys(inputData).map((key, index) => (
-              <div key={index}>
-                <label className="block text-gray-700 capitalize">{key}:</label>
+              <div key={index} className="flex flex-col">
+                <label className="text-gray-700 capitalize mb-1">{key}</label>
                 <input
                   type="number"
                   name={key}
@@ -249,40 +204,54 @@ const Forecasting = () => {
               </div>
             ))}
           </div>
-          <button onClick={handleUpdate} className="mt-4 bg-blue-500 text-white p-2 rounded">
+          <button
+            onClick={handleUpdate}
+            className="mt-4 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
             Enter
           </button>
         </div>
 
-        <div className="flex flex-col w-full space-y-4 ml-4">
-          <div className="border rounded-lg p-4 bg-white shadow-md h-2/6">
-            <h3 className="font-bold text-base mb-2 text-gray-800 flex items-center">Recommendation <MdOutlineRecommend className='pt-0.5 ml-1 size-6'/> </h3>
-            {/* CHANGED: show bullet list of suggestions */}
-            {suggestion && suggestion.length > 0 ? (
-              <ul className="list-disc list-inside text-gray-600">
-                {suggestion.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-gray-600">No Recommendation For Production.</p>
-            )}
-          </div>
-          <div className="border rounded-lg p-4 bg-white shadow-md h-40">
-            <h3 className="font-bold text-base mb-2 text-gray-800 flex items-center">Forecasted Eggs <LiaEggSolid className='pt-0.5 ml-1 size-5'/></h3>
-            <div className="text-gray-600 text-xl font-bold">
-              {predictedEggs !== null ? predictedEggs : "No Forecast yet, please fill the input."}
-            </div>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
-          </div>
+        {/* Recommendation & Forecast Result */}
+        <div className="col-span-1 flex flex-col space-y-6">
+          <div className="bg-white rounded-lg shadow p-6 flex flex-col h-full">
+            <div className="flex justify-between items-center mb-2">
+              <h4 className="text-lg font-semibold text-gray-800 flex items-center">
+                <MdOutlineRecommend className="mr-2 text-blue-600" /> Recommendation
+              </h4>
 
-          {/* Line Chart Below Forecasted Eggs (Inside Div) */}
-          <div className="border rounded-lg p-4 bg-white shadow-md mt-4">
-            <h3 className="font-bold text-base mb-2 text-gray-800 flex center-items">Daily Egg Forecast <LuLineChart className='pt-0.5 ml-1 size-5'/></h3>
-            <div className="h-64">
-              <Line data={chartData} options={chartOptions} />
+            </div>
+            <div className="flex-1 overflow-auto">
+              {suggestion.length > 0 ? (
+                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                  {suggestion.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-500">No Recommendation For Production.</p>
+              )}
+            </div>
+            <div className="text-center mt-4">
+            <h4 className="text-lg font-semibold text-gray-800 flex items-center">
+                <LiaEggSolid className="mr-2 text-yellow-500" /> Eggs Forecast Today
+              </h4>
+              <p className="text-xl font-bold text-sky-950 mt-3">
+                {predictedEggs !== null ? predictedEggs : "No Forecast yet, please fill the input."}
+              </p>
+              {error && <p className="text-red-500 mt-1">{error}</p>}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Chart section below */}
+      <div className="mt-8 bg-white rounded-lg shadow p-6">
+        <h4 className="text-lg font-semibold mb-3 flex items-center text-gray-800">
+          <LuLineChart className="mr-2 text-green-600" /> Daily Egg Forecast
+        </h4>
+        <div className="h-64">
+          <Line data={chartData} options={chartOptions} />
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@
     "flask": "^0.2.10",
     "forest": "^0.21.2",
     "libphonenumber-js": "^1.11.14",
+    "lucide-react": "^0.487.0",
     "ml-random-forest": "^2.1.0",
     "pandas": "^0.0.3",
     "papaparse": "^5.4.1",

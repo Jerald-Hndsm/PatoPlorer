@@ -1,279 +1,148 @@
 import React, { useState, useEffect } from 'react';
 import { adminFirestore } from '../../firebase';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import * as XLSX from 'xlsx'; // For Excel export
+import * as XLSX from 'xlsx';
+import { Trash2 } from 'lucide-react';
 
 const ForecastRecords = () => {
-    const [forecastRecords, setForecastRecords] = useState([]);
-    const [deleteRecordId, setDeleteRecordId] = useState(null);
-    const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [forecastRecords, setForecastRecords] = useState([]);
+  const [deleteRecordId, setDeleteRecordId] = useState(null);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
-    useEffect(() => {
-        fetchForecastRecords();
-    }, []);
+  useEffect(() => {
+    fetchForecastRecords();
+  }, []);
 
-    // Fetch records from Firestore
-    const fetchForecastRecords = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(adminFirestore, "forecasts"));
-            const records = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setForecastRecords(records);
-        } catch (error) {
-            console.error("❌ Error fetching forecast records:", error);
-        }
-    };
+  const fetchForecastRecords = async () => {
+    try {
+      const snapshot = await getDocs(collection(adminFirestore, 'forecasts'));
+      setForecastRecords(snapshot.docs.map(d => ({ id: d.id, ...d.data() })));
+    } catch (err) {
+      console.error('Error fetching records:', err);
+    }
+  };
 
-    // Trigger the delete popup
-    const handleDelete = async (id) => {
-        setDeleteRecordId(id);
-        setShowDeletePopup(true);
-    };
+  const handleDelete = id => {
+    setDeleteRecordId(id);
+    setShowDeletePopup(true);
+  };
 
-    // Confirm record deletion
-    const confirmDelete = async () => {
-        try {
-            await deleteDoc(doc(adminFirestore, "forecasts", deleteRecordId));
-            setForecastRecords(forecastRecords.filter(record => record.id !== deleteRecordId));
-            setShowDeletePopup(false);
-        } catch (error) {
-            console.error("❌ Error deleting record:", error);
-        }
-    };
+  const confirmDelete = async () => {
+    try {
+      await deleteDoc(doc(adminFirestore, 'forecasts', deleteRecordId));
+      setForecastRecords(prev => prev.filter(r => r.id !== deleteRecordId));
+      setShowDeletePopup(false);
+    } catch (err) {
+      console.error('Error deleting record:', err);
+    }
+  };
 
-    // ----------------------------------------
-    // 1) DOWNLOAD AS CSV
-    // ----------------------------------------
-    const handleDownloadCSV = () => {
-        if (forecastRecords.length === 0) {
-            alert('No data to download!');
-            return;
-        }
+  const handleDownloadCSV = () => {
+    if (!forecastRecords.length) return alert('No data to download!');
+    const headers = ['Date','Weather','Breed','Housing','Feed Type','Nutrients','Temperature','Number of Ducks','Feed (kg)','Nutrients (ml)','Eggs Forecasted'];
+    let csv = headers.join(',') + '\n';
+    forecastRecords.forEach(r => {
+      csv += [
+        r.inputData.Date, r.inputData.Weather, r.inputData.Breed, r.inputData.Housing,
+        r.inputData['Feed Type'], r.inputData.Nutrients, r.inputData.Temperature,
+        r.inputData['Number of Ducks'], r.inputData['Kg of feeds / day'],
+        r.inputData['Nutrients in mL / day'], r.predictedEggs
+      ].join(',') + '\n';
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'forecast_records.csv'; a.click();
+    URL.revokeObjectURL(url);
+  };
 
-        // CSV header matches the table columns
-        const headers = [
-            'Date',
-            'Weather',
-            'Breed',
-            'Housing',
-            'Feed Type',
-            'Nutrients',
-            'Temperature',
-            'Number of Ducks',
-            'Kg of feeds / day',
-            'Nutrients in mL / day',
-            'Eggs Forecasted'
-        ];
+  const handleDownloadExcel = () => {
+    if (!forecastRecords.length) return alert('No data to download!');
+    const data = [[
+      'Date','Weather','Breed','Housing','Feed Type','Nutrients','Temperature','Number of Ducks','Feed (kg)','Nutrients (ml)','Eggs Forecasted'
+    ]];
+    forecastRecords.forEach(r => data.push([
+      r.inputData.Date, r.inputData.Weather, r.inputData.Breed, r.inputData.Housing,
+      r.inputData['Feed Type'], r.inputData.Nutrients, r.inputData.Temperature,
+      r.inputData['Number of Ducks'], r.inputData['Kg of feeds / day'],
+      r.inputData['Nutrients in mL / day'], r.predictedEggs
+    ]));
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'Forecasts');
+    const buf = XLSX.write(wb, { bookType:'xlsx', type:'array' });
+    const blob = new Blob([buf], { type:'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'forecast_records.xlsx'; a.click();
+    URL.revokeObjectURL(url);
+  };
 
-        // Convert headers to a comma-separated string
-        let csvContent = headers.join(',') + '\n';
-
-        // Build CSV rows
-        forecastRecords.forEach((record) => {
-            const row = [
-                record.inputData.Date,
-                record.inputData.Weather,
-                record.inputData.Breed,
-                record.inputData.Housing,
-                record.inputData['Feed Type'],
-                record.inputData.Nutrients,
-                record.inputData.Temperature,
-                record.inputData['Number of Ducks'],
-                record.inputData['Kg of feeds / day'],
-                record.inputData['Nutrients in mL / day'],
-                record.predictedEggs
-            ];
-            csvContent += row.join(',') + '\n';
-        });
-
-        // Create a Blob from the CSV
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-
-        // Create a link and click it to download
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'forecast_records.csv');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-    // ----------------------------------------
-    // 2) DOWNLOAD AS EXCEL (.xlsx)
-    // ----------------------------------------
-    const handleDownloadExcel = () => {
-        if (forecastRecords.length === 0) {
-            alert('No data to download!');
-            return;
-        }
-
-        // Create a 2D array: first row is headers, then data rows
-        const worksheetData = [
-            [
-                'Date',
-                'Weather',
-                'Breed',
-                'Housing',
-                'Feed Type',
-                'Nutrients',
-                'Temperature',
-                'Number of Ducks',
-                'Kg of feeds / day',
-                'Nutrients in mL / day',
-                'Eggs Forecasted'
-            ]
-        ];
-
-        // Push each forecast record as an array of values
-        forecastRecords.forEach(record => {
-            worksheetData.push([
-                record.inputData.Date,
-                record.inputData.Weather,
-                record.inputData.Breed,
-                record.inputData.Housing,
-                record.inputData['Feed Type'],
-                record.inputData.Nutrients,
-                record.inputData.Temperature,
-                record.inputData['Number of Ducks'],
-                record.inputData['Kg of feeds / day'],
-                record.inputData['Nutrients in mL / day'],
-                record.predictedEggs
-            ]);
-        });
-
-        // Convert the array of arrays to a worksheet
-        const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
-
-        // Create a new workbook and append the worksheet
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'ForecastRecords');
-
-        // Write the workbook to a buffer as XLSX
-        const excelBuffer = XLSX.write(workbook, {
-            bookType: 'xlsx',
-            type: 'array'
-        });
-
-        // Convert buffer to a Blob and generate a link for download
-        const blob = new Blob([excelBuffer], {
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        });
-
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'forecast_records.xlsx');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-    return (
-        <div className="p-8 mt-10 bg-blue-50 shadow-lg rounded-lg">
-            <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1">
-                Forecast Records
-            </h2>
-
-            {/* Forecast Records Table */}
-            <div className="overflow-x-auto">
-                <table className="min-w-full border border-collapse border-gray-300">
-                    <thead>
-                        <tr>
-                            <th className="border border-gray-300 p-2">Date</th>
-                            <th className="border border-gray-300 p-2">Weather</th>
-                            <th className="border border-gray-300 p-2">Breed</th>
-                            <th className="border border-gray-300 p-2">Housing</th>
-                            <th className="border border-gray-300 p-2">Feed Type</th>
-                            <th className="border border-gray-300 p-2">Nutrients</th>
-                            <th className="border border-gray-300 p-2">Temperature</th>
-                            <th className="border border-gray-300 p-2">Number of Ducks</th>
-                            <th className="border border-gray-300 p-2">Feed (kg)</th>
-                            <th className="border border-gray-300 p-2">Nutrients (ml)</th>
-                            <th className="border border-gray-300 p-2">Eggs Forecasted</th>
-                            <th className="border border-gray-300 p-2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {forecastRecords.length > 0 ? (
-                            forecastRecords.map((record) => (
-                                <tr key={record.id} className="bg-white border-b">
-                                    <td className="border border-gray-300 p-1 rounded min-w-28">{record.inputData.Date}</td>
-                                    <td className="border border-gray-300 p-1 rounded min-w-28">{record.inputData.Weather}</td>
-                                    <td className="border border-gray-300 p-1 rounded min-w-28">{record.inputData.Breed}</td>
-                                    <td className="border border-gray-300 p-1 rounded min-w-28">{record.inputData.Housing}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData["Feed Type"]}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData.Nutrients}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData.Temperature}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData["Number of Ducks"]}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData["Kg of feeds / day"]}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.inputData["Nutrients in mL / day"]}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">{record.predictedEggs}</td>
-                                    <td className="border border-gray-300 p-1 rounded w-full">
-                                        <button
-                                            onClick={() => handleDelete(record.id)}
-                                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="12" className="text-center p-4 text-gray-600">
-                                    No records found.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-
-            {/* Download Buttons BELOW the table */}
-            <div className="mt-4">
-                <button
-                    onClick={handleDownloadCSV}
-                    className="bg-green-500 text-white px-4 py-2 rounded mr-2 hover:bg-green-600 transition duration-200"
-                >
-                    Download CSV
-                </button>
-                <button
-                    onClick={handleDownloadExcel}
-                    className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition duration-200"
-                >
-                    Download Excel
-                </button>
-            </div>
-
-            {/* Delete Confirmation Pop-up */}
-            {showDeletePopup && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-                        <p className="text-gray-600 font-bold text-lg">
-                            Are you sure you want to delete this record? This action cannot be undone.
-                        </p>
-                        <div className="mt-4 flex justify-center space-x-4">
-                            <button
-                                onClick={confirmDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                            >
-                                Yes, Delete
-                            </button>
-                            <button
-                                onClick={() => setShowDeletePopup(false)}
-                                className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div className="p-8 mt-10 bg-blue-50 ml-2 shadow-lg rounded-lg transition-all duration-300 hover:shadow-xl flex flex-col w-full h-full">
+      <h2 className="text-lg mb-4 font-sans font-bold text-gray-800 flex items-center pt-1 mt-10">Forecast Records</h2>
+      <div className="overflow-auto max-h-[60vh] border rounded-lg mt-5">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-sky-800 sticky top-0">
+            <tr>
+              {['Date','Weather','Breed','Housing','Feed Type','Nutrients','Temperature','Number of Ducks','Feed (kg)','Nutrients (ml)','Eggs Forecasted','Action'].map(h => (
+                <th key={h} className="px-4 py-2 text-left text-sm font-medium text-white">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-100">
+            {forecastRecords.length ? forecastRecords.map(r => (
+              <tr key={r.id} className="hover:bg-gray-50 transition">
+                <td className="px-4 py-2 text-sm text-gray-900 w-28">{r.inputData.Date}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData.Weather}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData.Breed}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData.Housing}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData['Feed Type']}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData.Nutrients}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData.Temperature}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData['Number of Ducks']}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData['Kg of feeds / day']}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.inputData['Nutrients in mL / day']}</td>
+                <td className="px-4 py-2 text-sm text-gray-900">{r.predictedEggs}</td>
+                <td className="px-4 py-2 flex justify-center">
+                  <Trash2 onClick={() => handleDelete(r.id)} size={18} className="text-red-500 hover:text-red-700 cursor-pointer transition" />
+                </td>
+              </tr>
+            )) : (
+              <tr>
+                <td colSpan={12} className="px-4 py-6 text-center text-gray-500">No records found.</td>
+              </tr>
             )}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-4 flex space-x-3">
+        <button onClick={handleDownloadCSV} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">
+          Download CSV
+        </button>
+        <button onClick={handleDownloadExcel} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+          Download Excel
+        </button>
+      </div>
+
+      {showDeletePopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <p className="mb-4 text-lg font-semibold text-gray-700">
+              Are you sure you want to delete this record? This action cannot be undone.
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button onClick={confirmDelete} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                Yes, Delete
+              </button>
+              <button onClick={() => setShowDeletePopup(false)} className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition">
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default ForecastRecords;

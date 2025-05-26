@@ -29,7 +29,7 @@ ChartJS.register(
 const Forecasting = () => {
   const [inputData, setInputData] = useState({
     "Temperature": '',
-    "Number of Ducks": '',
+    "No. of Ducks": '',
     "Kg of feeds / day": '',
     "Nutrients in mL / day": '',
   });
@@ -125,7 +125,7 @@ const Forecasting = () => {
       fetchForecastHistory();
       setInputData({
         "Temperature": '',
-        "Number of Ducks": '',
+        "No. of Ducks": '',
         "Kg of feeds / day": '',
         "Nutrients in mL / day": '',
       });

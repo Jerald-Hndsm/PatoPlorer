@@ -107,59 +107,59 @@ def predict():
         temp = incoming.get("Temperature")
         if temp is not None:
             if temp < 15:
-                recommendations.append("Temperature is too low; consider raising the ambient temperature.")
+                recommendations.append("Temperature is too low; it may affect ducks fertility and egg laying frequency, expect low production. Ideal temperature is 18°-24°C.")
             elif temp > 35:
-                recommendations.append("Temperature is too high; consider cooling measures.")
+                recommendations.append("Temperature is too high; Ensure proper housing with ventilation shade and cool water to prevent heat stress Ideal temperature is 18°-24°C")
             else:
-                recommendations.append("Temperature is within the optimal range.")
+                recommendations.append("Temperature is within the ideal range, possible production may increase.")
 
         # No. of Ducks recommendation
         ducks = incoming.get("No. of Ducks")
         if ducks is not None:
             if ducks < 50:
-                recommendations.append("Duck count is low; consider increasing the number of ducks for better productivity.")
+                recommendations.append("Consider adding ducks if the production doesn't meet the orders deadline.")
             elif ducks > 1700:
-                recommendations.append("Duck count is high; ensure there is adequate space and resources.")
+                recommendations.append("Ensure there is adequate space for ducks.")
             else:
-                recommendations.append("Duck count is within the optimal range.")
+                recommendations.append("Ducks need enough space to move around freely for exercise. Without space, their growth can slow down, and egg production may decrease.")
 
         # Kg of feeds / day recommendation
         feed_kg = incoming.get("Kg of feeds / day")
         if feed_kg is not None:
             if feed_kg < 10:
-                recommendations.append("Feed amount is low; consider increasing the feed quantity.")
+                recommendations.append("Ensure enough feed consumption, lack consumption may lead to poor fertility and aggressiveness of the ducks.")
             elif feed_kg > 100:
-                recommendations.append("Feed amount is high; monitor feed usage to avoid wastage.")
+                recommendations.append("Overfeeding can make ducks fat and lazy, it will affect their fertility. Ensure proper feeding schedule and store excess feeds to avoid waste")
             else:
-                recommendations.append("Feed amount is within the recommended range.")
+                recommendations.append("Ensure consistent clean water consumption after feeding, clean feeder to avoid spoilage and bacteria build up.")
 
         # Nutrients in mL / day recommendation
         nutrients_ml = incoming.get("Nutrients in mL / day")
         if nutrients_ml is not None:
             if nutrients_ml < 100:
-                recommendations.append("Nutrient volume is low; consider supplementing additional nutrients.")
+                recommendations.append("If the nutrients is low malnutrition may weakens the immune system, making ducks more susceptible to infections, diseases, and parasites.")
             elif nutrients_ml > 1000:
-                recommendations.append("Nutrient volume is high; adjust to prevent overfeeding.")
+                recommendations.append("Maintain balance diet and nutrition of ducks daily for peak fertility.")
             else:
-                recommendations.append("Nutrient volume is optimal.")
+                recommendations.append("Nutrients such as Selenium, antibiotics and Protein  can help to improve health, avoid bacteria build up, and fertility of ducks.")
 
         # Weather recommendation
         weather = incoming.get("Weather", "").lower()
         if weather:
             if "rain" in weather:
-                recommendations.append("Weather is rainy; ensure proper shelter for the ducks.")
+                recommendations.append("Weather is rainy; ensure proper shelter for the ducks to avoid colds and infertility of ducks.")
             elif "sunny" in weather:
                 recommendations.append("Weather is sunny; make sure ducks stay well hydrated.")
             else:
-                recommendations.append("Weather conditions appear normal.")
+                recommendations.append("Weather conditions appear normal, production might improve.")
 
         # Breed recommendation
         breed = incoming.get("Breed", "").lower()
         if breed:
             if breed not in ["mixed", "layer a", "layer b"]:
-                recommendations.append("Breed is non-standard; consider using recommended breeds for optimal production.")
+                recommendations.append("The Ideal breed for egg production is Khaki Campbell and in the Philippines the Pateros or Itik that is popular for Balut and Penoy.")
             else:
-                recommendations.append("Breed is within the recommended types.")
+                recommendations.append("Ducks usually begin laying at about 6–7 months of age and should be laying at a rate of about 90%.")
 
         # Housing recommendation
         housing = incoming.get("Housing", "").lower()
